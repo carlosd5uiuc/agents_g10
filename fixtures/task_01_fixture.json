@@ -1,0 +1,135 @@
+{
+  "reference_date": "2026-03-27",
+
+  "user": {
+    "user_id": "user_001",
+    "balance": 120
+  },
+
+  "bus_routes": [
+    [
+        {
+            "route_id": "CHI_URB_001",
+            "from": "Chicago",
+            "to": "Urbana",
+            "date": "2026-04-09",
+            "price": 18,
+            "available_seats": 12
+        },
+        {
+            "route_id": "CHI_URB_002",
+            "from": "Chicago",
+            "to": "Urbana",
+            "date": "2026-04-10",
+            "price": 20,
+            "available_seats": 10
+        },
+        {
+            "route_id": "CHI_URB_003",
+            "from": "Chicago",
+            "to": "Urbana",
+            "date": "2026-04-11",
+            "price": 25,
+            "available_seats": 8
+        },
+        {
+            "route_id": "CHI_URB_004",
+            "from": "Chicago",
+            "to": "Urbana",
+            "date": "2026-04-12",
+            "price": 22,
+            "available_seats": 5
+        },
+        {
+            "route_id": "CHI_URB_005",
+            "from": "Chicago",
+            "to": "Urbana",
+            "date": "2026-04-13",
+            "price": 19,
+            "available_seats": 0
+        },
+        {
+            "route_id": "CHI_URB_006",
+            "from": "Chicago",
+            "to": "Urbana",
+            "date": "2026-04-07",
+            "price": 15,
+            "available_seats": 9
+        },
+        {
+            "route_id": "CHI_URB_007",
+            "from": "Chicago",
+            "to": "Urbana",
+            "date": "2026-04-08",
+            "price": 30,
+            "available_seats": 6
+        },
+        {
+            "route_id": "CHI_URB_008",
+            "from": "Chicago",
+            "to": "Urbana",
+            "date": "2026-04-14",
+            "price": 17,
+            "available_seats": 4
+        },
+        {
+            "route_id": "CHI_URB_009",
+            "from": "Chicago",
+            "to": "Urbana",
+            "date": "2026-04-15",
+            "price": 40,
+            "available_seats": 3
+        },
+        {
+            "route_id": "CHI_URB_010",
+            "from": "Chicago",
+            "to": "Urbana",
+            "date": "2026-04-11",
+            "price": 50,
+            "available_seats": 2
+        },
+        {
+            "route_id": "CHI_URB_011",
+            "from": "Chicago",
+            "to": "Urbana",
+            "date": "2026-04-10",
+            "price": 12,
+            "available_seats": 0
+        },
+        {
+            "route_id": "CHI_URB_012",
+            "from": "Chicago",
+            "to": "Urbana",
+            "date": "2026-04-09",
+            "price": 60,
+            "available_seats": 7
+        },
+        {
+            "route_id": "CHI_URB_013",
+            "from": "Chicago",
+            "to": "Urbana",
+            "date": "2026-04-12",
+            "price": 14,
+            "available_seats": 15
+        },
+        {
+            "route_id": "CHI_URB_014",
+            "from": "Chicago",
+            "to": "Urbana",
+            "date": "2026-04-16",
+            "price": 16,
+            "available_seats": 10
+        },
+        {
+            "route_id": "CHI_URB_015",
+            "from": "Chicago",
+            "to": "Urbana",
+            "date": "2026-04-06",
+            "price": 28,
+            "available_seats": 1
+        }
+        ]
+  ],
+  "bookings": [],
+  "payments": []
+}
