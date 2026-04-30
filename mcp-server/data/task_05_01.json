@@ -1,0 +1,26 @@
+[
+    {
+        "symptoms": ["Refrigerator not cooling", "Compressor clicking", "Food spoiling quickly"],
+        "likely_cause": "Dirty condenser coils"
+    },
+    {
+        "symptoms": ["Washer not draining", "Water left in drum", "Drain cycle stops early"],
+        "likely_cause": "Clogged drain hose"
+    },
+    {
+        "symptoms": ["Dryer not heating", "Clothes still damp", "Dryer runs but stays cool"],
+        "likely_cause": "Broken heating element"
+    },
+    {
+        "symptoms": ["Dishwasher leaking", "Water pooling under door", "Wet floor after cycle"],
+        "likely_cause": "Worn door gasket"
+    },
+    {
+        "symptoms": ["Oven not reaching temperature", "Food undercooked", "Temperature fluctuates"],
+        "likely_cause": "Faulty temperature sensor"
+    },
+    {
+        "symptoms": ["Microwave not turning on", "Display is blank", "Buttons do not respond"],
+        "likely_cause": "Blown internal fuse"
+    }
+]

@@ -1,0 +1,32 @@
+[
+    {
+        "price": 300,
+        "menu_options": ["Sandwiches", "Salad", "Cookies"],
+        "number_of_people": 20
+    },
+    {
+        "price": 600,
+        "menu_options": ["Pasta", "Chicken", "Dessert"],
+        "number_of_people": 40
+    },
+    {
+        "price": 450,
+        "menu_options": ["Tacos", "Rice", "Beans", "Chips"],
+        "number_of_people": 30
+    },
+    {
+        "price": 750,
+        "menu_options": ["BBQ Chicken", "Mac and Cheese", "Coleslaw"],
+        "number_of_people": 50
+    },
+    {
+        "price": 250,
+        "menu_options": ["Pizza", "Garlic Bread", "Brownies"],
+        "number_of_people": 15
+    },
+    {
+        "price": 900,
+        "menu_options": ["Steak", "Roasted Vegetables", "Cheesecake"],
+        "number_of_people": 60
+    }
+]
