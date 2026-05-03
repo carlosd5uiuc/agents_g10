@@ -1,0 +1,7 @@
+
+[
+    {"category": "streaming", "amount": 45, "priority": false},
+    {"category": "coffee", "amount": 80, "priority": false},
+    {"category": "medicine", "amount": 70, "priority": true},
+    {"category": "rideshare", "amount": 90, "priority": false}
+]

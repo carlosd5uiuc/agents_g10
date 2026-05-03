@@ -1,5 +1,5 @@
 [
-            {"id": "bill_electric", "amount": 120, "due": "2026-05-03", "settled": false},
-            {"id": "bill_water", "amount": 70, "due": "2026-05-05", "settled": true},
-            {"id": "bill_internet", "amount": 85, "due": "2026-05-04", "settled": false}
+            {"id": "bill_electric", "amount": 120, "due": "2026-05-03T00:00:00", "settled": false},
+            {"id": "bill_water", "amount": 70, "due": "2026-05-05T00:00:00", "settled": true},
+            {"id": "bill_internet", "amount": 85, "due": "2026-05-04T00:00:00", "settled": false}
 ]

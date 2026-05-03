@@ -1,5 +1,7 @@
 import json
-import os
+import uuid
+
+from datetime import datetime, date
 from mcp.server.fastmcp import FastMCP
 from pathlib import Path
 
@@ -29,41 +31,52 @@ def get_ride_options() -> str:
     return str(flights)
 
 
-@mcp.resource("travel://confirmation/{confirmation_id}")
-def get_travel_confirmation(confirmation_id: str) -> str:
-    """
-    Get travel confirmation ID and calendar entry.
-
-    Args:
-        confirmation_id (str): The confirmation ID.
-
-    Returns:
-        str: Travel confirmation details.
-    """
-    return (
-        f"Confirmation ID: {confirmation_id}\n"
-        f"Calendar Entry: Travel arrangement scheduled."
-    )
-
-
 @mcp.tool()
-def create_travel_arrangement(flight_id: str, include_rideshare: bool) -> str:
+def create_travel_arrangement(ride_id: str) -> dict:
     """
     Create a travel arrangement.
 
     Args:
-        flight_id (str): Selected flight ID.
-        include_rideshare (bool): Whether to include rideshare.
+        ride_id (str): Selected ride ID.
 
     Returns:
-        str: Confirmation message.
+        dict: A confirmation object containing the generated confirmation ID.
     """
-    return (
-        f"Travel arrangement created for flight {flight_id}. "
-        f"Rideshare included: {include_rideshare}. "
-        f"Confirmation ID: TRAVEL-{flight_id}"
-    )
+    return {
+        "confirmation_id": str(uuid.uuid4()),
+        "ride_id": ride_id
+    }
 
+
+@mcp.tool()
+def create_calendar_entry(date: str, category: str) -> dict:
+    """
+    Create a calendar entry for a given date and category.
+
+    Args:
+        date (str): Calendar date/time in ISO format: YYYY-MM-DDTHH:MM:SS.
+        category (str): Calendar entry category.
+
+    Returns:
+        dict: Entry confirmation containing the entry date, category, and confirmation ID.
+
+    Raises:
+        ValueError: If date is not in ISO datetime format.
+    """
+    try:
+        parsed_datetime = datetime.fromisoformat(date)
+    except ValueError:
+        raise ValueError(
+            "Invalid date. Expected ISO datetime format: YYYY-MM-DDTHH:MM:SS, "
+            "e.g. 2026-05-03T14:30:00."
+        )
+
+    return {
+        "entry_date": parsed_datetime.isoformat(),
+        "category": category,
+        "message": f"Calendar entry created for {category} on {parsed_datetime.isoformat()}.",
+        "confirmation_id": str(uuid.uuid4()),
+    }
 
 # -------------------------
 # T2: Repair Appointment
@@ -82,22 +95,8 @@ def get_repair_options() -> str:
     return str(repairs)
 
 
-@mcp.resource("repair://confirmation/{confirmation_id}")
-def get_repair_confirmation(confirmation_id: str) -> str:
-    """
-    Get repair confirmation.
-
-    Args:
-        confirmation_id (str): The confirmation ID.
-
-    Returns:
-        str: Repair confirmation details.
-    """
-    return f"Repair appointment confirmed. Confirmation ID: {confirmation_id}"
-
-
 @mcp.tool()
-def set_up_repair_appointment(type_of_repair: str, day_of_week: str) -> str:
+def set_up_repair_appointment(type_of_repair: str, day_of_week: str) -> dict:
     """
     Set up a repair appointment.
 
@@ -108,10 +107,10 @@ def set_up_repair_appointment(type_of_repair: str, day_of_week: str) -> str:
     Returns:
         str: Confirmation message.
     """
-    return (
-        f"Repair appointment scheduled for {type_of_repair} on {day_of_week}. "
-        f"Confirmation ID: REPAIR-{day_of_week.upper()}"
-    )
+    return {
+        "message": f"Repair appointment scheduled for {type_of_repair} on {day_of_week}.",
+        "confirmation_id": str(uuid.uuid4()),
+    }
 
 
 # -------------------------
@@ -133,33 +132,8 @@ def get_catering_options() -> str:
     return str(catering_options)
 
 
-@mcp.resource("catering://invitations")
-def get_sent_invitations() -> str:
-    """
-    Get sent invitations.
-
-    Returns:
-        str: Sent invitations.
-    """
-    return str(SENT_INVITATIONS) if SENT_INVITATIONS else "No invitations sent yet."
-
-
-@mcp.resource("catering://confirmation/{confirmation_id}")
-def get_catering_confirmation(confirmation_id: str) -> str:
-    """
-    Get catering order confirmation.
-
-    Args:
-        confirmation_id (str): The confirmation ID.
-
-    Returns:
-        str: Catering confirmation details.
-    """
-    return f"Catering order confirmed. Confirmation ID: {confirmation_id}"
-
-
 @mcp.tool()
-def send_invitations(guests: list[dict]) -> str:
+def send_invitations(guests: list[dict]) -> dict:
     """
     Send invitations.
 
@@ -167,10 +141,18 @@ def send_invitations(guests: list[dict]) -> str:
         guests (list[dict]): List of guests, each with name and email.
 
     Returns:
-        str: Confirmation message.
+        dict: Confirmation object containing one message and confirmation ID per guest.
     """
-    SENT_INVITATIONS.extend(guests)
-    return f"Sent invitations to {len(guests)} guests."
+    return {
+        "msg": [
+            f"An invitation was sent to {guest['email']}"
+            for guest in guests
+        ],
+        "confirmation_id": [
+            str(uuid.uuid4())
+            for _ in guests
+        ],
+    }
 
 
 @mcp.tool()
@@ -183,13 +165,12 @@ def set_catering_appointment(menu_option: str, number_of_people: int) -> str:
         number_of_people (int): Number of people.
 
     Returns:
-        str: Confirmation message.
+        dict: Confirmation object containing one message and confirmation ID per guest.
     """
-    return (
-        f"Catering appointment set for {number_of_people} people "
-        f"with menu option: {menu_option}. "
-        f"Confirmation ID: CATERING-{number_of_people}"
-    )
+    return {
+        "message": f"A catering appointment was set up!\nPlate: {menu_option}\nNo people: {number_of_people}",
+        "confirmation_id": str(uuid.uuid4())
+    }
 
 
 # -------------------------
@@ -209,40 +190,40 @@ def get_doctor_list() -> str:
     return str(doctors)
 
 
-@mcp.resource("doctor://appointment/{confirmation_id}")
-def get_doctor_appointment(confirmation_id: str) -> str:
-    """
-    Get doctor appointment.
-
-    Args:
-        confirmation_id (str): The confirmation ID.
-
-    Returns:
-        str: Doctor appointment confirmation.
-    """
-    return f"Doctor appointment confirmed. Confirmation ID: {confirmation_id}"
-
-
 @mcp.tool()
-def set_up_doctor_appointment(doctor_name: str, appointment_time: str) -> str:
+def set_up_doctor_appointment(doctor_name: str, appointment_time: str) -> dict:
     """
     Set up doctor appointment.
 
     Args:
         doctor_name (str): Name of doctor.
-        appointment_time (str): Desired appointment time.
+        appointment_time (str): Desired appointment time as comma-separated day and hour.
+            Format: "Monday,10" where the first value is the day of week and
+            the second value is the hour in 00-23 format.
 
     Returns:
-        str: Confirmation message.
+        dict: Confirmation object containing a message and confirmation ID.
     """
-    return (
-        f"Appointment scheduled with {doctor_name} at {appointment_time}. "
-        f"Confirmation ID: DOCTOR-{doctor_name.replace(' ', '-').upper()}"
-    )
+    try:
+        day, hour = [part.strip() for part in appointment_time.split(",")]
+    except ValueError:
+        raise ValueError(
+            "Invalid appointment_time. Expected format: '<day>,<hour>', e.g. 'Monday,10'."
+        )
+
+    if not hour.isdigit() or not (0 <= int(hour) <= 23):
+        raise ValueError(
+            "Invalid appointment_time hour. Expected an hour in 00-23 format, e.g. '10' or '14'."
+        )
+
+    return {
+        "message": f"Appointment scheduled with {doctor_name} on {day} at {hour}:00.",
+        "confirmation_id": str(uuid.uuid4()),
+    }
 
 
 # -------------------------
-# T5: Troubleshooting + Repair Guy
+# T5: Troubleshoot washer
 # -------------------------
 
 @mcp.resource("troubleshoot://guide")
@@ -284,17 +265,64 @@ def get_household_bills() -> str:
     """
     return str(load_json_file(DATA_DIR / "task_06.json"))
 
+# Tool: Reuse create_calendar_entry with category PENDING_BILLS
+
 # -------------------------
 # T7: Exercise Routing
 # -------------------------
 
 ## No resources for task #7
+# Tool: Reuse create_calendar_entry with category EXERCISE
 
 # -------------------------
 # T8: Reduce expenses
 # -------------------------
 
-## No resources for task #8
+@mcp.resource("expenses://list")
+def get_expenses_list() -> str:
+    """
+    Get list of expenses, their amount and priority level.
+
+    Returns:
+        str: Get list of expenses
+    """
+    return str(load_json_file(DATA_DIR / "task_08.json"))
+
+@mcp.tool()
+def generate_report(expenses: list[dict], reduction_goal: str,
+    suggestions: str) -> str:
+    """
+    Generate an expense reduction report.
+
+    Args:
+        expenses (list[dict]): List of expenses, where each item contains:
+            - category (str): Expense category.
+            - amount (int | float): Expense amount.
+        reduction_goal (str): Target reduction goal.
+        suggestions (str): Suggested ways to reduce expenses.
+
+    Returns:
+        str: Expense reduction report.
+    """
+    total_expenses = sum(expense["amount"] for expense in expenses)
+
+    expense_lines = "\n".join(
+        f"- {expense['category']}: ${expense['amount']}"
+        for expense in expenses
+    )
+
+    return {
+    "report": (
+        "Expense Reduction Report\n"
+        "========================\n\n"
+        f"Total Expenses: ${total_expenses}\n"
+        f"Reduction Goal: {reduction_goal}\n\n"
+        "Expenses:\n"
+        f"{expense_lines}\n\n"
+        "Suggestions:\n"
+        f"{suggestions}"
+    )
+}
 
 # -------------------------
 # T9: Online purchase return
@@ -303,23 +331,87 @@ def get_household_bills() -> str:
 @mcp.resource("online-purchase://return_options")
 def get_return_options() -> str:
     """
-    Get return options for an item purchased online
+    Get return options for an item purchased online.
 
     Returns:
-        str: Get list of return options
+        str: String representation of a list of return option dictionaries.
+            Each return option contains:
+            - id (str): Return option ID.
+            - cost (int): Return cost.
+            - delivery (str): Return delivery method, such as "drop-off" or "pickup".
+            - refund_to (str): Refund destination, such as "original_payment" or "store_credit".
     """
     return str(load_json_file(DATA_DIR / "task_09.json"))
 
+
+@mcp.tool()
+def create_return(id: str) -> dict:
+    """
+    Create a return for an item.
+
+    Args:
+        id (str): Item ID to return.
+
+    Returns:
+        dict: Return confirmation containing the return ID, label ID, and item ID.
+    """
+    return {
+        "return_id": str(uuid.uuid4()),
+        "label_id": str(uuid.uuid4()),
+        "item_id": id,
+    }
+
+# Uses Calendar Tool
+
 # -------------------------
-# T10: Online purchase return
+# T10: No-overdraft payment schedule
 # -------------------------
 
 @mcp.resource("pending-bills://list")
 def get_pending_bills() -> str:
     """
-    Get a list of pending bills with their corresponding ammounts and due dates
+    Get a list of pending bills with their corresponding amounts and due dates.
 
     Returns:
-        str: Get list of pending bills
+        str: String representation of a list of pending bill dictionaries.
+            Each pending bill contains:
+            - id (str): Bill ID.
+            - amount (int): Amount due.
+            - due (str): Due date in ISO format: YYYY-MM-DD.
     """
     return str(load_json_file(DATA_DIR / "task_10.json"))
+
+@mcp.tool()
+def schedule_payment(concept: str, payment_date: str, amount: int | float) -> dict:
+    """
+    Schedule a mock payment.
+
+    Args:
+        concept (str): Payment concept or bill name.
+        payment_date (str): Payment date in ISO format: YYYY-MM-DD.
+        amount (int | float): Payment amount.
+
+    Returns:
+        dict: Payment scheduling confirmation containing:
+            - message (str): Summary of the scheduled payment.
+            - confirmation_id (str): Generated UUID confirmation ID.
+            - payment_date (str): Same payment date provided as input.
+
+    Raises:
+        ValueError: If payment_date is not in YYYY-MM-DD format.
+    """
+    try:
+        parsed_date = date.fromisoformat(payment_date)
+    except ValueError:
+        raise ValueError(
+            "Invalid payment_date. Expected format: YYYY-MM-DD, e.g. 2026-05-03."
+        )
+
+    return {
+        "message": (
+            f"Payment of ${amount} for {concept} has been scheduled "
+            f"for {parsed_date.isoformat()}."
+        ),
+        "confirmation_id": str(uuid.uuid4()),
+        "payment_date": parsed_date.isoformat(),
+    }
