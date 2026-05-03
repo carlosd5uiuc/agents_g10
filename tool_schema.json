@@ -1,0 +1,188 @@
+[
+    {
+        "name": "create_travel_arrangement",
+        "description": "Use this tool after the user has selected a ride option. It creates a mock travel booking for that ride and returns a confirmation ID plus the selected ride ID.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "ride_id": {
+                    "type": "string",
+                    "description": "The ID of the ride the user wants to book, for example 'LY-1001'."
+                }
+            },
+            "required": ["ride_id"]
+        }
+    },
+    {
+        "name": "create_calendar_entry",
+        "description": "Use this tool to add something to the user's calendar, such as a ride arrival, doctor appointment, exercise plan, bill reminder, or product return deadline. It requires the exact date/time and a category describing what kind of calendar entry it is.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "date": {
+                    "type": "string",
+                    "description": "The date and time to put on the calendar. Must be ISO datetime format: YYYY-MM-DDTHH:MM:SS, for example '2026-05-03T14:30:00'."
+                },
+                "category": {
+                    "type": "string",
+                    "description": "A short label explaining what the calendar entry is for, such as 'RIDE', 'MEDICAL', 'EXERCISE', or 'PRODUCT_RETURN'."
+                }
+            },
+            "required": ["date", "category"]
+        }
+    },
+    {
+        "name": "set_up_repair_appointment",
+        "description": "Use this tool after choosing a repair option. It schedules a mock repair appointment for a specific type of repair on a chosen day of the week.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "type_of_repair": {
+                    "type": "string",
+                    "description": "The kind of repair the user needs, such as 'Washer', 'Refrigerator', 'Dryer', or another appliance/repair type."
+                },
+                "day_of_week": {
+                    "type": "string",
+                    "description": "The day the user wants the repair appointment, for example 'Monday', 'Tuesday', or 'Friday'."
+                }
+            },
+            "required": ["type_of_repair", "day_of_week"]
+        }
+    },
+    {
+        "name": "send_invitations",
+        "description": "Use this tool when the user wants to invite guests to an event. It sends mock invitations to each guest email and returns a message plus a confirmation ID for each invitation.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "guests": {
+                    "type": "array",
+                    "description": "The full list of people who should receive invitations.",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string",
+                                "description": "The guest's name, for example 'Alex Smith'."
+                            },
+                            "email": {
+                                "type": "string",
+                                "description": "The guest's email address where the invitation should be sent."
+                            }
+                        },
+                        "required": ["name", "email"]
+                    }
+                }
+            },
+            "required": ["guests"]
+        }
+    },
+    {
+        "name": "set_catering_appointment",
+        "description": "Use this tool after the user picks a catering menu option. It creates a mock catering appointment and records what food option was chosen and how many people need food.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "menu_option": {
+                    "type": "string",
+                    "description": "The catering menu option selected by the user, for example 'Vegetarian', 'BBQ', or 'Italian'."
+                },
+                "number_of_people": {
+                    "type": "integer",
+                    "description": "How many people the catering order should serve."
+                }
+            },
+            "required": ["menu_option", "number_of_people"]
+        }
+    },
+    {
+        "name": "set_up_doctor_appointment",
+        "description": "Use this tool after the user has selected a doctor and an available appointment time. It schedules a mock doctor appointment and returns a confirmation ID.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "doctor_name": {
+                    "type": "string",
+                    "description": "The name of the doctor the user wants to see, for example 'Dr. Smith'."
+                },
+                "appointment_time": {
+                    "type": "string",
+                    "description": "The appointment slot selected by the user. It must be written as day,hour with a comma, for example 'Monday,10' or 'Friday,14'. The hour must be between 00 and 23."
+                }
+            },
+            "required": ["doctor_name", "appointment_time"]
+        }
+    },
+    {
+        "name": "generate_report",
+        "description": "Use this tool when the user wants help reducing expenses. It takes a list of expenses, a savings goal, and suggestions, then creates a written expense reduction report.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "expenses": {
+                    "type": "array",
+                    "description": "The expenses that should be included in the report.",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "category": {
+                                "type": "string",
+                                "description": "The expense category, such as 'rent', 'food', 'subscriptions', or 'transportation'."
+                            },
+                            "amount": {
+                                "type": "number",
+                                "description": "How much money is spent in this category."
+                            }
+                        },
+                        "required": ["category", "amount"]
+                    }
+                },
+                "reduction_goal": {
+                    "type": "string",
+                    "description": "The user's savings or spending-reduction target, for example 'reduce monthly expenses by $200'."
+                },
+                "suggestions": {
+                    "type": "string",
+                    "description": "Plain-English recommendations for how the user can reduce spending."
+                }
+            },
+            "required": ["expenses", "reduction_goal", "suggestions"]
+        }
+    },
+    {
+        "name": "create_return",
+        "description": "Use this tool when the user wants to return an online purchase. It creates a mock return request and generates both a return ID and a shipping/return label ID.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "The ID of the item being returned."
+                }
+            },
+            "required": ["id"]
+        }
+    },
+    {
+        "name": "schedule_payment",
+        "description": "Use this tool when the user wants to schedule a mock bill payment. It records what the payment is for, the payment date, and the amount, then returns a confirmation ID.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "concept": {
+                    "type": "string",
+                    "description": "What the payment is for, such as 'rent', 'phone bill', or 'credit card'."
+                },
+                "payment_date": {
+                    "type": "string",
+                    "description": "The date when the payment should be made. Must use YYYY-MM-DD format, for example '2026-05-03'."
+                },
+                "amount": {
+                    "type": "number",
+                    "description": "The amount of money to pay."
+                }
+            },
+            "required": ["concept", "payment_date", "amount"]
+        }
+    }
+]

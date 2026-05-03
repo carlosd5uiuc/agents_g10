@@ -1,5 +1,51 @@
 [
-    {"id": "cat_veg_safe", "name": "Garden Tray", "total": 138, "vegetarian": true, "contains_nuts": false},
-    {"id": "cat_nutty", "name": "Pesto Platter", "total": 120, "vegetarian": true, "contains_nuts": true},
-    {"id": "cat_expensive", "name": "Executive Buffet", "total": 175, "vegetarian": true, "contains_nuts": false},
+    {
+        "id": "cat_veg_safe",
+        "name": "Garden Tray",
+        "total": 138,
+        "vegetarian": true,
+        "contains_nuts": false
+    },
+    {
+        "id": "cat_nutty",
+        "name": "Pesto Platter",
+        "total": 120,
+        "vegetarian": true,
+        "contains_nuts": true
+    },
+    {
+        "id": "cat_expensive",
+        "name": "Executive Buffet",
+        "total": 175,
+        "vegetarian": true,
+        "contains_nuts": false
+    },
+    {
+        "id": "cat_meat_only",
+        "name": "BBQ Meat Platter",
+        "total": 115,
+        "vegetarian": false,
+        "contains_nuts": false
+    },
+    {
+        "id": "cat_luxury_nutty",
+        "name": "Walnut Bistro Spread",
+        "total": 165,
+        "vegetarian": true,
+        "contains_nuts": true
+    },
+    {
+        "id": "cat_budget_meat",
+        "name": "Chicken Dinner Box",
+        "total": 90,
+        "vegetarian": false,
+        "contains_nuts": false
+    },
+    {
+        "id": "cat_premium_safe",
+        "name": "Mediterranean Vegetarian Buffet",
+        "total": 155,
+        "vegetarian": true,
+        "contains_nuts": false
+    }
 ]

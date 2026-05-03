@@ -1,0 +1,41 @@
+{
+    "task_01": {
+        "success": true,
+        "travel_confirmation": {
+            "id": "LY-1004",
+            "from": "Chicago",
+            "to": "Urbana",
+            "departure_time": "2026-05-02T05:45:00",
+            "arrival_time": "2026-05-02T08:15:00",
+            "cost": 35,
+            "surge_pricing": false,
+            "rideshare": true
+        }
+    },
+    "task_02": {
+        "success": true,
+        "repair_confirmation": {
+            "confirmation_id": "repair-001",
+            "type_of_repair": "Phone screen replacement",
+            "in_network": true,
+            "deductible": 50,
+            "weekday": "Monday",
+            "current_week": true
+        }
+    },
+    "task_03": {
+        "success": true,
+        "catering_confirmation": {
+            "confirmation_id": "cat-confirm-001",
+            "name": "Garden Tray",
+            "total": 138,
+            "vegetarian": true,
+            "contains_nuts": false
+        },
+        "invite_log": [
+            "invite_sent_to_alex@example.com",
+            "invite_sent_to_jamie@example.com",
+            "invite_sent_to_taylor@example.com"
+        ]
+    }
+}

@@ -1,0 +1,79 @@
+{
+    "task_01": {
+        "id": "task_1",
+        "preferences": [
+            "User would prefer an option with rideshare",
+            "User would like to arrive 3 hours before scheduled time"
+        ],
+        "hard_constraints": [
+            "Ride arrival time must be at least 2 hours before 2026-05-02T12:00:00",
+            "Cost of ride can be at most $45",
+            "No surge pricing option",
+            "Route must be Chicago to Urbana"
+        ],
+        "prompt": "Book transportation under time and cost constraints.",
+        "output_structure": {
+            "success": "bool",
+            "travel_confirmation": {
+                "confirmation_id": "string",
+                "arrival_time": "YYYY-MM-DDTHH:MM:SS",
+                "departure_time": "YYYY-MM-DDTHH:MM:SS",
+                "cost": "int",
+                "surge_pricing": "bool",
+                "rideshare": "bool",
+                "from": "string",
+                "to": "string"
+            },
+            "calendar": {
+                "confirmation_id": "string"
+            }
+        }
+    },
+    "task_02": {
+        "id": "task_02",
+        "preferences": [
+            "User would prefer an appointment scheduled this week"
+        ],
+        "hard_constraints": [
+            "Type of repair should be for a laptop battery",
+            "Repair provider must be in-network",
+            "Appointment must not be on Thursday",
+            "Deductible must be less than or equal to USD 120"
+        ],
+        "prompt": "Schedule a covered repair under warranty constraints.",
+        "output_structure": {
+            "success": "bool",
+            "repair_confirmation": {
+                "confirmation_id": "string",
+                "type_of_repair": "string",
+                "in_network": "bool",
+                "deductible": "int",
+                "weekday": "string",
+                "current_week": "bool"
+            }
+        }
+    },
+    "task_03": {
+        "id": "task_03",
+        "preferences": [
+            "User would prefer no usage of nuts"
+        ],
+        "hard_constraints": [
+            "Total cost must be less than or equal to USD 150",
+            "Menu must include vegetarian options",
+            "Invites must be sent to one@example.com, two@example.com, three@example.com"
+        ],
+        "prompt": "Place a catering order for dinner while meeting dietary and budget requirements, then send invites to one@example.com, two@example.com and three@example.com",
+        "output_structure": {
+            "success": "bool",
+            "catering_confirmation": {
+                "confirmation_id": "string",
+                "name": "string",
+                "total": "int",
+                "vegetarian": "bool",
+                "contains_nuts": "bool"
+            },
+            "invite_log": "list[string]"
+        }
+    }
+}
