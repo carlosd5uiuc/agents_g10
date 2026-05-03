@@ -1,0 +1,5 @@
+[
+            {"id": "bill_electric", "amount": 120, "due": "2026-05-03", "settled": false},
+            {"id": "bill_water", "amount": 70, "due": "2026-05-05", "settled": true},
+            {"id": "bill_internet", "amount": 85, "due": "2026-05-04", "settled": false}
+]

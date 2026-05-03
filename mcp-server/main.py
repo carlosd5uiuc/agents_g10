@@ -6,7 +6,7 @@ from pathlib import Path
 mcp = FastMCP("Personal Task Tools")
 
 BASE_DIR = Path(__file__).resolve().parent
-DATA_DIR = BASE_DIR / "data"
+DATA_DIR = BASE_DIR / "resource_data"
 
 # -------------------------
 # T1: Travel Arrangement
@@ -16,13 +16,13 @@ def load_json_file(file_path: Path):
     with open(file_path, "r", encoding="utf-8") as f:
         return json.load(f)
 
-@mcp.resource("travel://flights")
-def get_flights() -> str:
+@mcp.resource("transportation://list")
+def get_ride_options() -> str:
     """
-    Get available flights.
+    Get available transportation options
 
     Returns:
-        str: A list of flights with ID, arrival time, cost, surge pricing, and rideshare availability.
+        str: A list of rides with ID, arrival time, cost, surge pricing, and rideshare availability.
     """
     INITIAL_TASK_DATA = DATA_DIR / "task_01.json"
     flights = load_json_file(INITIAL_TASK_DATA)
@@ -117,9 +117,6 @@ def set_up_repair_appointment(type_of_repair: str, day_of_week: str) -> str:
 # -------------------------
 # T3: Catering + Invitations
 # -------------------------
-
-
-
 
 SENT_INVITATIONS = []
 
@@ -261,7 +258,7 @@ def get_troubleshoot_guide() -> str:
     return str(troubleshoot_guide)
 
 
-@mcp.resource("repair-guy://list")
+@mcp.resource("troubleshoot://repair")
 def get_repair_guy() -> str:
     """
     Get appliance repair providers.
@@ -272,3 +269,57 @@ def get_repair_guy() -> str:
     INITIAL_TASK_DATA = DATA_DIR / "task_05_02.json"
     repair_providers = load_json_file(INITIAL_TASK_DATA)
     return str(repair_providers)
+
+# -------------------------
+# T6: Household Bills
+# -------------------------
+
+@mcp.resource("household-bills://list")
+def get_household_bills() -> str:
+    """
+    Get pending bills
+
+    Returns:
+        str: Get list of bills
+    """
+    return str(load_json_file(DATA_DIR / "task_06.json"))
+
+# -------------------------
+# T7: Exercise Routing
+# -------------------------
+
+## No resources for task #7
+
+# -------------------------
+# T8: Reduce expenses
+# -------------------------
+
+## No resources for task #8
+
+# -------------------------
+# T9: Online purchase return
+# -------------------------
+
+@mcp.resource("online-purchase://return_options")
+def get_return_options() -> str:
+    """
+    Get return options for an item purchased online
+
+    Returns:
+        str: Get list of return options
+    """
+    return str(load_json_file(DATA_DIR / "task_09.json"))
+
+# -------------------------
+# T10: Online purchase return
+# -------------------------
+
+@mcp.resource("pending-bills://list")
+def get_pending_bills() -> str:
+    """
+    Get a list of pending bills with their corresponding ammounts and due dates
+
+    Returns:
+        str: Get list of pending bills
+    """
+    return str(load_json_file(DATA_DIR / "task_10.json"))

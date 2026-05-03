@@ -1,0 +1,6 @@
+[
+    {"id": "ret_drop_free", "cost": 0, "delivery": "drop-off", "refund_to": "original_payment"},
+            {"id": "ret_pick_free", "cost": 0, "delivery": "pickup", "refund_to": "original_payment"},
+            {"id": "ret_drop_credit", "cost": 0, "delivery": "drop-off", "refund_to": "store_credit"}
+
+]

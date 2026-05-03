@@ -1,38 +1,38 @@
 [
     {
         "type_of_repair": "Phone screen replacement",
-        "network": "In-network",
+        "in_network": 1,
         "deductible": 50,
-        "day_of_week": "Monday"
+        "weekday": "Monday"
     },
     {
         "type_of_repair": "Laptop battery repair",
-        "network": "Out-of-network",
+        "in_network": false,
         "deductible": 120,
-        "day_of_week": "Wednesday"
+        "weekday": "Wednesday"
     },
     {
         "type_of_repair": "Tablet charging port repair",
-        "network": "In-network",
+        "in_network": 1,
         "deductible": 65,
-        "day_of_week": "Tuesday"
+        "weekday": "Tuesday"
     },
     {
         "type_of_repair": "Smartwatch battery replacement",
-        "network": "In-network",
+        "in_network": 1,
         "deductible": 40,
-        "day_of_week": "Thursday"
+        "weekday": "Thursday"
     },
     {
         "type_of_repair": "Desktop motherboard repair",
-        "network": "Out-of-network",
+        "in_network": false,
         "deductible": 150,
-        "day_of_week": "Friday"
+        "weekday": "Friday"
     },
     {
         "type_of_repair": "Headphone speaker repair",
-        "network": "In-network",
+        "in_network": 1,
         "deductible": 30,
-        "day_of_week": "Saturday"
+        "weekday": "Saturday"
     }
 ]

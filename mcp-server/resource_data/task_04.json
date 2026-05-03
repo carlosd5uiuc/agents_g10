@@ -1,0 +1,44 @@
+[
+  {
+    "specialty": "Primary Care",
+    "name": "Dr. Smith",
+    "supports": ["General Medicine", "Preventive Care"],
+    "copay": 25,
+    "availability": ["Monday,10", "Friday,14"]
+  },
+  {
+    "specialty": "Dermatologist",
+    "name": "Dr. Lee",
+    "supports": ["Skin Conditions", "Acne"],
+    "copay": 40,
+    "availability": ["Tuesday,11", "Friday,09"]
+  },
+  {
+    "specialty": "Cardiologist",
+    "name": "Dr. Patel",
+    "supports": ["Heart Disease", "Blood Pressure"],
+    "copay": 55,
+    "availability": ["Monday,13", "Thursday,09"]
+  },
+  {
+    "specialty": "Orthopedic Specialist",
+    "name": "Dr. Garcia",
+    "supports": ["Joint Pain", "Sports Injuries"],
+    "copay": 50,
+    "availability": ["Wednesday,11", "Friday,15"]
+  },
+  {
+    "specialty": "Allergist",
+    "name": "Dr. Nguyen",
+    "supports": ["Seasonal Allergies", "Asthma"],
+    "copay": 35,
+    "availability": ["Tuesday,15", "Thursday,12"]
+  },
+  {
+    "specialty": "Neurologist",
+    "name": "Dr. Brown",
+    "supports": ["Migraines", "Nerve Disorders"],
+    "copay": 60,
+    "availability": ["Monday,16", "Friday,10"]
+  }
+]

@@ -1,0 +1,32 @@
+[
+    {
+        "appliance_type": "Refrigerator",
+        "distance_to": 3,
+        "estimate": 120
+    },
+    {
+        "appliance_type": "Washer",
+        "distance_to": 5,
+        "estimate": 90
+    },
+    {
+        "appliance_type": "Dryer",
+        "distance_to": 4,
+        "estimate": 100
+    },
+    {
+        "appliance_type": "Dishwasher",
+        "distance_to": 6,
+        "estimate": 110
+    },
+    {
+        "appliance_type": "Oven",
+        "distance_to": 8,
+        "estimate": 140
+    },
+    {
+        "appliance_type": "Microwave",
+        "distance_to": 2,
+        "estimate": 75
+    }
+]
