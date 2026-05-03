@@ -47,7 +47,13 @@ def create_travel_arrangement(ride_id: str) -> dict:
         "ride_id": ride_id
     }
 
-
+"""
+Used for (TASK:CATEGORY):
+T1: RIDE
+T4: MEDICAL
+T7: EXERCISE
+T9: PRODUCT_RETURN
+"""
 @mcp.tool()
 def create_calendar_entry(date: str, category: str) -> dict:
     """
