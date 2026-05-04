@@ -70,5 +70,50 @@
         "day": "Thursday",
         "start_time": "2026-05-07T18:45:00",
         "end_time": "2026-05-07T19:15:00"
+    },
+    {
+        "activity_id": "strength_upper_early",
+        "activity_name": "Upper Body Morning",
+        "activity_type": "strength",
+        "muscle_group": "upper_body",
+        "day": "Monday",
+        "start_time": "2026-05-04T09:00:00",
+        "end_time": "2026-05-04T09:45:00"
+    },
+    {
+        "activity_id": "strength_core_blocked",
+        "activity_name": "Core Lunch Session",
+        "activity_type": "strength",
+        "muscle_group": "core",
+        "day": "Wednesday",
+        "start_time": "2026-05-06T12:00:00",
+        "end_time": "2026-05-06T12:30:00"
+    },
+    {
+        "activity_id": "cardio_row_01",
+        "activity_name": "Rowing",
+        "activity_type": "cardio",
+        "muscle_group": "cardio",
+        "day": "Tuesday",
+        "start_time": "2026-05-05T18:15:00",
+        "end_time": "2026-05-05T18:45:00"
+    },
+    {
+        "activity_id": "cardio_swim_blocked",
+        "activity_name": "Lunch Swim",
+        "activity_type": "cardio",
+        "muscle_group": "cardio",
+        "day": "Wednesday",
+        "start_time": "2026-05-06T13:00:00",
+        "end_time": "2026-05-06T13:45:00"
+    },
+    {
+        "activity_id": "strength_lower_duplicate",
+        "activity_name": "Lower Body Late",
+        "activity_type": "strength",
+        "muscle_group": "lower_body",
+        "day": "Tuesday",
+        "start_time": "2026-05-05T19:00:00",
+        "end_time": "2026-05-05T19:45:00"
     }
 ]

@@ -20,6 +20,10 @@ def load_json_file(file_path: Path):
     with open(file_path, "r", encoding="utf-8") as f:
         return json.load(f)
 
+
+def json_resource(payload) -> str:
+    return json.dumps(payload)
+
 @mcp.resource("transportation://list")
 def get_ride_options() -> str:
     """
@@ -30,7 +34,7 @@ def get_ride_options() -> str:
     """
     INITIAL_TASK_DATA = DATA_DIR / "task_01.json"
     flights = load_json_file(INITIAL_TASK_DATA)
-    return str(flights)
+    return json_resource(flights)
 
 
 @mcp.tool()
@@ -100,7 +104,7 @@ def get_repair_options() -> str:
     """
     INITIAL_TASK_DATA = DATA_DIR / "task_02.json"
     repairs = load_json_file(INITIAL_TASK_DATA)
-    return str(repairs)
+    return json_resource(repairs)
 
 
 @mcp.tool()
@@ -137,7 +141,7 @@ def get_catering_options() -> str:
     """
     INITIAL_TASK_DATA = DATA_DIR / "task_03.json"
     catering_options = load_json_file(INITIAL_TASK_DATA)
-    return str(catering_options)
+    return json_resource(catering_options)
 
 
 @mcp.tool()
@@ -164,7 +168,7 @@ def send_invitations(guests: list[dict]) -> dict:
 
 
 @mcp.tool()
-def set_catering_appointment(menu_option: str, number_of_people: int) -> str:
+def set_catering_appointment(menu_option: str, number_of_people: int) -> dict:
     """
     Set catering appointment.
 
@@ -195,7 +199,7 @@ def get_doctor_list() -> str:
     """
     INITIAL_TASK_DATA = DATA_DIR / "task_04.json"
     doctors = load_json_file(INITIAL_TASK_DATA)
-    return str(doctors)
+    return json_resource(doctors)
 
 
 @mcp.tool()
@@ -244,7 +248,7 @@ def get_troubleshoot_guide() -> str:
     """
     INITIAL_TASK_DATA = DATA_DIR / "task_05_01.json"
     troubleshoot_guide = load_json_file(INITIAL_TASK_DATA)
-    return str(troubleshoot_guide)
+    return json_resource(troubleshoot_guide)
 
 
 @mcp.resource("troubleshoot://repair")
@@ -257,7 +261,7 @@ def get_repair_guy() -> str:
     """
     INITIAL_TASK_DATA = DATA_DIR / "task_05_02.json"
     repair_providers = load_json_file(INITIAL_TASK_DATA)
-    return str(repair_providers)
+    return json_resource(repair_providers)
 
 # -------------------------
 # T6: Household Bills
@@ -271,27 +275,46 @@ def get_household_bills() -> str:
     Returns:
         str: Get list of bills
     """
-    return str(load_json_file(DATA_DIR / "task_06.json"))
+    return json_resource(load_json_file(DATA_DIR / "task_06.json"))
 
 @mcp.tool()
-def schedule_payment(bill_id: str, payment_date: str, amount: int) -> Dict:
+def schedule_payment(bill_id: str, payment_date: str, amount: int | float) -> Dict:
     """
     Schedule a payment for a bill.
 
     Args:
         bill_id (str): The ID of the bill being paid.
-        payment_date (str): The date the payment should be made, in YYYY-MM-DD format.
-        amount (int): The payment amount.
+        payment_date (str): The date the payment should be made, in YYYY-MM-DD
+            or YYYY-MM-DDTHH:MM:SS format.
+        amount (int | float): The payment amount.
 
     Returns:
-        Dict: Payment confirmation details with confirmation ID, bill ID,
-        payment date, and amount.
+        Dict: Payment confirmation details with confirmation IDs, bill ID,
+        payment date, scheduled datetime, and amount.
+
+    Raises:
+        ValueError: If payment_date is not a valid ISO date or datetime.
     """
+    try:
+        if "T" in payment_date:
+            parsed_datetime = datetime.fromisoformat(payment_date)
+        else:
+            parsed_date = date.fromisoformat(payment_date)
+            parsed_datetime = datetime.combine(parsed_date, datetime.min.time())
+    except ValueError:
+        raise ValueError(
+            "Invalid payment_date. Expected YYYY-MM-DD or YYYY-MM-DDTHH:MM:SS, "
+            "e.g. 2026-05-03."
+        )
+
+    confirmation_id = str(uuid.uuid4())
     return {
-        "payment_confirmation_id": str(uuid.uuid4()),
+        "payment_confirmation_id": confirmation_id,
+        "confirmation_id": confirmation_id,
         "bill_id": bill_id,
-        "payment_date": payment_date,
-        "amount": amount
+        "payment_date": parsed_datetime.date().isoformat(),
+        "scheduled_date": parsed_datetime.isoformat(),
+        "amount": amount,
     }
 
 # -------------------------
@@ -299,14 +322,14 @@ def schedule_payment(bill_id: str, payment_date: str, amount: int) -> Dict:
 # -------------------------
 
 @mcp.resource("workout-sessions://list")
-def get_expenses_list() -> str:
+def get_workout_sessions() -> str:
     """
     Get list of workout routines
 
     Returns:
         str: Get list of workout routines
     """
-    return str(load_json_file(DATA_DIR / "task_07.json"))
+    return json_resource(load_json_file(DATA_DIR / "task_07.json"))
 # Tool: Reuse create_calendar_entry with category EXERCISE
 
 # -------------------------
@@ -321,11 +344,11 @@ def get_expenses_list() -> str:
     Returns:
         str: Get list of expenses
     """
-    return str(load_json_file(DATA_DIR / "task_08.json"))
+    return json_resource(load_json_file(DATA_DIR / "task_08.json"))
 
 @mcp.tool()
 def generate_report(expenses: list[dict], reduction_goal: str,
-    suggestions: str) -> str:
+    suggestions: str) -> dict:
     """
     Generate an expense reduction report.
 
@@ -347,17 +370,17 @@ def generate_report(expenses: list[dict], reduction_goal: str,
     )
 
     return {
-    "report": (
-        "Expense Reduction Report\n"
-        "========================\n\n"
-        f"Total Expenses: ${total_expenses}\n"
-        f"Reduction Goal: {reduction_goal}\n\n"
-        "Expenses:\n"
-        f"{expense_lines}\n\n"
-        "Suggestions:\n"
-        f"{suggestions}"
-    )
-}
+        "report": (
+            "Expense Reduction Report\n"
+            "========================\n\n"
+            f"Total Expenses: ${total_expenses}\n"
+            f"Reduction Goal: {reduction_goal}\n\n"
+            "Expenses:\n"
+            f"{expense_lines}\n\n"
+            "Suggestions:\n"
+            f"{suggestions}"
+        )
+    }
 
 # -------------------------
 # T9: Online purchase return
@@ -376,7 +399,7 @@ def get_return_options() -> str:
             - delivery (str): Return delivery method, such as "drop-off" or "pickup".
             - refund_to (str): Refund destination, such as "original_payment" or "store_credit".
     """
-    return str(load_json_file(DATA_DIR / "task_09.json"))
+    return json_resource(load_json_file(DATA_DIR / "task_09.json"))
 
 
 @mcp.tool()
@@ -414,39 +437,7 @@ def get_pending_bills() -> str:
             - amount (int): Amount due.
             - due (str): Due date in ISO format: YYYY-MM-DD.
     """
-    return str(load_json_file(DATA_DIR / "task_10.json"))
+    return json_resource(load_json_file(DATA_DIR / "task_10.json"))
 
-@mcp.tool()
-def schedule_payment(concept: str, payment_date: str, amount: int | float) -> dict:
-    """
-    Schedule a mock payment.
-
-    Args:
-        concept (str): Payment concept or bill name.
-        payment_date (str): Payment date in ISO format: YYYY-MM-DD.
-        amount (int | float): Payment amount.
-
-    Returns:
-        dict: Payment scheduling confirmation containing:
-            - message (str): Summary of the scheduled payment.
-            - confirmation_id (str): Generated UUID confirmation ID.
-            - payment_date (str): Same payment date provided as input.
-
-    Raises:
-        ValueError: If payment_date is not in YYYY-MM-DD format.
-    """
-    try:
-        parsed_date = date.fromisoformat(payment_date)
-    except ValueError:
-        raise ValueError(
-            "Invalid payment_date. Expected format: YYYY-MM-DD, e.g. 2026-05-03."
-        )
-
-    return {
-        "message": (
-            f"Payment of ${amount} for {concept} has been scheduled "
-            f"for {parsed_date.isoformat()}."
-        ),
-        "confirmation_id": str(uuid.uuid4()),
-        "payment_date": parsed_date.isoformat(),
-    }
+if __name__ == "__main__":
+    mcp.run("stdio")

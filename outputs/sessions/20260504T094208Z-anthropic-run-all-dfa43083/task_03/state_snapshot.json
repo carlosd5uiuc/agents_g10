@@ -1,0 +1,145 @@
+{
+  "task_id": "task_03",
+  "resources": {
+    "catering://options": [
+      {
+        "id": "cat_veg_safe",
+        "name": "Garden Tray",
+        "total": 138,
+        "vegetarian": true,
+        "contains_nuts": false
+      },
+      {
+        "id": "cat_nutty",
+        "name": "Pesto Platter",
+        "total": 120,
+        "vegetarian": true,
+        "contains_nuts": true
+      },
+      {
+        "id": "cat_expensive",
+        "name": "Executive Buffet",
+        "total": 175,
+        "vegetarian": true,
+        "contains_nuts": false
+      },
+      {
+        "id": "cat_meat_only",
+        "name": "BBQ Meat Platter",
+        "total": 115,
+        "vegetarian": false,
+        "contains_nuts": false
+      },
+      {
+        "id": "cat_luxury_nutty",
+        "name": "Walnut Bistro Spread",
+        "total": 165,
+        "vegetarian": true,
+        "contains_nuts": true
+      },
+      {
+        "id": "cat_budget_meat",
+        "name": "Chicken Dinner Box",
+        "total": 90,
+        "vegetarian": false,
+        "contains_nuts": false
+      },
+      {
+        "id": "cat_premium_safe",
+        "name": "Mediterranean Vegetarian Buffet",
+        "total": 155,
+        "vegetarian": true,
+        "contains_nuts": false
+      },
+      {
+        "id": "cat_borderline_safe",
+        "name": "Simple Veggie Pasta",
+        "total": 150,
+        "vegetarian": true,
+        "contains_nuts": false
+      },
+      {
+        "id": "cat_borderline_nut",
+        "name": "Almond Veggie Pasta",
+        "total": 149,
+        "vegetarian": true,
+        "contains_nuts": true
+      },
+      {
+        "id": "cat_gluten_safe",
+        "name": "Rice Bowl Bar",
+        "total": 142,
+        "vegetarian": true,
+        "contains_nuts": false
+      },
+      {
+        "id": "cat_mixed_budget",
+        "name": "Mixed Taco Bar",
+        "total": 128,
+        "vegetarian": false,
+        "contains_nuts": false
+      }
+    ]
+  },
+  "tool_results": [
+    {
+      "tool_name": "set_catering_appointment",
+      "arguments": {
+        "menu_option": "Garden Tray",
+        "number_of_people": 3
+      },
+      "result": {
+        "message": "A catering appointment was set up!\nPlate: Garden Tray\nNo people: 3",
+        "confirmation_id": "de73e862-14c8-4598-9c9c-a7c19ac5e536"
+      }
+    },
+    {
+      "tool_name": "send_invitations",
+      "arguments": {
+        "guests": [
+          {
+            "name": "Guest One",
+            "email": "one@example.com"
+          },
+          {
+            "name": "Guest Two",
+            "email": "two@example.com"
+          },
+          {
+            "name": "Guest Three",
+            "email": "three@example.com"
+          }
+        ]
+      },
+      "result": {
+        "msg": [
+          "An invitation was sent to one@example.com",
+          "An invitation was sent to two@example.com",
+          "An invitation was sent to three@example.com"
+        ],
+        "confirmation_id": [
+          "8a906194-ecf0-4ef9-8905-322ba3ec866b",
+          "68ca8f52-e5c6-428a-927c-228db7cb1d10",
+          "f63e7a19-d46a-4049-a3d9-ee26b38a8e21"
+        ]
+      }
+    }
+  ],
+  "failed_attempts": [],
+  "policy_violations": [],
+  "final_output": {
+    "success": true,
+    "catering_confirmation": {
+      "confirmation_id": "de73e862-14c8-4598-9c9c-a7c19ac5e536",
+      "name": "Garden Tray",
+      "total": 138,
+      "vegetarian": true,
+      "contains_nuts": false
+    },
+    "invite_log": [
+      "An invitation was sent to one@example.com",
+      "An invitation was sent to two@example.com",
+      "An invitation was sent to three@example.com"
+    ]
+  }
+}

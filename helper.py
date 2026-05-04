@@ -2,6 +2,9 @@ from collections import defaultdict
 from typing import Any, Dict, List
 from datetime import datetime, time, timedelta
 
+TASK_10_GIVEN_DATE = datetime.fromisoformat("2026-04-22T12:00:00")
+TASK_10_LOOKBACK = timedelta(days=3)
+
 
 def avoids_day_time_block(
         activity: Dict[str, Any],
@@ -13,7 +16,8 @@ def avoids_day_time_block(
         Returns True if the activity does NOT overlap the blocked day/time window.
         """
 
-        if activity.get("day") != blocked_day:
+        activity_day = activity.get("day") or activity.get("weekday")
+        if activity_day != blocked_day:
             return True
 
         activity_start = datetime.fromisoformat(activity["start_time"]).time()
@@ -68,31 +72,46 @@ def no_more_than_one_activity_type_per_day(task_data: Dict[str, Any]) -> bool:
 
 
 def all_due_bills_scheduled(task_data: Dict[str, Any]) -> bool:
-    given_date = datetime.fromisoformat("2026-04-22T12:00:00")
-    end_date = given_date + timedelta(days=3)
+    due_bill_ids = {payment["id"] for payment in task_10_due_window_bills(task_data)}
+    return due_bill_ids == scheduled_bill_ids(task_data)
 
-    payments = task_data.get("payments", [])
-    scheduled_payments = task_data.get("scheduled_payments", [])
 
-    due_bill_ids = set()
+def partial_due_schedule_with_alert(task_data: Dict[str, Any]) -> bool:
+    due_bill_ids = {payment["id"] for payment in task_10_due_window_bills(task_data)}
+    scheduled_ids = scheduled_bill_ids(task_data)
+    omitted_due_ids = due_bill_ids - scheduled_ids
 
-    for payment in payments:
+    return (
+        bool(omitted_due_ids)
+        and bool(scheduled_ids)
+        and scheduled_ids.issubset(due_bill_ids)
+        and projected_balance_never_below_200(task_data)
+        and overdraft_alert_correct(task_data)
+    )
+
+
+def task_10_due_window_bills(task_data: Dict[str, Any]) -> List[Dict[str, Any]]:
+    start_date = TASK_10_GIVEN_DATE - TASK_10_LOOKBACK
+    due_bills = []
+
+    for payment in task_data.get("payments", []):
         try:
-            due_date = datetime.fromisoformat(payment["due_date"])
-
-            if given_date <= due_date <= end_date:
-                due_bill_ids.add(payment["id"])
-
+            due_date = datetime.fromisoformat(str(payment.get("due_date") or payment.get("due")))
         except Exception:
             continue
 
-    scheduled_bill_ids = {
+        if start_date <= due_date <= TASK_10_GIVEN_DATE:
+            due_bills.append(payment)
+
+    return due_bills
+
+
+def scheduled_bill_ids(task_data: Dict[str, Any]) -> set[str]:
+    return {
         payment.get("bill_id")
-        for payment in scheduled_payments
+        for payment in task_data.get("scheduled_payments", [])
         if payment.get("bill_id")
     }
-
-    return due_bill_ids == scheduled_bill_ids
 
 def projected_balance_never_below_200(task_data: dict) -> bool:
     starting_balance = 300
@@ -122,6 +141,19 @@ def projected_balance_never_below_200(task_data: dict) -> bool:
 def overdraft_alert_correct(task_data: dict) -> bool:
     balance_ok = projected_balance_never_below_200(task_data)
     overdraft_alert = task_data.get("overdraft_alert")
+    due_bill_ids = {payment["id"] for payment in task_10_due_window_bills(task_data)}
+    omitted_due_ids = due_bill_ids - scheduled_bill_ids(task_data)
+
+    if omitted_due_ids:
+        if not isinstance(overdraft_alert, str) or not overdraft_alert.strip():
+            return False
+        lowered_alert = overdraft_alert.lower()
+        return (
+            any(str(bill_id).lower() in lowered_alert for bill_id in omitted_due_ids)
+            or "balance" in lowered_alert
+            or "overdraft" in lowered_alert
+            or "cannot" in lowered_alert
+        )
 
     if balance_ok:
         return overdraft_alert is None or isinstance(overdraft_alert, str)

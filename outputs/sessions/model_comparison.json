@@ -1,0 +1,308 @@
+{
+  "sonnet": {
+    "session_id": "20260504T093658Z-anthropic-run-all-16845926",
+    "session_dir": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260504T093658Z-anthropic-run-all-16845926",
+    "status_counts": {
+      "success": 10
+    },
+    "metrics": {
+      "total_llm_calls": 49,
+      "repair_count": 3,
+      "invalid_model_output_count": 0,
+      "tool_call_count": 25,
+      "verification_failure_count": 0,
+      "average_steps_per_task": 4.9
+    },
+    "averages": {
+      "TSR": 1.0,
+      "CVC": 0.0,
+      "PA": 0.9
+    },
+    "tasks": [
+      {
+        "task_id": "task_01",
+        "status": "success",
+        "step_count": 4,
+        "tool_count": 2,
+        "verification_ok": true,
+        "grade": {
+          "id": "task_01",
+          "TSR": 1,
+          "CVC": 0.0,
+          "PA": 1.0
+        }
+      },
+      {
+        "task_id": "task_02",
+        "status": "success",
+        "step_count": 3,
+        "tool_count": 1,
+        "verification_ok": true,
+        "grade": {
+          "id": "task_02",
+          "TSR": 1,
+          "CVC": 0.0,
+          "PA": 1.0
+        }
+      },
+      {
+        "task_id": "task_03",
+        "status": "success",
+        "step_count": 4,
+        "tool_count": 2,
+        "verification_ok": true,
+        "grade": {
+          "id": "task_03",
+          "TSR": 1,
+          "CVC": 0.0,
+          "PA": 1.0
+        }
+      },
+      {
+        "task_id": "task_04",
+        "status": "success",
+        "step_count": 4,
+        "tool_count": 2,
+        "verification_ok": true,
+        "grade": {
+          "id": "task_04",
+          "TSR": 1,
+          "CVC": 0.0,
+          "PA": 1.0
+        }
+      },
+      {
+        "task_id": "task_05",
+        "status": "success",
+        "step_count": 3,
+        "tool_count": 0,
+        "verification_ok": true,
+        "grade": {
+          "id": "task_05",
+          "TSR": 1,
+          "CVC": 0.0,
+          "PA": 1.0
+        }
+      },
+      {
+        "task_id": "task_06",
+        "status": "success",
+        "step_count": 9,
+        "tool_count": 6,
+        "verification_ok": true,
+        "grade": {
+          "id": "task_06",
+          "TSR": 1,
+          "CVC": 0.0,
+          "PA": 0.0
+        }
+      },
+      {
+        "task_id": "task_07",
+        "status": "success",
+        "step_count": 8,
+        "tool_count": 6,
+        "verification_ok": true,
+        "grade": {
+          "id": "task_07",
+          "TSR": 1,
+          "CVC": 0.0,
+          "PA": 1.0
+        }
+      },
+      {
+        "task_id": "task_08",
+        "status": "success",
+        "step_count": 5,
+        "tool_count": 1,
+        "verification_ok": true,
+        "grade": {
+          "id": "task_08",
+          "TSR": 1,
+          "CVC": 0.0,
+          "PA": 1.0
+        }
+      },
+      {
+        "task_id": "task_09",
+        "status": "success",
+        "step_count": 4,
+        "tool_count": 2,
+        "verification_ok": true,
+        "grade": {
+          "id": "task_09",
+          "TSR": 1,
+          "CVC": 0.0,
+          "PA": 1.0
+        }
+      },
+      {
+        "task_id": "task_10",
+        "status": "success",
+        "step_count": 5,
+        "tool_count": 3,
+        "verification_ok": true,
+        "grade": {
+          "id": "task_10",
+          "TSR": 1,
+          "CVC": 0.0,
+          "PA": 1.0
+        }
+      }
+    ]
+  },
+  "haiku": {
+    "session_id": "20260504T094208Z-anthropic-run-all-dfa43083",
+    "session_dir": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260504T094208Z-anthropic-run-all-dfa43083",
+    "status_counts": {
+      "failed_constraints": 1,
+      "needs_clarification": 1,
+      "success": 8
+    },
+    "metrics": {
+      "total_llm_calls": 63,
+      "repair_count": 14,
+      "invalid_model_output_count": 3,
+      "tool_call_count": 25,
+      "verification_failure_count": 0,
+      "average_steps_per_task": 6.3
+    },
+    "averages": {
+      "TSR": 0.8,
+      "CVC": 0.0667,
+      "PA": 0.9
+    },
+    "tasks": [
+      {
+        "task_id": "task_01",
+        "status": "success",
+        "step_count": 5,
+        "tool_count": 2,
+        "verification_ok": true,
+        "grade": {
+          "id": "task_01",
+          "TSR": 1,
+          "CVC": 0.0,
+          "PA": 1.0
+        }
+      },
+      {
+        "task_id": "task_02",
+        "status": "success",
+        "step_count": 3,
+        "tool_count": 1,
+        "verification_ok": true,
+        "grade": {
+          "id": "task_02",
+          "TSR": 1,
+          "CVC": 0.0,
+          "PA": 1.0
+        }
+      },
+      {
+        "task_id": "task_03",
+        "status": "success",
+        "step_count": 4,
+        "tool_count": 2,
+        "verification_ok": true,
+        "grade": {
+          "id": "task_03",
+          "TSR": 1,
+          "CVC": 0.0,
+          "PA": 1.0
+        }
+      },
+      {
+        "task_id": "task_04",
+        "status": "success",
+        "step_count": 4,
+        "tool_count": 2,
+        "verification_ok": true,
+        "grade": {
+          "id": "task_04",
+          "TSR": 1,
+          "CVC": 0.0,
+          "PA": 1.0
+        }
+      },
+      {
+        "task_id": "task_05",
+        "status": "success",
+        "step_count": 3,
+        "tool_count": 0,
+        "verification_ok": true,
+        "grade": {
+          "id": "task_05",
+          "TSR": 1,
+          "CVC": 0.0,
+          "PA": 1.0
+        }
+      },
+      {
+        "task_id": "task_06",
+        "status": "success",
+        "step_count": 9,
+        "tool_count": 6,
+        "verification_ok": true,
+        "grade": {
+          "id": "task_06",
+          "TSR": 1,
+          "CVC": 0.0,
+          "PA": 0.0
+        }
+      },
+      {
+        "task_id": "task_07",
+        "status": "failed_constraints",
+        "step_count": 15,
+        "tool_count": 7,
+        "verification_ok": true,
+        "grade": {
+          "id": "task_07",
+          "TSR": 0,
+          "CVC": 0.0,
+          "PA": 1.0
+        }
+      },
+      {
+        "task_id": "task_08",
+        "status": "needs_clarification",
+        "step_count": 10,
+        "tool_count": 0,
+        "verification_ok": false,
+        "grade": {
+          "id": "task_08",
+          "TSR": 0,
+          "CVC": 0.6666666666666666,
+          "PA": 1.0
+        }
+      },
+      {
+        "task_id": "task_09",
+        "status": "success",
+        "step_count": 4,
+        "tool_count": 2,
+        "verification_ok": true,
+        "grade": {
+          "id": "task_09",
+          "TSR": 1,
+          "CVC": 0.0,
+          "PA": 1.0
+        }
+      },
+      {
+        "task_id": "task_10",
+        "status": "success",
+        "step_count": 6,
+        "tool_count": 3,
+        "verification_ok": true,
+        "grade": {
+          "id": "task_10",
+          "TSR": 1,
+          "CVC": 0.0,
+          "PA": 1.0
+        }
+      }
+    ]
+  }
+}

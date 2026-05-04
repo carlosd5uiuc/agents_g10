@@ -47,5 +47,33 @@
         "total": 155,
         "vegetarian": true,
         "contains_nuts": false
+    },
+    {
+        "id": "cat_borderline_safe",
+        "name": "Simple Veggie Pasta",
+        "total": 150,
+        "vegetarian": true,
+        "contains_nuts": false
+    },
+    {
+        "id": "cat_borderline_nut",
+        "name": "Almond Veggie Pasta",
+        "total": 149,
+        "vegetarian": true,
+        "contains_nuts": true
+    },
+    {
+        "id": "cat_gluten_safe",
+        "name": "Rice Bowl Bar",
+        "total": 142,
+        "vegetarian": true,
+        "contains_nuts": false
+    },
+    {
+        "id": "cat_mixed_budget",
+        "name": "Mixed Taco Bar",
+        "total": 128,
+        "vegetarian": false,
+        "contains_nuts": false
     }
 ]

@@ -1,0 +1,16 @@
+{
+  "success": true,
+  "travel_confirmation": {
+    "confirmation_id": "528a76c2-f89d-4be6-a7f6-60c9886dcd7d",
+    "arrival_time": "2026-05-02T08:15:00",
+    "departure_time": "2026-05-02T05:45:00",
+    "cost": 35,
+    "surge_pricing": false,
+    "rideshare": true,
+    "from": "Chicago",
+    "to": "Urbana"
+  },
+  "calendar": {
+    "confirmation_id": "b052d08b-6f04-4667-a89d-d290a3e9753e"
+  }
+}

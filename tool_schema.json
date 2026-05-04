@@ -165,24 +165,24 @@
     },
     {
         "name": "schedule_payment",
-        "description": "Use this tool when the user wants to schedule a mock bill payment. It records what the payment is for, the payment date, and the amount, then returns a confirmation ID.",
+        "description": "Use this tool when the user wants to schedule a mock bill payment. It records the observed bill ID, the payment date, and the amount, then returns confirmation IDs.",
         "input_schema": {
             "type": "object",
             "properties": {
-                "concept": {
+                "bill_id": {
                     "type": "string",
-                    "description": "What the payment is for, such as 'rent', 'phone bill', or 'credit card'."
+                    "description": "The observed bill ID being paid, for example 'bill_electric' or 'streaming'."
                 },
                 "payment_date": {
                     "type": "string",
-                    "description": "The date when the payment should be made. Must use YYYY-MM-DD format, for example '2026-05-03'."
+                    "description": "The date when the payment should be made. Use YYYY-MM-DD, or an ISO datetime if the task requires a scheduled datetime."
                 },
                 "amount": {
                     "type": "number",
                     "description": "The amount of money to pay."
                 }
             },
-            "required": ["concept", "payment_date", "amount"]
+            "required": ["bill_id", "payment_date", "amount"]
         }
     }
 ]

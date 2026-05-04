@@ -22,5 +22,17 @@
   {
     "symptoms": ["Microwave not turning on", "Display is blank", "Buttons do not respond"],
     "likely_cause": "Blown internal fuse"
+  },
+  {
+    "symptoms": ["Washer fills slowly", "Cold water pressure is low", "Cycle takes too long"],
+    "likely_cause": "Clogged inlet valve screen"
+  },
+  {
+    "symptoms": ["Washer makes loud noise", "Vibration during spin cycle", "Tub shakes"],
+    "likely_cause": "Worn suspension rods"
+  },
+  {
+    "symptoms": ["Washer not draining", "Drain hose is kinked", "Water leaves slowly"],
+    "likely_cause": "Blocked drain hose"
   }
 ]

@@ -34,5 +34,23 @@
         "appliance_type": "Microwave",
         "distance_to": 2,
         "estimate": 75
+    },
+    {
+        "name": "Washer Wizard Premium",
+        "appliance_type": "Washer",
+        "distance_to": 2,
+        "estimate": 240
+    },
+    {
+        "name": "Budget Appliance Barn",
+        "appliance_type": "Washer",
+        "distance_to": 9,
+        "estimate": 120
+    },
+    {
+        "name": "Neighborhood Washer Care",
+        "appliance_type": "Washer",
+        "distance_to": 4,
+        "estimate": 175
     }
 ]

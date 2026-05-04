@@ -1,0 +1,155 @@
+{
+  "task_id": "task_05",
+  "resources": {
+    "troubleshoot://guide": [
+      {
+        "symptoms": [
+          "Refrigerator not cooling",
+          "Compressor clicking",
+          "Food spoiling quickly"
+        ],
+        "likely_cause": "Dirty condenser coils"
+      },
+      {
+        "symptoms": [
+          "Washer not draining",
+          "Water left in drum",
+          "Drain cycle stops early"
+        ],
+        "likely_cause": "Drain pump blockage"
+      },
+      {
+        "symptoms": [
+          "Dryer not heating",
+          "Clothes still damp",
+          "Dryer runs but stays cool"
+        ],
+        "likely_cause": "Broken heating element"
+      },
+      {
+        "symptoms": [
+          "Dishwasher leaking",
+          "Water pooling under door",
+          "Wet floor after cycle"
+        ],
+        "likely_cause": "Worn door gasket"
+      },
+      {
+        "symptoms": [
+          "Oven not reaching temperature",
+          "Food undercooked",
+          "Temperature fluctuates"
+        ],
+        "likely_cause": "Faulty temperature sensor"
+      },
+      {
+        "symptoms": [
+          "Microwave not turning on",
+          "Display is blank",
+          "Buttons do not respond"
+        ],
+        "likely_cause": "Blown internal fuse"
+      },
+      {
+        "symptoms": [
+          "Washer fills slowly",
+          "Cold water pressure is low",
+          "Cycle takes too long"
+        ],
+        "likely_cause": "Clogged inlet valve screen"
+      },
+      {
+        "symptoms": [
+          "Washer makes loud noise",
+          "Vibration during spin cycle",
+          "Tub shakes"
+        ],
+        "likely_cause": "Worn suspension rods"
+      },
+      {
+        "symptoms": [
+          "Washer not draining",
+          "Drain hose is kinked",
+          "Water leaves slowly"
+        ],
+        "likely_cause": "Blocked drain hose"
+      }
+    ],
+    "troubleshoot://repair": [
+      {
+        "name": "FrostFix Express",
+        "appliance_type": "Refrigerator",
+        "distance_to": 3,
+        "estimate": 120
+      },
+      {
+        "name": "SpinCycle Pros",
+        "appliance_type": "Washer",
+        "distance_to": 5,
+        "estimate": 90
+      },
+      {
+        "name": "DryerDash Repair",
+        "appliance_type": "Dryer",
+        "distance_to": 4,
+        "estimate": 100
+      },
+      {
+        "name": "SparkleWash Services",
+        "appliance_type": "Dishwasher",
+        "distance_to": 6,
+        "estimate": 110
+      },
+      {
+        "name": "HotPlate Heroes",
+        "appliance_type": "Oven",
+        "distance_to": 8,
+        "estimate": 140
+      },
+      {
+        "name": "MicroWave Mavericks",
+        "appliance_type": "Microwave",
+        "distance_to": 2,
+        "estimate": 75
+      },
+      {
+        "name": "Washer Wizard Premium",
+        "appliance_type": "Washer",
+        "distance_to": 2,
+        "estimate": 240
+      },
+      {
+        "name": "Budget Appliance Barn",
+        "appliance_type": "Washer",
+        "distance_to": 9,
+        "estimate": 120
+      },
+      {
+        "name": "Neighborhood Washer Care",
+        "appliance_type": "Washer",
+        "distance_to": 4,
+        "estimate": 175
+      }
+    ]
+  },
+  "tool_results": [],
+  "failed_attempts": [],
+  "policy_violations": [],
+  "final_output": {
+    "success": true,
+    "diagnosis": "Washer not draining - water left in drum and drain cycle stops early",
+    "likely_cause": "Drain pump blockage",
+    "recommended_steps": [
+      "Check for blockages in the drain pump filter",
+      "Inspect the drain hose for kinks or obstructions",
+      "Remove any debris from the pump impeller",
+      "Test the drain pump for proper operation",
+      "If pump is faulty, replace the drain pump assembly"
+    ],
+    "repair_recommendation": {
+      "service_name": "SpinCycle Pros",
+      "distance_miles": 5.0,
+      "estimated_cost": 90
+    }
+  }
+}

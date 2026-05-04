@@ -8,7 +8,7 @@
     },
     {
         "type_of_repair": "Laptop battery repair",
-        "in_network": false,
+        "in_network": true,
         "deductible": 120,
         "weekday": "Wednesday",
         "current_week": true
@@ -39,6 +39,41 @@
         "in_network": true,
         "deductible": 130,
         "weekday": "Saturday",
+        "current_week": true
+    },
+    {
+        "type_of_repair": "Laptop screen repair",
+        "in_network": true,
+        "deductible": 80,
+        "weekday": "Tuesday",
+        "current_week": true
+    },
+    {
+        "type_of_repair": "Laptop battery repair",
+        "in_network": false,
+        "deductible": 75,
+        "weekday": "Friday",
+        "current_week": true
+    },
+    {
+        "type_of_repair": "Laptop battery repair premium",
+        "in_network": true,
+        "deductible": 160,
+        "weekday": "Monday",
+        "current_week": true
+    },
+    {
+        "type_of_repair": "Laptop battery repair urgent",
+        "in_network": true,
+        "deductible": 95,
+        "weekday": "Thursday",
+        "current_week": true
+    },
+    {
+        "type_of_repair": "Laptop charging port repair",
+        "in_network": true,
+        "deductible": 115,
+        "weekday": "Wednesday",
         "current_week": true
     }
 ]

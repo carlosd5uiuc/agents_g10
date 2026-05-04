@@ -2,7 +2,7 @@
     {
         "id": "bill_electric",
         "name": "Electric bill",
-        "amount": 45,
+        "amount": 20,
         "due": "2026-05-03T00:00:00",
         "settled": false
     },
@@ -39,6 +39,34 @@
         "name": "Renters insurance",
         "amount": 15,
         "due": "2026-05-08T00:00:00",
+        "settled": false
+    },
+    {
+        "id": "bill_streaming",
+        "name": "Streaming subscription",
+        "amount": 18,
+        "due": "2026-05-02T00:00:00",
+        "settled": true
+    },
+    {
+        "id": "bill_trash",
+        "name": "Trash service",
+        "amount": 22,
+        "due": "2026-05-09T00:00:00",
+        "settled": false
+    },
+    {
+        "id": "bill_storage",
+        "name": "Storage unit",
+        "amount": 55,
+        "due": "2026-05-10T00:00:00",
+        "settled": true
+    },
+    {
+        "id": "bill_parking",
+        "name": "Parking permit",
+        "amount": 28,
+        "due": "2026-05-03T00:00:00",
         "settled": false
     }
 ]

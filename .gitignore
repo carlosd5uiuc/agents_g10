@@ -1,4 +1,10 @@
 __pycache__/
+.venv/
+.env
+outputs/*
+!outputs/sessions/
+!outputs/sessions/**
+*.egg-info/
 *.pyc
 *.pyo
 *.pyd

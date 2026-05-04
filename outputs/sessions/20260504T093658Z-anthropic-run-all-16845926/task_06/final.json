@@ -1,0 +1,87 @@
+{
+  "success": true,
+  "plan_summary": "Identified 6 unpaid bills totaling $165. All unsettled bills have been scheduled for payment on their respective due dates. Alert: Total pending bill amount ($165) exceeds budget of $120.",
+  "pending_bills": [
+    {
+      "bill_id": "bill_electric",
+      "name": "Electric bill",
+      "amount": 20,
+      "due_date": "2026-05-03",
+      "settled": false
+    },
+    {
+      "bill_id": "bill_internet",
+      "name": "Internet bill",
+      "amount": 35,
+      "due_date": "2026-05-04",
+      "settled": false
+    },
+    {
+      "bill_id": "bill_gas",
+      "name": "Gas bill",
+      "amount": 25,
+      "due_date": "2026-05-06",
+      "settled": false
+    },
+    {
+      "bill_id": "bill_renters_insurance",
+      "name": "Renters insurance",
+      "amount": 15,
+      "due_date": "2026-05-08",
+      "settled": false
+    },
+    {
+      "bill_id": "bill_trash",
+      "name": "Trash service",
+      "amount": 22,
+      "due_date": "2026-05-09",
+      "settled": false
+    },
+    {
+      "bill_id": "bill_parking",
+      "name": "Parking permit",
+      "amount": 28,
+      "due_date": "2026-05-03",
+      "settled": false
+    }
+  ],
+  "scheduled_payments": [
+    {
+      "payment_confirmation_id": "4873cd9a-ca9b-4efa-a98e-1579a6365f82",
+      "bill_id": "bill_electric",
+      "payment_date": "2026-05-03",
+      "amount": 20
+    },
+    {
+      "payment_confirmation_id": "2d11c8d3-a0f1-4ce2-ba83-4072a19c8052",
+      "bill_id": "bill_internet",
+      "payment_date": "2026-05-04",
+      "amount": 35
+    },
+    {
+      "payment_confirmation_id": "0a0dc695-45d8-479a-aeee-520bede17d16",
+      "bill_id": "bill_gas",
+      "payment_date": "2026-05-06",
+      "amount": 25
+    },
+    {
+      "payment_confirmation_id": "ac271269-9e92-4c54-85c8-2af9a58a1518",
+      "bill_id": "bill_renters_insurance",
+      "payment_date": "2026-05-08",
+      "amount": 15
+    },
+    {
+      "payment_confirmation_id": "adfe4fa9-7d74-4816-912f-670464c08287",
+      "bill_id": "bill_trash",
+      "payment_date": "2026-05-09",
+      "amount": 22
+    },
+    {
+      "payment_confirmation_id": "6ffa3074-e998-493e-a54d-752f18e611dc",
+      "bill_id": "bill_parking",
+      "payment_date": "2026-05-03",
+      "amount": 28
+    }
+  ],
+  "alert": "Total pending bill amount ($165) exceeds budget of $120."
+}

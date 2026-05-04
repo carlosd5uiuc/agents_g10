@@ -58,5 +58,55 @@
     "cost": 26,
     "surge_pricing": false,
     "rideshare": true
+  },
+  {
+    "id": "LY-1007",
+    "from": "Chicago",
+    "to": "Urbana",
+    "departure_time": "2026-05-02T04:45:00",
+    "arrival_time": "2026-05-02T07:30:00",
+    "cost": 48,
+    "surge_pricing": false,
+    "rideshare": true
+  },
+  {
+    "id": "LY-1008",
+    "from": "Chicago",
+    "to": "Urbana",
+    "departure_time": "2026-05-02T05:30:00",
+    "arrival_time": "2026-05-02T08:45:00",
+    "cost": 42,
+    "surge_pricing": true,
+    "rideshare": true
+  },
+  {
+    "id": "LY-1009",
+    "from": "Chicago",
+    "to": "Urbana",
+    "departure_time": "2026-05-02T06:10:00",
+    "arrival_time": "2026-05-02T09:05:00",
+    "cost": 44,
+    "surge_pricing": false,
+    "rideshare": false
+  },
+  {
+    "id": "LY-1010",
+    "from": "Chicago",
+    "to": "Urbana",
+    "departure_time": "2026-05-02T06:30:00",
+    "arrival_time": "2026-05-02T09:55:00",
+    "cost": 45,
+    "surge_pricing": false,
+    "rideshare": true
+  },
+  {
+    "id": "LY-1011",
+    "from": "Chicago",
+    "to": "Urbana",
+    "departure_time": "2026-05-02T05:00:00",
+    "arrival_time": "2026-05-02T08:00:00",
+    "cost": 46,
+    "surge_pricing": true,
+    "rideshare": false
   }
 ]

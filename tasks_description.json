@@ -1,6 +1,6 @@
 {
     "task_01": {
-        "id": "task_1",
+        "id": "task_01",
         "preferences": [
             "User would prefer an option with rideshare",
             "User would like to arrive 3 hours before scheduled time"
@@ -84,14 +84,15 @@
         "hard_constraints": [
             "Provider must be a dermatologist",
             "Provider must support eczema treatment",
-            "Copay must be less than or equal to USD 50"
+            "Copay must be less than or equal to USD 50",
+            "The selected appointment must be added to the calendar"
         ],
-        "prompt": "Schedule a specialist visit under insurance and timing constraints.",
+        "prompt": "Schedule a specialist visit under insurance and timing constraints. For this benchmark week, Friday maps to 2026-05-08, so slot Friday,16 should be added to the calendar as 2026-05-08T16:00:00.",
         "output_structure": {
             "success": "bool",
             "appointment_confirmation": {
                 "confirmation_id": "string",
-                "": "string",
+                "name": "string",
                 "specialty": "string",
                 "supports": "list[string]",
                 "copay": "int",
@@ -134,6 +135,7 @@
         "hard_constraints": [
             "Identify all pending bills",
             "Create a payment plan",
+            "pending_bills must include only unsettled bills",
             "Alert if total pending bill amount exceeds budget 120."
         ],
         "prompt": "Identify unpaid bills and generate a safe payment plan.",
@@ -265,10 +267,11 @@
             "User would like to be notified if a valid payment cannot be included because it exceeds the projected budget"
         ],
         "hard_constraints": [
-            "All bills due within 3 days before the given date are scheduled",
-            "Projected balance must never fall below USD 200"
+            "Bills due within 3 days before the given date should be scheduled only if the projected balance remains at least USD 200",
+            "Projected balance must never fall below USD 200",
+            "If a due-window bill cannot be scheduled because of the balance threshold, include a non-empty overdraft_alert"
         ],
-        "prompt": "Schedule bill payments without violating the minimum balance threshold Balance: $300; Given date: 2026-04-22T12:00:00",
+        "prompt": "Schedule bill payments without violating the minimum balance threshold. Balance: $300; minimum balance: $200; Given date: 2026-04-22T12:00:00. The due window is the 3 days before the given date. If scheduling a due-window bill would drop the projected balance below $200, do not schedule it and include an overdraft alert.",
         "output_structure": {
             "success": "bool",
             "payments": [

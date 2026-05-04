@@ -58,5 +58,30 @@
     "category": "clothing",
     "amount": 110,
     "priority": false
+  },
+  {
+    "category": "therapy",
+    "amount": 120,
+    "priority": true
+  },
+  {
+    "category": "books",
+    "amount": 55,
+    "priority": false
+  },
+  {
+    "category": "meal_delivery",
+    "amount": 95,
+    "priority": false
+  },
+  {
+    "category": "insurance",
+    "amount": 210,
+    "priority": true
+  },
+  {
+    "category": "games",
+    "amount": 65,
+    "priority": false
   }
 ]

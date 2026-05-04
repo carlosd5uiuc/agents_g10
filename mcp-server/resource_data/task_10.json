@@ -28,5 +28,25 @@
         "id": "streaming",
         "amount": 15,
         "due": "2026-04-24T00:00:00"
+    },
+    {
+        "id": "medical",
+        "amount": 20,
+        "due": "2026-04-22T11:00:00"
+    },
+    {
+        "id": "tuition",
+        "amount": 500,
+        "due": "2026-04-19T12:00:00"
+    },
+    {
+        "id": "membership",
+        "amount": 18,
+        "due": "2026-04-25T00:00:00"
+    },
+    {
+        "id": "parking",
+        "amount": 35,
+        "due": "2026-04-18T23:59:00"
     }
 ]

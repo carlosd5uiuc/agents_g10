@@ -4,7 +4,7 @@ import argparse
 from datetime import datetime, timedelta, time
 from typing import Any, Dict, List
 
-from helper import avoids_day_time_block, has_strength_cardio_pair, no_more_than_one_activity_type_per_day, all_due_bills_scheduled, projected_balance_never_below_200, overdraft_alert_correct
+from helper import avoids_day_time_block, has_strength_cardio_pair, no_more_than_one_activity_type_per_day, all_due_bills_scheduled, partial_due_schedule_with_alert, projected_balance_never_below_200, overdraft_alert_correct
 
 def grade_task_10(task_data: Dict[str, Any]) -> Dict[str, Any]:
     CVC = 2
@@ -22,18 +22,9 @@ def grade_task_10(task_data: Dict[str, Any]) -> Dict[str, Any]:
     )
 
     # Scenario 2: cannot schedule all safely, but alert is emitted
-    partial_schedule_with_alert = (
-        not scheduled_condition_met and
-        balance_condition_met and
-        alert_condition_met
-    )
+    partial_schedule_with_alert = partial_due_schedule_with_alert(task_data)
 
-    if task_data["success"] and (
-        scheduled_condition_met and (balance_condition_met or alert_condition_met)
-    ):
-        TSR = 1
-
-    if task_data["success"] and scheduled_condition_met and balance_condition_met:
+    if task_data.get("success") and (all_scheduled_safely or partial_schedule_with_alert):
         TSR = 1
 
     if scheduled_condition_met or partial_schedule_with_alert:
@@ -109,9 +100,19 @@ def grade_task_08(task_data: Dict[str, Any]) -> Dict[str, Any]:
     PA = 0
     TSR = 0
 
-    reduction_target_met = int(task_data["generated_report"]["total_reduction"]) >= 150
-    min_suggestions = len(task_data["generated_report"]["suggestions"]) >= 1
-    cuts_only_from_non_priority = all([not s['priority_category'] for s in task_data["generated_report"]["suggestions"]])
+    generated_report = task_data.get("generated_report", {})
+    suggestions = generated_report.get("suggestions", []) if isinstance(generated_report, dict) else []
+    try:
+        total_reduction = int(generated_report.get("total_reduction", 0))
+    except (TypeError, ValueError):
+        total_reduction = 0
+
+    reduction_target_met = total_reduction >= 150
+    min_suggestions = isinstance(suggestions, list) and len(suggestions) >= 1
+    cuts_only_from_non_priority = (
+        isinstance(suggestions, list) and
+        all(not s.get('priority_category') for s in suggestions if isinstance(s, dict))
+    )
 
     if task_data["success"] and reduction_target_met and \
     min_suggestions and cuts_only_from_non_priority:
@@ -121,8 +122,11 @@ def grade_task_08(task_data: Dict[str, Any]) -> Dict[str, Any]:
     if min_suggestions: CVC -= 1
     if cuts_only_from_non_priority: CVC -= 1
 
-    suggestions = task_data.get("generated_report", {}).get("suggestions", [])
-    cut_categories = {suggestion.get("category") for suggestion in suggestions}
+    cut_categories = {
+        suggestion.get("category")
+        for suggestion in suggestions
+        if isinstance(suggestion, dict)
+    }
     if "health" not in cut_categories:
         PA += 1 
 
@@ -132,33 +136,40 @@ def grade_task_08(task_data: Dict[str, Any]) -> Dict[str, Any]:
     return {
         "id": "task_08",
         "TSR": TSR,
-        "CVC": CVC / 4,
+        "CVC": CVC / 3,
         "PA": PA / 2
     }
 
 def grade_task_07(task_data: Dict[str, Any]) -> Dict[str, Any]:
-    CVC = 6
+    CVC = 7
     PA = 0
     TSR = 0
     
     scheduled_cardio = task_data.get("scheduled_cardio", [])
     scheduled_strength = task_data.get("scheduled_strength", [])
     all_scheduled_activities = scheduled_cardio + scheduled_strength
-    monday_constraint_met = any([
+    monday_constraint_met = all([
         avoids_day_time_block(activity=t, blocked_day="Monday", blocked_start=time(8, 0), blocked_end=time(17,0)) for t in all_scheduled_activities
     ])
-    wednesday_constraint_met = any([
+    wednesday_constraint_met = all([
         avoids_day_time_block(activity=t, blocked_day="Wednesday", blocked_start=time(8, 0), blocked_end=time(17,0)) for t in all_scheduled_activities
     ])
     sufficient_strength_routines = len(scheduled_strength) >= 3
     sufficient_cardio_routines = len(scheduled_cardio) >= 3
     paired_strength_cardio = has_strength_cardio_pair(task_data)
     valid_type_limit = no_more_than_one_activity_type_per_day(task_data)
+    confirmations = task_data.get("workout_calendar_confirmation", [])
+    calendar_entries_exist = (
+        isinstance(confirmations, list) and
+        len(confirmations) == len(all_scheduled_activities) and
+        all(isinstance(confirmation, str) and confirmation.strip() for confirmation in confirmations)
+    )
 
     if task_data['success'] and \
         monday_constraint_met and wednesday_constraint_met and \
         sufficient_strength_routines and sufficient_cardio_routines and \
-        paired_strength_cardio and valid_type_limit:
+        paired_strength_cardio and valid_type_limit and \
+        calendar_entries_exist:
         TSR = 1
 
     if monday_constraint_met:
@@ -178,6 +189,9 @@ def grade_task_07(task_data: Dict[str, Any]) -> Dict[str, Any]:
 
     if valid_type_limit:
         CVC -= 1     
+
+    if calendar_entries_exist:
+        CVC -= 1
 
     # PA
     strength_muscle_groups = [
@@ -203,7 +217,7 @@ def grade_task_07(task_data: Dict[str, Any]) -> Dict[str, Any]:
     return {
         "id": "task_07",
         "TSR": TSR,
-        "CVC": CVC / 6,
+        "CVC": CVC / 7,
         "PA": PA / 2
     }
 
@@ -233,7 +247,7 @@ def grade_task_06(task_data: Dict[str, Any]) -> Dict[str, Any]:
     return {
         "id": "task_06",
         "TSR": TSR,
-        "CVC": CVC / 4,
+        "CVC": CVC / 3,
         "PA": PA / 1
     }
 
@@ -248,7 +262,9 @@ def grade_task_05(task_data: Dict[str, Any]) -> Dict[str, Any]:
     diagnosis = str(task_data.get("diagnosis", "")).lower()
     likely_cause = str(task_data.get("likely_cause", "")).lower()
 
-    recommended_steps = repair.get("recommended_steps", [])
+    recommended_steps = task_data.get("recommended_steps")
+    if recommended_steps is None:
+        recommended_steps = repair.get("recommended_steps", [])
     estimated_cost = repair.get("estimated_cost")
     distance_miles = repair.get("distance_miles")
 
@@ -305,18 +321,25 @@ def grade_task_04(task_data: dict) -> dict:
     PA = 0
     TSR = 0
 
-    appointment = task_data["appointment_confirmation"]
+    appointment = task_data.get("appointment_confirmation", {})
 
-    is_dermatologist = appointment["specialty"].lower() == "dermatologist"
-    supports_eczema = "eczema" in [item.lower() for item in appointment["supports"]]
-    copay_valid = appointment["copay"] <= 50
+    is_dermatologist = str(appointment.get("specialty", "")).lower() == "dermatologist"
+    supports = appointment.get("supports", [])
+    supports_eczema = isinstance(supports, list) and "eczema" in [str(item).lower() for item in supports]
+    copay = appointment.get("copay")
+    copay_valid = isinstance(copay, (int, float)) and copay <= 50
+
+    try:
+        appointment_hour = int(str(appointment.get("time", "")).split(":")[0])
+    except (TypeError, ValueError):
+        appointment_hour = -1
 
     is_friday_after_3pm = (
-        appointment["weekday"].lower() == "friday"
-        and int(appointment["time"].split(":")[0]) > 15
+        str(appointment.get("weekday", "")).lower() == "friday"
+        and appointment_hour > 15
     )
 
-    if task_data["success"] and is_dermatologist and supports_eczema and copay_valid:
+    if task_data.get("success") and is_dermatologist and supports_eczema and copay_valid:
         TSR = 1
 
     if is_dermatologist:
@@ -344,13 +367,13 @@ def grade_task_03(task_data: dict) -> dict:
     TSR = 0
 
     if task_data['success'] and \
-        task_data['catering_confirmation']['total'] < 150 and \
-        task_data['catering_confirmation']['vegetarian'] < 120 and \
+        task_data['catering_confirmation']['total'] <= 150 and \
+        task_data['catering_confirmation']['vegetarian'] and \
         len(task_data['invite_log']) == 3:
         TSR = 1
 
-    if task_data['catering_confirmation']['total'] < 150: CVC -= 1
-    if task_data['catering_confirmation']['vegetarian'] < 120: CVC -= 1
+    if task_data['catering_confirmation']['total'] <= 150: CVC -= 1
+    if task_data['catering_confirmation']['vegetarian']: CVC -= 1
     if len(task_data['invite_log']) == 3: CVC -= 1
 
     if not task_data['catering_confirmation']['contains_nuts']: PA += 1
@@ -372,26 +395,30 @@ def grade_task_02(task_data: dict) -> dict:
     - PA: Preference Adherence, 1 if preferences are satisfied, else 0
     """
 
-    CVC = 3
+    CVC = 4
     PA = 0
     TSR = 0
 
     if task_data['success'] and \
+        ('laptop' in task_data['repair_confirmation']['type_of_repair'].lower()) and \
+        ('battery' in task_data['repair_confirmation']['type_of_repair'].lower()) and \
         task_data['repair_confirmation']['in_network'] and \
         (task_data['repair_confirmation']['weekday'].lower() != 'thursday') and \
-        int(task_data['repair_confirmation']['deductible']) < 120:
+        int(task_data['repair_confirmation']['deductible']) <= 120:
         TSR = 1
 
+    if ('laptop' in task_data['repair_confirmation']['type_of_repair'].lower()) and \
+        ('battery' in task_data['repair_confirmation']['type_of_repair'].lower()): CVC -= 1
     if task_data['repair_confirmation']['in_network']: CVC -= 1
     if task_data['repair_confirmation']['weekday'].lower() != 'thursday': CVC -= 1
-    if task_data['repair_confirmation']['deductible'] < 120: CVC -= 1
+    if task_data['repair_confirmation']['deductible'] <= 120: CVC -= 1
 
     if task_data['repair_confirmation']['current_week']: PA += 1
 
     return {
         "id": "task_02",
         "TSR": TSR,
-        "CVC": CVC / 3,
+        "CVC": CVC / 4,
         "PA": PA / 1
     }
 
@@ -435,28 +462,27 @@ def grade_task_01(task_data: Dict[str, Any]) -> Dict[str, Any]:
 
 def grade_result(data: Dict[str, Any]) -> List[Dict[str, Any]]:
     results = []
+    graders = {
+        "task_01": grade_task_01,
+        "task_02": grade_task_02,
+        "task_03": grade_task_03,
+        "task_04": grade_task_04,
+        "task_05": grade_task_05,
+        "task_06": grade_task_06,
+        "task_07": grade_task_07,
+        "task_08": grade_task_08,
+        "task_09": grade_task_09,
+        "task_10": grade_task_10,
+    }
 
     for key, value in data.items():
-        if key == "task_01":
-            results.append(grade_task_01(value))
-        if key == "task_02":
-            results.append(grade_task_02(value))
-        if key == "task_03":
-            results.append(grade_task_03(value))
-        if key == "task_04":
-            results.append(grade_task_04(value))
-        if key == "task_05":
-            results.append(grade_task_05(value))
-        if key == "task_06":
-            results.append(grade_task_06(value))
-        if key == "task_07":
-            results.append(grade_task_07(value))
-        if key == "task_08":
-            results.append(grade_task_08(value))
-        if key == "task_09":
-            results.append(grade_task_09(value))
-        if key == "task_10":
-            results.append(grade_task_10(value))
+        grader = graders.get(key)
+        if grader is None:
+            continue
+        try:
+            results.append(grader(value))
+        except Exception as exc:
+            results.append({"id": key, "TSR": 0, "CVC": 1, "PA": 0, "error": repr(exc)})
         
 
     return results

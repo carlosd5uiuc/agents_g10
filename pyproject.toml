@@ -1,0 +1,24 @@
+[project]
+name = "agents-g10"
+version = "0.1.0"
+description = "Policy-driven personal task agent benchmark implementation."
+requires-python = ">=3.13"
+dependencies = [
+    "mcp[cli]>=1.27.0",
+]
+
+[project.scripts]
+pta = "agents.pta_agent.cli:main"
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["agents*"]
+
+[tool.uv]
+package = true
+
+[tool.pytest.ini_options]
+pythonpath = ["."]

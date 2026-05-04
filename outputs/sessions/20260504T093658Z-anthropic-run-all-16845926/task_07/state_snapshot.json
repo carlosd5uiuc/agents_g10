@@ -1,0 +1,269 @@
+{
+  "task_id": "task_07",
+  "resources": {
+    "workout-sessions://list": [
+      {
+        "activity_id": "strength_upper_01",
+        "activity_name": "Upper Body Strength",
+        "activity_type": "strength",
+        "muscle_group": "upper_body",
+        "day": "Friday",
+        "start_time": "2026-05-08T17:00:00",
+        "end_time": "2026-05-08T17:45:00"
+      },
+      {
+        "activity_id": "strength_lower_01",
+        "activity_name": "Lower Body Strength",
+        "activity_type": "strength",
+        "muscle_group": "lower_body",
+        "day": "Tuesday",
+        "start_time": "2026-05-05T17:00:00",
+        "end_time": "2026-05-05T17:45:00"
+      },
+      {
+        "activity_id": "strength_core_01",
+        "activity_name": "Core Strength",
+        "activity_type": "strength",
+        "muscle_group": "core",
+        "day": "Wednesday",
+        "start_time": "2026-05-06T17:00:00",
+        "end_time": "2026-05-06T17:30:00"
+      },
+      {
+        "activity_id": "strength_push_01",
+        "activity_name": "Push Strength",
+        "activity_type": "strength",
+        "muscle_group": "chest_shoulders_triceps",
+        "day": "Thursday",
+        "start_time": "2026-05-07T18:00:00",
+        "end_time": "2026-05-07T18:45:00"
+      },
+      {
+        "activity_id": "cardio_run_01",
+        "activity_name": "Outdoor Run",
+        "activity_type": "cardio",
+        "muscle_group": "cardio",
+        "day": "Monday",
+        "start_time": "2026-05-04T17:30:00",
+        "end_time": "2026-05-04T18:00:00"
+      },
+      {
+        "activity_id": "cardio_bike_01",
+        "activity_name": "Stationary Bike",
+        "activity_type": "cardio",
+        "muscle_group": "cardio",
+        "day": "Tuesday",
+        "start_time": "2026-05-05T17:45:00",
+        "end_time": "2026-05-05T18:15:00"
+      },
+      {
+        "activity_id": "cardio_swim_01",
+        "activity_name": "Swimming",
+        "activity_type": "cardio",
+        "muscle_group": "cardio",
+        "day": "Friday",
+        "start_time": "2026-05-08T17:45:00",
+        "end_time": "2026-05-08T18:30:00"
+      },
+      {
+        "activity_id": "cardio_walk_01",
+        "activity_name": "Brisk Walk",
+        "activity_type": "cardio",
+        "muscle_group": "cardio",
+        "day": "Thursday",
+        "start_time": "2026-05-07T18:45:00",
+        "end_time": "2026-05-07T19:15:00"
+      },
+      {
+        "activity_id": "strength_upper_early",
+        "activity_name": "Upper Body Morning",
+        "activity_type": "strength",
+        "muscle_group": "upper_body",
+        "day": "Monday",
+        "start_time": "2026-05-04T09:00:00",
+        "end_time": "2026-05-04T09:45:00"
+      },
+      {
+        "activity_id": "strength_core_blocked",
+        "activity_name": "Core Lunch Session",
+        "activity_type": "strength",
+        "muscle_group": "core",
+        "day": "Wednesday",
+        "start_time": "2026-05-06T12:00:00",
+        "end_time": "2026-05-06T12:30:00"
+      },
+      {
+        "activity_id": "cardio_row_01",
+        "activity_name": "Rowing",
+        "activity_type": "cardio",
+        "muscle_group": "cardio",
+        "day": "Tuesday",
+        "start_time": "2026-05-05T18:15:00",
+        "end_time": "2026-05-05T18:45:00"
+      },
+      {
+        "activity_id": "cardio_swim_blocked",
+        "activity_name": "Lunch Swim",
+        "activity_type": "cardio",
+        "muscle_group": "cardio",
+        "day": "Wednesday",
+        "start_time": "2026-05-06T13:00:00",
+        "end_time": "2026-05-06T13:45:00"
+      },
+      {
+        "activity_id": "strength_lower_duplicate",
+        "activity_name": "Lower Body Late",
+        "activity_type": "strength",
+        "muscle_group": "lower_body",
+        "day": "Tuesday",
+        "start_time": "2026-05-05T19:00:00",
+        "end_time": "2026-05-05T19:45:00"
+      }
+    ]
+  },
+  "tool_results": [
+    {
+      "tool_name": "create_calendar_entry",
+      "arguments": {
+        "date": "2026-05-04T17:30:00",
+        "category": "EXERCISE"
+      },
+      "result": {
+        "entry_date": "2026-05-04T17:30:00",
+        "category": "EXERCISE",
+        "message": "Calendar entry created for EXERCISE on 2026-05-04T17:30:00.",
+        "confirmation_id": "ef09993a-48aa-40e4-8e45-9702cfbe55ab"
+      }
+    },
+    {
+      "tool_name": "create_calendar_entry",
+      "arguments": {
+        "date": "2026-05-05T17:00:00",
+        "category": "EXERCISE"
+      },
+      "result": {
+        "entry_date": "2026-05-05T17:00:00",
+        "category": "EXERCISE",
+        "message": "Calendar entry created for EXERCISE on 2026-05-05T17:00:00.",
+        "confirmation_id": "3b850fd4-f83b-4ead-868c-c1f8bdcfcdc4"
+      }
+    },
+    {
+      "tool_name": "create_calendar_entry",
+      "arguments": {
+        "date": "2026-05-05T17:45:00",
+        "category": "EXERCISE"
+      },
+      "result": {
+        "entry_date": "2026-05-05T17:45:00",
+        "category": "EXERCISE",
+        "message": "Calendar entry created for EXERCISE on 2026-05-05T17:45:00.",
+        "confirmation_id": "1b3bf001-efe7-4ea0-855e-5ee69e51894e"
+      }
+    },
+    {
+      "tool_name": "create_calendar_entry",
+      "arguments": {
+        "date": "2026-05-06T17:00:00",
+        "category": "EXERCISE"
+      },
+      "result": {
+        "entry_date": "2026-05-06T17:00:00",
+        "category": "EXERCISE",
+        "message": "Calendar entry created for EXERCISE on 2026-05-06T17:00:00.",
+        "confirmation_id": "1f8b84dc-d16b-46d4-9bcc-22972e0c5a1f"
+      }
+    },
+    {
+      "tool_name": "create_calendar_entry",
+      "arguments": {
+        "date": "2026-05-08T17:00:00",
+        "category": "EXERCISE"
+      },
+      "result": {
+        "entry_date": "2026-05-08T17:00:00",
+        "category": "EXERCISE",
+        "message": "Calendar entry created for EXERCISE on 2026-05-08T17:00:00.",
+        "confirmation_id": "fe786982-fb79-4303-a043-da63ce2c7980"
+      }
+    },
+    {
+      "tool_name": "create_calendar_entry",
+      "arguments": {
+        "date": "2026-05-08T17:45:00",
+        "category": "EXERCISE"
+      },
+      "result": {
+        "entry_date": "2026-05-08T17:45:00",
+        "category": "EXERCISE",
+        "message": "Calendar entry created for EXERCISE on 2026-05-08T17:45:00.",
+        "confirmation_id": "e42a6521-6bec-4f45-8534-6700ff43446d"
+      }
+    }
+  ],
+  "failed_attempts": [],
+  "policy_violations": [],
+  "final_output": {
+    "success": true,
+    "scheduled_cardio": [
+      {
+        "activity_id": "cardio_run_01",
+        "activity_type": "cardio",
+        "muscle_group": "cardio",
+        "weekday": "Monday",
+        "start_time": "2026-05-04T17:30:00",
+        "end_time": "2026-05-04T18:00:00"
+      },
+      {
+        "activity_id": "cardio_bike_01",
+        "activity_type": "cardio",
+        "muscle_group": "cardio",
+        "weekday": "Tuesday",
+        "start_time": "2026-05-05T17:45:00",
+        "end_time": "2026-05-05T18:15:00"
+      },
+      {
+        "activity_id": "cardio_swim_01",
+        "activity_type": "cardio",
+        "muscle_group": "cardio",
+        "weekday": "Friday",
+        "start_time": "2026-05-08T17:45:00",
+        "end_time": "2026-05-08T18:30:00"
+      }
+    ],
+    "scheduled_strength": [
+      {
+        "activity_id": "strength_lower_01",
+        "activity_type": "strength",
+        "muscle_group": "lower_body",
+        "weekday": "Tuesday",
+        "start_time": "2026-05-05T17:00:00",
+        "end_time": "2026-05-05T17:45:00"
+      },
+      {
+        "activity_id": "strength_core_01",
+        "activity_type": "strength",
+        "muscle_group": "core",
+        "weekday": "Wednesday",
+        "start_time": "2026-05-06T17:00:00",
+        "end_time": "2026-05-06T17:30:00"
+      },
+      {
+        "activity_id": "strength_upper_01",
+        "activity_type": "strength",
+        "muscle_group": "upper_body",
+        "weekday": "Friday",
+        "start_time": "2026-05-08T17:00:00",
+        "end_time": "2026-05-08T17:45:00"
+      }
+    ],
+    "workout_calendar_confirmation": [
+      "ef09993a-48aa-40e4-8e45-9702cfbe55ab",
+      "3b850fd4-f83b-4ead-868c-c1f8bdcfcdc4",
+      "1b3bf001-efe7-4ea0-855e-5ee69e51894e",
+      "1f8b84dc-d16b-46d4-9bcc-22972e0c5a1f",
+      "fe786982-fb79-4303-a043-da63ce2c7980",
+      "e42a6521-6bec-4f45-8534-6700ff43446d"
+    ]
+  }
+}
