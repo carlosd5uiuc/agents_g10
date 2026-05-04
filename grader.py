@@ -1,27 +1,86 @@
-from typing import Any, Dict, List
 import json
 import argparse
-from datetime import datetime, timedelta
 
-from typing import Any, Dict
+from datetime import datetime, timedelta, time
+from typing import Any, Dict, List
 
-from typing import Any, Dict
+from helper import avoids_day_time_block, has_strength_cardio_pair, no_more_than_one_activity_type_per_day
 
+def grade_task_07(task_data: Dict[str, Any]) -> Dict[str, Any]:
+    CVC = 6
+    PA = 0
+    TSR = 0
+    
+    scheduled_cardio = task_data.get("scheduled_cardio", [])
+    scheduled_strength = task_data.get("scheduled_strength", [])
+    all_scheduled_activities = scheduled_cardio + scheduled_strength
+    monday_constraint_met = any([
+        avoids_day_time_block(activity=t, blocked_day="Monday", blocked_start=time(8, 0), blocked_end=time(17,0)) for t in all_scheduled_activities
+    ])
+    wednesday_constraint_met = any([
+        avoids_day_time_block(activity=t, blocked_day="Wednesday", blocked_start=time(8, 0), blocked_end=time(17,0)) for t in all_scheduled_activities
+    ])
+    sufficient_strength_routines = len(scheduled_strength) >= 3
+    sufficient_cardio_routines = len(scheduled_cardio) >= 3
+    paired_strength_cardio = has_strength_cardio_pair(task_data)
+    valid_type_limit = no_more_than_one_activity_type_per_day(task_data)
+
+    if task_data['success'] and \
+        monday_constraint_met and wednesday_constraint_met and \
+        sufficient_strength_routines and sufficient_cardio_routines and \
+        paired_strength_cardio and valid_type_limit:
+        TSR = 1
+
+    if monday_constraint_met:
+        CVC -= 1
+
+    if wednesday_constraint_met:
+        CVC -= 1
+
+    if sufficient_strength_routines:
+        CVC -= 1
+
+    if sufficient_cardio_routines:
+        CVC -= 1
+
+    if paired_strength_cardio:
+        CVC -= 1
+
+    if valid_type_limit:
+        CVC -= 1     
+
+    # PA
+    strength_muscle_groups = [
+        activity.get("muscle_group")
+        for activity in scheduled_strength
+        if activity.get("muscle_group")
+    ]
+
+    distinct_strength_muscle_groups = (
+        len(strength_muscle_groups) == len(set(strength_muscle_groups))
+    )
+
+    includes_swimming = any(
+        "swim" in activity.get("activity_id", "").lower()
+        or "swim" in activity.get("muscle_group", "").lower()
+        for activity in scheduled_cardio
+    )  
+
+    if distinct_strength_muscle_groups: PA += 1
+    if includes_swimming: PA += 1
+    
+
+    return {
+        "id": "task_07",
+        "TSR": TSR,
+        "CVC": CVC / 6,
+        "PA": PA / 2
+    }
 
 def grade_task_06(task_data: Dict[str, Any]) -> Dict[str, Any]:
     CVC = 3
     PA = 0
     TSR = 0
-
-    #  "preferences": [
-    #         "User would like to pay less than 100."
-    #     ],
-    #     "hard_constraints": [
-    #         "Identify all pending bills",
-    #         "Create a payment plan",
-    #         "Alert if total pending bill amount exceeds budget 120."
-    #     ],
-    
     total = sum([int(t['amount']) for t in task_data['pending_bills']])
     if total <= 100: PA +=1
 
@@ -260,6 +319,8 @@ def grade_result(data: Dict[str, Any]) -> List[Dict[str, Any]]:
             results.append(grade_task_05(value))
         if key == "task_06":
             results.append(grade_task_06(value))
+        if key == "task_07":
+            results.append(grade_task_07(value))
         
 
     return results

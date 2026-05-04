@@ -1,0 +1,74 @@
+[
+    {
+        "activity_id": "strength_upper_01",
+        "activity_name": "Upper Body Strength",
+        "activity_type": "strength",
+        "muscle_group": "upper_body",
+        "day": "Friday",
+        "start_time": "2026-05-08T17:00:00",
+        "end_time": "2026-05-08T17:45:00"
+    },
+    {
+        "activity_id": "strength_lower_01",
+        "activity_name": "Lower Body Strength",
+        "activity_type": "strength",
+        "muscle_group": "lower_body",
+        "day": "Tuesday",
+        "start_time": "2026-05-05T17:00:00",
+        "end_time": "2026-05-05T17:45:00"
+    },
+    {
+        "activity_id": "strength_core_01",
+        "activity_name": "Core Strength",
+        "activity_type": "strength",
+        "muscle_group": "core",
+        "day": "Wednesday",
+        "start_time": "2026-05-06T17:00:00",
+        "end_time": "2026-05-06T17:30:00"
+    },
+    {
+        "activity_id": "strength_push_01",
+        "activity_name": "Push Strength",
+        "activity_type": "strength",
+        "muscle_group": "chest_shoulders_triceps",
+        "day": "Thursday",
+        "start_time": "2026-05-07T18:00:00",
+        "end_time": "2026-05-07T18:45:00"
+    },
+    {
+        "activity_id": "cardio_run_01",
+        "activity_name": "Outdoor Run",
+        "activity_type": "cardio",
+        "muscle_group": "cardio",
+        "day": "Monday",
+        "start_time": "2026-05-04T17:30:00",
+        "end_time": "2026-05-04T18:00:00"
+    },
+    {
+        "activity_id": "cardio_bike_01",
+        "activity_name": "Stationary Bike",
+        "activity_type": "cardio",
+        "muscle_group": "cardio",
+        "day": "Tuesday",
+        "start_time": "2026-05-05T17:45:00",
+        "end_time": "2026-05-05T18:15:00"
+    },
+    {
+        "activity_id": "cardio_swim_01",
+        "activity_name": "Swimming",
+        "activity_type": "cardio",
+        "muscle_group": "cardio",
+        "day": "Friday",
+        "start_time": "2026-05-08T17:45:00",
+        "end_time": "2026-05-08T18:30:00"
+    },
+    {
+        "activity_id": "cardio_walk_01",
+        "activity_name": "Brisk Walk",
+        "activity_type": "cardio",
+        "muscle_group": "cardio",
+        "day": "Thursday",
+        "start_time": "2026-05-07T18:45:00",
+        "end_time": "2026-05-07T19:15:00"
+    }
+]

@@ -298,7 +298,15 @@ def schedule_payment(bill_id: str, payment_date: str, amount: int) -> Dict:
 # T7: Exercise Routing
 # -------------------------
 
-## No resources for task #7
+@mcp.resource("workout-sessions://list")
+def get_expenses_list() -> str:
+    """
+    Get list of workout routines
+
+    Returns:
+        str: Get list of workout routines
+    """
+    return str(load_json_file(DATA_DIR / "task_07.json"))
 # Tool: Reuse create_calendar_entry with category EXERCISE
 
 # -------------------------

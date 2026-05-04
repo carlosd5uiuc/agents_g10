@@ -120,5 +120,68 @@
             }
         ],
         "alert": null
+    },
+    "task_07": {
+        "success": true,
+        "scheduled_cardio": [
+            {
+                "activity_id": "cardio_bike_01",
+                "activity_type": "cardio",
+                "muscle_group": "cardio",
+                "weekday": "Tuesday",
+                "start_time": "2026-05-05T17:45:00",
+                "end_time": "2026-05-05T18:15:00"
+            },
+            {
+                "activity_id": "cardio_walk_01",
+                "activity_type": "cardio",
+                "muscle_group": "cardio",
+                "weekday": "Thursday",
+                "start_time": "2026-05-07T18:45:00",
+                "end_time": "2026-05-07T19:15:00"
+            },
+            {
+                "activity_id": "cardio_swim_01",
+                "activity_type": "cardio",
+                "muscle_group": "cardio",
+                "weekday": "Friday",
+                "start_time": "2026-05-08T17:45:00",
+                "end_time": "2026-05-08T18:30:00"
+            }
+        ],
+        "scheduled_strength": [
+            {
+                "activity_id": "strength_lower_01",
+                "activity_type": "strength",
+                "muscle_group": "lower_body",
+                "weekday": "Tuesday",
+                "start_time": "2026-05-05T17:00:00",
+                "end_time": "2026-05-05T17:45:00"
+            },
+            {
+                "activity_id": "strength_push_01",
+                "activity_type": "strength",
+                "muscle_group": "chest_shoulders_triceps",
+                "weekday": "Thursday",
+                "start_time": "2026-05-07T18:00:00",
+                "end_time": "2026-05-07T18:45:00"
+            },
+            {
+                "activity_id": "strength_upper_01",
+                "activity_type": "strength",
+                "muscle_group": "upper_body",
+                "weekday": "Friday",
+                "start_time": "2026-05-08T17:00:00",
+                "end_time": "2026-05-08T17:45:00"
+            }
+        ],
+        "workout_calendar_confirmation": [
+            "cal_strength_lower_01",
+            "cal_cardio_bike_01",
+            "cal_strength_push_01",
+            "cal_cardio_walk_01",
+            "cal_strength_upper_01",
+            "cal_cardio_swim_01"
+        ]
     }
 }

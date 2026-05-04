@@ -162,18 +162,22 @@
     },
     "task_07": {
         "id": "task_07",
-        "preferences": [],
+        "preferences": [
+            "Non-cardio routines should target distinct muscle groups",
+            "Include a swimming session"
+        ],
         "hard_constraints": [
-            "Routine must fit the user's calendar",
+            "Routine must avoid Monday from 08:00 to 17:00",
+            "Routine must avoid Wednesday from 08:00 to 17:00",
             "Routine must include 3 strength activities",
             "Routine must include 3 cardio activities",
-            "Same-day workout pairing must be respected",
-            "Workout sessions must target distinct muscle groups"
+            "One strength activity should always be paired with a cardio activity",
+            "No more than 1 activity of the same type on the same day"
         ],
         "prompt": "Build a weekly exercise routine that fits the user's calendar and workout constraints.",
         "output_structure": {
             "success": "bool",
-            "scheduled_activities": [
+            "scheduled_cardio": [
                 {
                     "activity_id": "string",
                     "activity_type": "string",
@@ -182,7 +186,18 @@
                     "start_time": "YYYY-MM-DDTHH:MM:SS",
                     "end_time": "YYYY-MM-DDTHH:MM:SS"
                 }
-            ]
+            ],
+            "scheduled_strength": [
+                {
+                    "activity_id": "string",
+                    "activity_type": "string",
+                    "muscle_group": "string",
+                    "weekday": "string",
+                    "start_time": "YYYY-MM-DDTHH:MM:SS",
+                    "end_time": "YYYY-MM-DDTHH:MM:SS"
+                }
+            ],
+            "workout_calendar_confirmation": "list[string]"
         }
     },
     "task_08": {
