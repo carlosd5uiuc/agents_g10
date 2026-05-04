@@ -112,5 +112,13 @@ Example:
 tools/example_tool.json
 ```
 
-```
-```
+### Generate a task prompt
+
+Use `gen_prompt.py` to generate the full LLM prompt for a specific task from `tasks_description.json`.
+
+The script takes the task number as an argument, reads the matching task from `tasks_description.json`, and prints the complete prompt.
+
+Example:
+
+```bash
+python gen_prompt.py 10
