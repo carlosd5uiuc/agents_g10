@@ -9,9 +9,9 @@
   {
     "specialty": "Dermatologist",
     "name": "Dr. Lee",
-    "supports": ["Skin Conditions", "Acne"],
+    "supports": ["Skin Conditions", "Eczema"],
     "copay": 40,
-    "availability": ["Tuesday,11", "Friday,09"]
+    "availability": ["Tuesday,11", "Friday,16"]
   },
   {
     "specialty": "Cardiologist",

@@ -3,6 +3,109 @@ import json
 import argparse
 from datetime import datetime, timedelta
 
+from typing import Any, Dict
+
+
+def grade_task_05(task_data: Dict[str, Any]) -> Dict[str, Any]:
+    CVC = 3
+    PA = 0
+    TSR = 0
+
+    repair = task_data.get("repair_recommendation", {})
+
+    diagnosis = str(task_data.get("diagnosis", "")).lower()
+    likely_cause = str(task_data.get("likely_cause", "")).lower()
+
+    recommended_steps = repair.get("recommended_steps", [])
+    estimated_cost = repair.get("estimated_cost")
+    distance_miles = repair.get("distance_miles")
+
+    diagnosed_drain_pump = (
+        "drain pump" in diagnosis or
+        "drain pump" in likely_cause
+    )
+
+    has_clear_steps = (
+        isinstance(recommended_steps, list) and
+        len(recommended_steps) > 0 and
+        all(isinstance(step, str) and step.strip() for step in recommended_steps)
+    )
+
+    cost_under_200 = (
+        isinstance(estimated_cost, (int, float)) and
+        estimated_cost <= 200
+    )
+
+    within_5_miles = (
+        isinstance(distance_miles, (int, float)) and
+        distance_miles <= 5
+    )
+
+    if diagnosed_drain_pump:
+        CVC -= 1
+
+    if has_clear_steps:
+        CVC -= 1
+
+    if cost_under_200:
+        CVC -= 1
+
+    if within_5_miles:
+        PA += 1
+
+    if (
+        task_data.get("success") is True and
+        diagnosed_drain_pump and
+        has_clear_steps and
+        cost_under_200
+    ):
+        TSR = 1
+
+    return {
+        "id": "task_05",
+        "TSR": TSR,
+        "CVC": CVC / 3,
+        "PA": PA / 1
+    }
+
+def grade_task_04(task_data: dict) -> dict:
+    CVC = 3
+    PA = 0
+    TSR = 0
+
+    appointment = task_data["appointment_confirmation"]
+
+    is_dermatologist = appointment["specialty"].lower() == "dermatologist"
+    supports_eczema = "eczema" in [item.lower() for item in appointment["supports"]]
+    copay_valid = appointment["copay"] <= 50
+
+    is_friday_after_3pm = (
+        appointment["weekday"].lower() == "friday"
+        and int(appointment["time"].split(":")[0]) > 15
+    )
+
+    if task_data["success"] and is_dermatologist and supports_eczema and copay_valid:
+        TSR = 1
+
+    if is_dermatologist:
+        CVC -= 1
+
+    if supports_eczema:
+        CVC -= 1
+
+    if copay_valid:
+        CVC -= 1
+
+    if is_friday_after_3pm:
+        PA += 1
+
+    return {
+        "id": "task_04",
+        "TSR": TSR,
+        "CVC": CVC / 3,
+        "PA": PA / 1
+    }
+
 def grade_task_03(task_data: dict) -> dict:
     CVC = 3
     PA = 0
@@ -108,6 +211,10 @@ def grade_result(data: Dict[str, Any]) -> List[Dict[str, Any]]:
             results.append(grade_task_02(value))
         if key == "task_03":
             results.append(grade_task_03(value))
+        if key == "task_04":
+            results.append(grade_task_04(value))
+        if key == "task_05":
+            results.append(grade_task_05(value))
 
     return results
 

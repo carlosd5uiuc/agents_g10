@@ -37,5 +37,40 @@
             "invite_sent_to_jamie@example.com",
             "invite_sent_to_taylor@example.com"
         ]
+    },
+    "task_04": {
+        "success": true,
+        "appointment_confirmation": {
+            "confirmation_id": "appt-confirm-001",
+            "name": "Dr. Lee",
+            "specialty": "Dermatologist",
+            "supports": [
+                "Skin Conditions",
+                "Eczema"
+            ],
+            "copay": 40,
+            "weekday": "Friday",
+            "time": "16:00"
+        },
+        "calendar": {
+            "confirmation_id": "cal-confirm-001"
+        }
+    },
+    "task_05": {
+        "success": true,
+        "diagnosis": "Washer not draining",
+        "likely_cause": "Drain pump blockage",
+        "repair_recommendation": {
+            "recommended_steps": [
+                "Turn off and unplug the washer.",
+                "Check the drain pump area for blockage.",
+                "Clear debris from the drain pump filter.",
+                "Run a short drain cycle to verify the washer drains properly.",
+                "Use a washer repair service if the issue continues."
+            ],
+            "service_name": "SpinCycle Pros",
+            "distance_miles": 5.0,
+            "estimated_cost": 90
+        }
     }
 }
