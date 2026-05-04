@@ -1,6 +1,6 @@
 from collections import defaultdict
 from typing import Any, Dict, List
-from datetime import datetime, time
+from datetime import datetime, time, timedelta
 
 
 def avoids_day_time_block(
@@ -65,3 +65,65 @@ def no_more_than_one_activity_type_per_day(task_data: Dict[str, Any]) -> bool:
             counts_by_day_and_type[(weekday, activity_type)] += 1
 
     return all(count <= 1 for count in counts_by_day_and_type.values())
+
+
+def all_due_bills_scheduled(task_data: Dict[str, Any]) -> bool:
+    given_date = datetime.fromisoformat("2026-04-22T12:00:00")
+    end_date = given_date + timedelta(days=3)
+
+    payments = task_data.get("payments", [])
+    scheduled_payments = task_data.get("scheduled_payments", [])
+
+    due_bill_ids = set()
+
+    for payment in payments:
+        try:
+            due_date = datetime.fromisoformat(payment["due_date"])
+
+            if given_date <= due_date <= end_date:
+                due_bill_ids.add(payment["id"])
+
+        except Exception:
+            continue
+
+    scheduled_bill_ids = {
+        payment.get("bill_id")
+        for payment in scheduled_payments
+        if payment.get("bill_id")
+    }
+
+    return due_bill_ids == scheduled_bill_ids
+
+def projected_balance_never_below_200(task_data: dict) -> bool:
+    starting_balance = 300
+    minimum_balance = 200
+
+    payments = task_data.get("payments", [])
+    scheduled_payments = task_data.get("scheduled_payments", [])
+
+    payment_amounts = {
+        payment.get("id"): payment.get("amount", 0)
+        for payment in payments
+    }
+
+    total_scheduled_amount = 0
+
+    for scheduled_payment in scheduled_payments:
+        bill_id = scheduled_payment.get("bill_id")
+        amount = payment_amounts.get(bill_id, 0)
+
+        if isinstance(amount, (int, float)):
+            total_scheduled_amount += amount
+
+    projected_balance = starting_balance - total_scheduled_amount
+
+    return projected_balance >= minimum_balance
+
+def overdraft_alert_correct(task_data: dict) -> bool:
+    balance_ok = projected_balance_never_below_200(task_data)
+    overdraft_alert = task_data.get("overdraft_alert")
+
+    if balance_ok:
+        return overdraft_alert is None or isinstance(overdraft_alert, str)
+
+    return isinstance(overdraft_alert, str) and overdraft_alert.strip() != ""

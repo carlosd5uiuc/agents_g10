@@ -4,7 +4,54 @@ import argparse
 from datetime import datetime, timedelta, time
 from typing import Any, Dict, List
 
-from helper import avoids_day_time_block, has_strength_cardio_pair, no_more_than_one_activity_type_per_day
+from helper import avoids_day_time_block, has_strength_cardio_pair, no_more_than_one_activity_type_per_day, all_due_bills_scheduled, projected_balance_never_below_200, overdraft_alert_correct
+
+def grade_task_10(task_data: Dict[str, Any]) -> Dict[str, Any]:
+    CVC = 2
+    PA = 0
+    TSR = 0
+
+    scheduled_condition_met = all_due_bills_scheduled(task_data)
+    balance_condition_met = projected_balance_never_below_200(task_data)
+    alert_condition_met = overdraft_alert_correct(task_data)
+
+    # Scenario 1: normal success
+    all_scheduled_safely = (
+        scheduled_condition_met and
+        balance_condition_met
+    )
+
+    # Scenario 2: cannot schedule all safely, but alert is emitted
+    partial_schedule_with_alert = (
+        not scheduled_condition_met and
+        balance_condition_met and
+        alert_condition_met
+    )
+
+    if task_data["success"] and (
+        scheduled_condition_met and (balance_condition_met or alert_condition_met)
+    ):
+        TSR = 1
+
+    if task_data["success"] and scheduled_condition_met and balance_condition_met:
+        TSR = 1
+
+    if scheduled_condition_met or partial_schedule_with_alert:
+        CVC -= 1
+
+    if balance_condition_met or alert_condition_met:
+        CVC -= 1
+
+    if alert_condition_met:
+        PA += 1
+
+    return {
+        "id": "task_10",
+        "TSR": TSR,
+        "CVC": CVC / 2,
+        "PA": PA / 1
+    }
+
 
 def grade_task_09(task_data: Dict[str, Any]) -> Dict[str, Any]:
     CVC = 4
@@ -408,6 +455,8 @@ def grade_result(data: Dict[str, Any]) -> List[Dict[str, Any]]:
             results.append(grade_task_08(value))
         if key == "task_09":
             results.append(grade_task_09(value))
+        if key == "task_10":
+            results.append(grade_task_10(value))
         
 
     return results

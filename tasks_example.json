@@ -226,5 +226,43 @@
             "deadline": "2026-05-10"
         },
         "summary": "Scheduled a free drop-off return with refund to the original payment method. The return deadline was added to the calendar for 2026-05-10."
+    },
+    "task_10": {
+        "success": true,
+        "payments": [
+            {
+                "id": "phone",
+                "amount": 90,
+                "due_date": "2026-04-24T00:00:00"
+            },
+            {
+                "id": "internet",
+                "amount": 45,
+                "due_date": "2026-04-25T00:00:00"
+            },
+            {
+                "id": "water",
+                "amount": 30,
+                "due_date": "2026-04-23T00:00:00"
+            }
+        ],
+        "scheduled_payments": [
+            {
+                "confirmation_id": "pay_phone_001",
+                "bill_id": "phone",
+                "scheduled_date": "2026-04-24T00:00:00"
+            },
+            {
+                "confirmation_id": "pay_internet_001",
+                "bill_id": "internet",
+                "scheduled_date": "2026-04-25T00:00:00"
+            },
+            {
+                "confirmation_id": "pay_water_001",
+                "bill_id": "water",
+                "scheduled_date": "2026-04-23T00:00:00"
+            }
+        ],
+        "overdraft_alert": "Scheduled all bills due within 3 days, but the projected balance drops below USD 200. Required total is 165, leaving a projected balance of 135."
     }
 }

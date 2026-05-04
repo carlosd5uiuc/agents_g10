@@ -261,29 +261,29 @@
     },
     "task_10": {
         "id": "task_10",
-        "preferences": [],
-        "hard_constraints": [
-            "All 3 bills must be scheduled by their due date",
-            "Projected balance must never fall below USD 200",
-            "Alert if a valid no-overdraft payment schedule is impossible"
+        "preferences": [
+            "User would like to be notified if a valid payment cannot be included because it exceeds the projected budget"
         ],
-        "prompt": "Schedule bill payments without violating the minimum balance threshold.",
+        "hard_constraints": [
+            "All bills due within 3 days before the given date are scheduled",
+            "Projected balance must never fall below USD 200"
+        ],
+        "prompt": "Schedule bill payments without violating the minimum balance threshold Balance: $300; Given date: 2026-04-22T12:00:00",
         "output_structure": {
             "success": "bool",
-            "payment_confirmations": [
+            "payments": [
                 {
-                    "payment_confirmation_id": "string",
-                    "bill_id": "string",
-                    "payment_date": "YYYY-MM-DD",
-                    "amount": "int",
-                    "due_date": "YYYY-MM-DD"
+                    "id": "string",
+                    "due_date": "YYYY-MM-DDTHH:MM:SS",
+                    "amount": "int"
                 }
             ],
-            "final_plan_summary": {
-                "all_bills_scheduled": "bool",
-                "minimum_projected_balance": "int",
-                "alert": "string"
-            }
+            "scheduled_payments": [{
+                "confirmation_id": "string",
+                "bill_id": "string",
+                "scheduled_date": "YYYY-MM-DDTHH:MM:SS"
+            }],
+            "overdraft_alert": "string"
         }
     }
 }
