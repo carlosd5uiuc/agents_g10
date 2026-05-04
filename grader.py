@@ -6,6 +6,57 @@ from typing import Any, Dict, List
 
 from helper import avoids_day_time_block, has_strength_cardio_pair, no_more_than_one_activity_type_per_day
 
+def grade_task_09(task_data: Dict[str, Any]) -> Dict[str, Any]:
+    CVC = 4
+    PA = 0
+    TSR = 0
+
+    return_is_free = task_data['return']['free_return']
+    delivery_method_dropoff = task_data['return']['delivery_method'] == 'drop-off'
+    refund_original_payment = task_data['return']['refund_method'] == 'original_payment'
+    return_calendar_entry_exists = task_data['calendar_entry']['confirmation_id'] is not None and task_data['calendar_entry']['confirmation_id'] != ""
+
+    if task_data["success"] and return_is_free and \
+        delivery_method_dropoff and refund_original_payment and \
+        return_calendar_entry_exists:
+        TSR = 1
+
+    if return_is_free:
+        CVC -= 1
+
+    if delivery_method_dropoff:
+        CVC -= 1
+
+    if refund_original_payment:
+        CVC -= 1
+
+    if return_calendar_entry_exists:
+        CVC -= 1
+
+    # PA
+    return_before_15th = False
+
+    try:
+        deadline = datetime.strptime(
+            task_data["calendar_entry"]["deadline"],
+            "%Y-%m-%d"
+        )
+
+        return_before_15th = deadline.day < 15
+
+    except Exception:
+        return_before_15th = False
+    
+    if return_before_15th:
+        PA += 1
+
+    return {
+        "id": "task_09",
+        "TSR": TSR,
+        "CVC": CVC / 4,
+        "PA": PA / 1
+    }
+
 def grade_task_08(task_data: Dict[str, Any]) -> Dict[str, Any]:
     CVC = 3
     PA = 0
@@ -355,6 +406,8 @@ def grade_result(data: Dict[str, Any]) -> List[Dict[str, Any]]:
             results.append(grade_task_07(value))
         if key == "task_08":
             results.append(grade_task_08(value))
+        if key == "task_09":
+            results.append(grade_task_09(value))
         
 
     return results

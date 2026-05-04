@@ -210,5 +210,21 @@
                 }
             ]
         }
+    },
+    "task_09": {
+        "success": true,
+        "return": {
+            "return_id": "ret_drop_free",
+            "label_id": "label_ret_drop_free_001",
+            "free_return": true,
+            "delivery_method": "drop-off",
+            "refund_method": "original_payment"
+        },
+        "calendar_entry": {
+            "confirmation_id": "cal_ret_drop_free_001",
+            "title": "Return deadline for ret_drop_free",
+            "deadline": "2026-05-10"
+        },
+        "summary": "Scheduled a free drop-off return with refund to the original payment method. The return deadline was added to the calendar for 2026-05-10."
     }
 }

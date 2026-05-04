@@ -1,6 +1,72 @@
 [
-    {"id": "ret_drop_free", "cost": 0, "delivery": "drop-off", "refund_to": "original_payment"},
-            {"id": "ret_pick_free", "cost": 0, "delivery": "pickup", "refund_to": "original_payment"},
-            {"id": "ret_drop_credit", "cost": 0, "delivery": "drop-off", "refund_to": "store_credit"}
-
+    {
+        "id": "ret_drop_free",
+        "cost": 0,
+        "delivery": "drop-off",
+        "refund_to": "original_payment",
+        "deadline": "2026-05-10"
+    },
+    {
+        "id": "ret_pick_free",
+        "cost": 0,
+        "delivery": "pickup",
+        "refund_to": "original_payment",
+        "deadline": "2026-05-10"
+    },
+    {
+        "id": "ret_drop_credit",
+        "cost": 0,
+        "delivery": "drop-off",
+        "refund_to": "store_credit",
+        "deadline": "2026-05-10"
+    },
+    {
+        "id": "ret_drop_paid",
+        "cost": 7,
+        "delivery": "drop-off",
+        "refund_to": "original_payment",
+        "deadline": "2026-05-10"
+    },
+    {
+        "id": "ret_pick_paid",
+        "cost": 10,
+        "delivery": "pickup",
+        "refund_to": "original_payment",
+        "deadline": "2026-05-11"
+    },
+    {
+        "id": "ret_mail_free",
+        "cost": 0,
+        "delivery": "mail-in",
+        "refund_to": "original_payment",
+        "deadline": "2026-05-12"
+    },
+    {
+        "id": "ret_locker_credit",
+        "cost": 0,
+        "delivery": "locker-drop",
+        "refund_to": "store_credit",
+        "deadline": "2026-05-12"
+    },
+    {
+        "id": "ret_drop_exchange",
+        "cost": 0,
+        "delivery": "drop-off",
+        "refund_to": "exchange",
+        "deadline": "2026-05-13"
+    },
+    {
+        "id": "ret_home_pickup_credit",
+        "cost": 5,
+        "delivery": "pickup",
+        "refund_to": "store_credit",
+        "deadline": "2026-05-13"
+    },
+    {
+        "id": "ret_drop_free_late",
+        "cost": 0,
+        "delivery": "drop-off",
+        "refund_to": "original_payment",
+        "deadline": "2026-05-20"
+    }
 ]

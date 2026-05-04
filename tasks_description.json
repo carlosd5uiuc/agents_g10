@@ -232,7 +232,9 @@
     },
     "task_09": {
         "id": "task_09",
-        "preferences": [],
+        "preferences": [
+            "User would like the return to ocurr before the 15th"
+        ],
         "hard_constraints": [
             "Return method must be free",
             "Delivery method must be drop-off",
