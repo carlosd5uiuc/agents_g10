@@ -116,7 +116,7 @@
         "prompt": "Diagnose the washer issue and recommend an affordable repair option if needed. The washer is not draining and it seems to be stopping before the normal cycle",
         "output_structure": {
             "success": "bool",
-            "diagnosis": "string", 
+            "diagnosis": "string",
             "likely_cause": "string",
             "recommended_steps": "list[string]",
             "repair_recommendation": {
@@ -202,24 +202,28 @@
     },
     "task_08": {
         "id": "task_08",
-        "preferences": [],
+        "preferences": [
+            "User would prefer not to cut a spending from health category",
+            "User would prefer not to cut a spending from gym category"
+        ],
         "hard_constraints": [
-            "Spending cuts must use correct categories",
-            "Total reduction must meet the savings goal",
-            "Report must include at least 1 suggestion",
+            "Total reduction must meet or exceed the savings target",
+            "Generated report must include at least 1 suggestion",
             "No cuts may be made from priority categories"
         ],
-        "prompt": "Suggest spending cuts that meet a savings target.",
+        "prompt": "Suggest spending cuts that meet a savings target. Target: $150",
         "output_structure": {
             "success": "bool",
             "generated_report": {
                 "savings_target": "int",
                 "total_reduction": "int",
+                "report_summary": "string",
                 "suggestions": [
                     {
                         "category": "string",
                         "cut_amount": "int",
                         "priority_category": "bool",
+                        "category_type": "string",
                         "reason": "string"
                     }
                 ]

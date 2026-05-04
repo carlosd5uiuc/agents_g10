@@ -6,6 +6,38 @@ from typing import Any, Dict, List
 
 from helper import avoids_day_time_block, has_strength_cardio_pair, no_more_than_one_activity_type_per_day
 
+def grade_task_08(task_data: Dict[str, Any]) -> Dict[str, Any]:
+    CVC = 3
+    PA = 0
+    TSR = 0
+
+    reduction_target_met = int(task_data["generated_report"]["total_reduction"]) >= 150
+    min_suggestions = len(task_data["generated_report"]["suggestions"]) >= 1
+    cuts_only_from_non_priority = all([not s['priority_category'] for s in task_data["generated_report"]["suggestions"]])
+
+    if task_data["success"] and reduction_target_met and \
+    min_suggestions and cuts_only_from_non_priority:
+        TSR = 1
+
+    if reduction_target_met: CVC -= 1
+    if min_suggestions: CVC -= 1
+    if cuts_only_from_non_priority: CVC -= 1
+
+    suggestions = task_data.get("generated_report", {}).get("suggestions", [])
+    cut_categories = {suggestion.get("category") for suggestion in suggestions}
+    if "health" not in cut_categories:
+        PA += 1 
+
+    if "gym" not in cut_categories:
+        PA += 1
+
+    return {
+        "id": "task_08",
+        "TSR": TSR,
+        "CVC": CVC / 4,
+        "PA": PA / 2
+    }
+
 def grade_task_07(task_data: Dict[str, Any]) -> Dict[str, Any]:
     CVC = 6
     PA = 0
@@ -321,6 +353,8 @@ def grade_result(data: Dict[str, Any]) -> List[Dict[str, Any]]:
             results.append(grade_task_06(value))
         if key == "task_07":
             results.append(grade_task_07(value))
+        if key == "task_08":
+            results.append(grade_task_08(value))
         
 
     return results

@@ -183,5 +183,32 @@
             "cal_strength_upper_01",
             "cal_cardio_swim_01"
         ]
+    },
+    "task_08": {
+        "success": true,
+        "generated_report": {
+            "savings_target": 150,
+            "total_reduction": 155,
+            "suggestions": [
+                {
+                    "category": "restaurants",
+                    "cut_amount": 80,
+                    "priority_category": false,
+                    "reason": "Reduce restaurant spending by cooking more meals at home."
+                },
+                {
+                    "category": "entertainment",
+                    "cut_amount": 45,
+                    "priority_category": false,
+                    "reason": "Limit paid entertainment purchases for the month."
+                },
+                {
+                    "category": "streaming",
+                    "cut_amount": 30,
+                    "priority_category": false,
+                    "reason": "Pause or downgrade one streaming subscription temporarily."
+                }
+            ]
+        }
     }
 }

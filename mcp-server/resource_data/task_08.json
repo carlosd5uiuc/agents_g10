@@ -1,7 +1,62 @@
-
 [
-    {"category": "streaming", "amount": 45, "priority": false},
-    {"category": "coffee", "amount": 80, "priority": false},
-    {"category": "medicine", "amount": 70, "priority": true},
-    {"category": "rideshare", "amount": 90, "priority": false}
+  {
+    "category": "streaming",
+    "amount": 45,
+    "priority": false
+  },
+  {
+    "category": "coffee",
+    "amount": 80,
+    "priority": false
+  },
+  {
+    "category": "medicine",
+    "amount": 70,
+    "priority": true
+  },
+  {
+    "category": "rideshare",
+    "amount": 90,
+    "priority": false
+  },
+  {
+    "category": "groceries",
+    "amount": 260,
+    "priority": true
+  },
+  {
+    "category": "gym",
+    "amount": 40,
+    "priority": false
+  },
+  {
+    "category": "restaurants",
+    "amount": 150,
+    "priority": false
+  },
+  {
+    "category": "rent",
+    "amount": 1200,
+    "priority": true
+  },
+  {
+    "category": "utilities",
+    "amount": 140,
+    "priority": true
+  },
+  {
+    "category": "entertainment",
+    "amount": 75,
+    "priority": false
+  },
+  {
+    "category": "health",
+    "amount": 60,
+    "priority": false
+  },
+  {
+    "category": "clothing",
+    "amount": 110,
+    "priority": false
+  }
 ]
