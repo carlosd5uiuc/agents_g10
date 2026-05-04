@@ -5,6 +5,8 @@ from datetime import datetime, date
 from mcp.server.fastmcp import FastMCP
 from pathlib import Path
 
+from typing import Dict
+
 mcp = FastMCP("Personal Task Tools")
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -271,7 +273,26 @@ def get_household_bills() -> str:
     """
     return str(load_json_file(DATA_DIR / "task_06.json"))
 
-# Tool: Reuse create_calendar_entry with category PENDING_BILLS
+@mcp.tool()
+def schedule_payment(bill_id: str, payment_date: str, amount: int) -> Dict:
+    """
+    Schedule a payment for a bill.
+
+    Args:
+        bill_id (str): The ID of the bill being paid.
+        payment_date (str): The date the payment should be made, in YYYY-MM-DD format.
+        amount (int): The payment amount.
+
+    Returns:
+        Dict: Payment confirmation details with confirmation ID, bill ID,
+        payment date, and amount.
+    """
+    return {
+        "payment_confirmation_id": str(uuid.uuid4()),
+        "bill_id": bill_id,
+        "payment_date": payment_date,
+        "amount": amount
+    }
 
 # -------------------------
 # T7: Exercise Routing

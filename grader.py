@@ -5,6 +5,49 @@ from datetime import datetime, timedelta
 
 from typing import Any, Dict
 
+from typing import Any, Dict
+
+
+def grade_task_06(task_data: Dict[str, Any]) -> Dict[str, Any]:
+    CVC = 3
+    PA = 0
+    TSR = 0
+
+    #  "preferences": [
+    #         "User would like to pay less than 100."
+    #     ],
+    #     "hard_constraints": [
+    #         "Identify all pending bills",
+    #         "Create a payment plan",
+    #         "Alert if total pending bill amount exceeds budget 120."
+    #     ],
+    
+    total = sum([int(t['amount']) for t in task_data['pending_bills']])
+    if total <= 100: PA +=1
+
+    bill_are_pending = all([not t['settled'] for t in task_data['pending_bills']])
+    payment_plan_exists = task_data['plan_summary'] is not None and task_data['plan_summary'] != ""
+    alert = task_data.get("alert")
+    alert_correct = (
+        # If over budget, alert must exist and not be empty
+        (total > 120 and isinstance(alert, str) and alert.strip() != "")
+        or
+        # If within budget, alert can be None or any string
+        (total <= 120 and (alert is None or isinstance(alert, str)))
+    )
+    if bill_are_pending and payment_plan_exists and alert_correct: TSR = 1
+
+    if bill_are_pending: CVC -= 1
+    if payment_plan_exists: CVC -= 1
+    if alert_correct: CVC -= 1
+
+    return {
+        "id": "task_06",
+        "TSR": TSR,
+        "CVC": CVC / 4,
+        "PA": PA / 1
+    }
+
 
 def grade_task_05(task_data: Dict[str, Any]) -> Dict[str, Any]:
     CVC = 3
@@ -215,6 +258,9 @@ def grade_result(data: Dict[str, Any]) -> List[Dict[str, Any]]:
             results.append(grade_task_04(value))
         if key == "task_05":
             results.append(grade_task_05(value))
+        if key == "task_06":
+            results.append(grade_task_06(value))
+        
 
     return results
 

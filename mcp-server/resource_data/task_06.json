@@ -1,5 +1,44 @@
 [
-            {"id": "bill_electric", "amount": 120, "due": "2026-05-03T00:00:00", "settled": false},
-            {"id": "bill_water", "amount": 70, "due": "2026-05-05T00:00:00", "settled": true},
-            {"id": "bill_internet", "amount": 85, "due": "2026-05-04T00:00:00", "settled": false}
+    {
+        "id": "bill_electric",
+        "name": "Electric bill",
+        "amount": 45,
+        "due": "2026-05-03T00:00:00",
+        "settled": false
+    },
+    {
+        "id": "bill_water",
+        "name": "Water bill",
+        "amount": 70,
+        "due": "2026-05-05T00:00:00",
+        "settled": true
+    },
+    {
+        "id": "bill_internet",
+        "name": "Internet bill",
+        "amount": 35,
+        "due": "2026-05-04T00:00:00",
+        "settled": false
+    },
+    {
+        "id": "bill_gas",
+        "name": "Gas bill",
+        "amount": 25,
+        "due": "2026-05-06T00:00:00",
+        "settled": false
+    },
+    {
+        "id": "bill_phone",
+        "name": "Phone bill",
+        "amount": 45,
+        "due": "2026-05-07T00:00:00",
+        "settled": true
+    },
+    {
+        "id": "bill_renters_insurance",
+        "name": "Renters insurance",
+        "amount": 15,
+        "due": "2026-05-08T00:00:00",
+        "settled": false
+    }
 ]

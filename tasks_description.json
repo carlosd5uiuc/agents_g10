@@ -75,5 +75,194 @@
             },
             "invite_log": "list[string]"
         }
+    },
+    "task_04": {
+        "id": "task_04",
+        "preferences": [
+            "User would prefer an appointment on Friday after 3pm"
+        ],
+        "hard_constraints": [
+            "Provider must be a dermatologist",
+            "Provider must support eczema treatment",
+            "Copay must be less than or equal to USD 50"
+        ],
+        "prompt": "Schedule a specialist visit under insurance and timing constraints.",
+        "output_structure": {
+            "success": "bool",
+            "appointment_confirmation": {
+                "confirmation_id": "string",
+                "": "string",
+                "specialty": "string",
+                "supports": "list[string]",
+                "copay": "int",
+                "weekday": "string",
+                "time": "string"
+            },
+            "calendar": {
+                "confirmation_id": "string"
+            }
+        }
+    },
+    "task_05": {
+        "id": "task_05",
+        "preferences": [
+            "Repair service must be within 5 miles"
+        ],
+        "hard_constraints": [
+            "Issue must be diagnosed as a drain pump problem",
+            "Recommendation must include clear repair steps",
+            "Repair cost must be less than or equal to USD 200"
+        ],
+        "prompt": "Diagnose the washer issue and recommend an affordable repair option if needed. The washer is not draining and it seems to be stopping before the normal cycle",
+        "output_structure": {
+            "success": "bool",
+            "diagnosis": "string", 
+            "likely_cause": "string",
+            "recommended_steps": "list[string]",
+            "repair_recommendation": {
+                "service_name": "string",
+                "distance_miles": "float",
+                "estimated_cost": "int"
+            }
+        }
+    },
+    "task_06": {
+        "id": "task_06",
+        "preferences": [
+            "User would like to pay less than 100."
+        ],
+        "hard_constraints": [
+            "Identify all pending bills",
+            "Create a payment plan",
+            "Alert if total pending bill amount exceeds budget 120."
+        ],
+        "prompt": "Identify unpaid bills and generate a safe payment plan.",
+        "output_structure": {
+            "success": "bool",
+            "plan_summary": "string",
+            "pending_bills": [
+                {
+                    "bill_id": "string",
+                    "name": "string",
+                    "amount": "int",
+                    "due_date": "YYYY-MM-DD",
+                    "settled": "bool"
+                }
+            ],
+            "scheduled_payments": [
+                {
+                    "payment_confirmation_id": "string",
+                    "bill_id": "string",
+                    "payment_date": "YYYY-MM-DD",
+                    "amount": "int"
+                }
+            ],
+            "alert": "string"
+        }
+    },
+    "task_07": {
+        "id": "task_07",
+        "preferences": [],
+        "hard_constraints": [
+            "Routine must fit the user's calendar",
+            "Routine must include 3 strength activities",
+            "Routine must include 3 cardio activities",
+            "Same-day workout pairing must be respected",
+            "Workout sessions must target distinct muscle groups"
+        ],
+        "prompt": "Build a weekly exercise routine that fits the user's calendar and workout constraints.",
+        "output_structure": {
+            "success": "bool",
+            "scheduled_activities": [
+                {
+                    "activity_id": "string",
+                    "activity_type": "string",
+                    "muscle_group": "string",
+                    "weekday": "string",
+                    "start_time": "YYYY-MM-DDTHH:MM:SS",
+                    "end_time": "YYYY-MM-DDTHH:MM:SS"
+                }
+            ]
+        }
+    },
+    "task_08": {
+        "id": "task_08",
+        "preferences": [],
+        "hard_constraints": [
+            "Spending cuts must use correct categories",
+            "Total reduction must meet the savings goal",
+            "Report must include at least 1 suggestion",
+            "No cuts may be made from priority categories"
+        ],
+        "prompt": "Suggest spending cuts that meet a savings target.",
+        "output_structure": {
+            "success": "bool",
+            "generated_report": {
+                "savings_target": "int",
+                "total_reduction": "int",
+                "suggestions": [
+                    {
+                        "category": "string",
+                        "cut_amount": "int",
+                        "priority_category": "bool",
+                        "reason": "string"
+                    }
+                ]
+            }
+        }
+    },
+    "task_09": {
+        "id": "task_09",
+        "preferences": [],
+        "hard_constraints": [
+            "Return method must be free",
+            "Delivery method must be drop-off",
+            "Refund must be sent to the original payment method",
+            "Return deadline must be added to the calendar"
+        ],
+        "prompt": "Complete a return with the correct refund and delivery method.",
+        "output_structure": {
+            "success": "bool",
+            "return": {
+                "return_id": "string",
+                "label_id": "string",
+                "free_return": "bool",
+                "delivery_method": "string",
+                "refund_method": "string"
+            },
+            "calendar_entry": {
+                "confirmation_id": "string",
+                "title": "string",
+                "deadline": "YYYY-MM-DD"
+            },
+            "summary": "string"
+        }
+    },
+    "task_10": {
+        "id": "task_10",
+        "preferences": [],
+        "hard_constraints": [
+            "All 3 bills must be scheduled by their due date",
+            "Projected balance must never fall below USD 200",
+            "Alert if a valid no-overdraft payment schedule is impossible"
+        ],
+        "prompt": "Schedule bill payments without violating the minimum balance threshold.",
+        "output_structure": {
+            "success": "bool",
+            "payment_confirmations": [
+                {
+                    "payment_confirmation_id": "string",
+                    "bill_id": "string",
+                    "payment_date": "YYYY-MM-DD",
+                    "amount": "int",
+                    "due_date": "YYYY-MM-DD"
+                }
+            ],
+            "final_plan_summary": {
+                "all_bills_scheduled": "bool",
+                "minimum_projected_balance": "int",
+                "alert": "string"
+            }
+        }
     }
 }

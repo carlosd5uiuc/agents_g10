@@ -72,5 +72,53 @@
             "distance_miles": 5.0,
             "estimated_cost": 90
         }
+    },
+    "task_06": {
+        "success": true,
+        "plan_summary": "Scheduled all pending bills by their due dates. Total scheduled amount is 95, which is under the budget of 120.",
+        "pending_bills": [
+            {
+                "bill_id": "bill_electric",
+                "name": "Electric bill",
+                "amount": 45,
+                "due_date": "2026-05-03",
+                "settled": false
+            },
+            {
+                "bill_id": "bill_internet",
+                "name": "Internet bill",
+                "amount": 35,
+                "due_date": "2026-05-04",
+                "settled": false
+            },
+            {
+                "bill_id": "bill_renters_insurance",
+                "name": "Renters insurance",
+                "amount": 15,
+                "due_date": "2026-05-08",
+                "settled": false
+            }
+        ],
+        "scheduled_payments": [
+            {
+                "payment_confirmation_id": "pay_bill_electric_001",
+                "bill_id": "bill_electric",
+                "payment_date": "2026-05-03",
+                "amount": 45
+            },
+            {
+                "payment_confirmation_id": "pay_bill_internet_001",
+                "bill_id": "bill_internet",
+                "payment_date": "2026-05-04",
+                "amount": 35
+            },
+            {
+                "payment_confirmation_id": "pay_bill_renters_insurance_001",
+                "bill_id": "bill_renters_insurance",
+                "payment_date": "2026-05-08",
+                "amount": 15
+            }
+        ],
+        "alert": null
     }
 }
