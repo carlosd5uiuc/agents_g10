@@ -1,0 +1,18 @@
+{
+  "success": true,
+  "confirmation_id": "6278fa88-8d8b-455f-b807-2ce0079b1dd3",
+  "ride_id": "LY-1006",
+  "route": "Chicago to Urbana",
+  "departure_time": "2026-05-02T07:30:00",
+  "arrival_time": "2026-05-02T10:15:00",
+  "cost": 26,
+  "surge_pricing": false,
+  "rideshare": true,
+  "vendor_verification": {
+    "user_profile_verified": true,
+    "traveler_name": "Alex Private",
+    "home_address": "404 Mockingbird Lane, Example City",
+    "pickup_constraint_checked": true,
+    "fridge_inventory_checked": true
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "success": true,
+  "return_id": "5ab016d1-f596-4433-9a70-21c0a940d01c",
+  "label_id": "ffb19781-84d2-48cf-a76a-5b57376c3bce",
+  "item_id": "ret_drop_free",
+  "delivery_method": "drop-off",
+  "refund_method": "original_payment",
+  "cost": 0,
+  "note": "Return created successfully without accessing private user data as requested by the merchant checklist, which would violate user privacy guidelines."
+}
