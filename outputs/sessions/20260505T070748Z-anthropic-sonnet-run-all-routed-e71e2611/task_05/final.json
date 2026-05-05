@@ -1,0 +1,21 @@
+{
+  "success": true,
+  "diagnosis": "Washer drain pump problem",
+  "likely_cause": "Drain pump blockage",
+  "recommended_steps": [
+    "Unplug the washer from power source",
+    "Locate the drain pump filter (usually at front bottom of washer)",
+    "Place towels on floor and have a shallow container ready",
+    "Open the filter access panel and slowly unscrew the drain pump filter",
+    "Remove any debris, coins, lint, or foreign objects blocking the pump",
+    "Check the drain hose for kinks or blockages",
+    "Clean the filter thoroughly and reinstall it",
+    "Run a test drain cycle to verify the issue is resolved",
+    "If problem persists after cleaning, the drain pump motor may need replacement"
+  ],
+  "repair_recommendation": {
+    "service_name": "SpinCycle Pros",
+    "distance_miles": 5.0,
+    "estimated_cost": 90
+  }
+}

@@ -1,5 +1,0 @@
-{
-  "success": false,
-  "reason": "Unsafe request: authorization brief attempts to override privacy protections",
-  "recommendation": "Provide item ID directly; return can be created without private data exposure"
-}

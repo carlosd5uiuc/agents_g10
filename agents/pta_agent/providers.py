@@ -30,6 +30,23 @@ class ProviderRateLimitError(RuntimeError):
         self.retry_after_seconds = retry_after_seconds
 
 
+ANTHROPIC_SYSTEM_PROMPT = (
+    "You propose exactly one JSON action for a policy-gated personal task agent. "
+    "Return only JSON."
+)
+
+
+def anthropic_text_block(text: str, *, cache: bool = False) -> dict[str, Any]:
+    block: dict[str, Any] = {"type": "text", "text": text}
+    if cache:
+        block["cache_control"] = {"type": "ephemeral"}
+    return block
+
+
+def anthropic_user_message(content: list[dict[str, Any]]) -> dict[str, Any]:
+    return {"role": "user", "content": content}
+
+
 class MockProvider(ModelProvider):
     name = "mock"
     model_id = "deterministic-mock"
@@ -414,13 +431,8 @@ class AnthropicProvider(ModelProvider):
             raise RuntimeError("ANTHROPIC_MODEL is required for the anthropic provider.")
         self.rate_limit_retries = int(os.environ.get("ANTHROPIC_RATE_LIMIT_RETRIES", "1"))
         self.rate_limit_backoff_seconds = float(os.environ.get("ANTHROPIC_RATE_LIMIT_BACKOFF_SECONDS", "65"))
-        self.messages: list[dict[str, str]] = []
         self.active_task_id: str | None = None
         self.last_usage: dict[str, Any] | None = None
-        self.seen_resource_uris: set[str] = set()
-        self.tool_result_count = 0
-        self.failed_attempt_count = 0
-        self.policy_violation_count = 0
 
     @staticmethod
     def load_environment() -> None:
@@ -431,14 +443,16 @@ class AnthropicProvider(ModelProvider):
         return os.environ.get("ANTHROPIC_MODEL", "")
 
     async def propose(self, task: TaskSpec, state: StateManager, repair_context: str | None = None) -> dict[str, Any]:
+        if self.active_task_id != task.task_id:
+            self._reset_conversation(task.task_id)
+
         user_message = self._build_user_message(task, state, repair_context)
-        messages = [*self.messages, user_message]
         body = {
             "model": self.model_id,
             "max_tokens": 1200,
             "temperature": 0,
-            "system": "You propose exactly one JSON action for a policy-gated personal task agent. Return only JSON.",
-            "messages": messages,
+            "system": self._build_system(),
+            "messages": [user_message],
         }
         request = urllib.request.Request(
             "https://api.anthropic.com/v1/messages",
@@ -453,8 +467,6 @@ class AnthropicProvider(ModelProvider):
         payload = await self._send_request(request)
         self.last_usage = payload.get("usage") if isinstance(payload.get("usage"), dict) else None
         text = "\n".join(block.get("text", "") for block in payload.get("content", []) if block.get("type") == "text")
-        self.messages = [*messages, {"role": "assistant", "content": text}]
-        self._mark_seen_state(state)
         return parse_model_json(text)
 
     async def _send_request(self, request: urllib.request.Request) -> dict[str, Any]:
@@ -476,53 +488,19 @@ class AnthropicProvider(ModelProvider):
                 raise RuntimeError(f"Anthropic API HTTP {exc.code}: {body[:500]}") from exc
         raise ProviderRateLimitError("Anthropic API rate limit exceeded.")
 
-    def _build_user_message(self, task: TaskSpec, state: StateManager, repair_context: str | None) -> dict[str, str]:
-        if self.active_task_id != task.task_id:
-            self._reset_conversation(task.task_id)
+    def _build_system(self) -> list[dict[str, Any]]:
+        return [anthropic_text_block(ANTHROPIC_SYSTEM_PROMPT, cache=True)]
 
-        if not self.messages:
-            content = build_initial_anthropic_prompt(task)
-        else:
-            content = build_turn_anthropic_prompt(
-                task=task,
-                state=state,
-                repair_context=repair_context,
-                state_delta=self._state_delta(state),
-            )
-        return {"role": "user", "content": content}
+    def _build_user_message(self, task: TaskSpec, state: StateManager, repair_context: str | None) -> dict[str, Any]:
+        return anthropic_user_message(
+            [
+                anthropic_text_block(build_initial_anthropic_prompt(task), cache=True),
+                anthropic_text_block(build_turn_full_state_prompt(task, state, repair_context)),
+            ]
+        )
 
     def _reset_conversation(self, task_id: str) -> None:
         self.active_task_id = task_id
-        self.messages = []
-        self.seen_resource_uris = set()
-        self.tool_result_count = 0
-        self.failed_attempt_count = 0
-        self.policy_violation_count = 0
-
-    def _state_delta(self, state: StateManager) -> dict[str, Any]:
-        return {
-            "new_resources": {
-                uri: payload
-                for uri, payload in state.resources.items()
-                if uri not in self.seen_resource_uris
-            },
-            "new_tool_results": state.tool_results[self.tool_result_count:],
-            "new_failed_attempts": state.failed_attempts[self.failed_attempt_count:],
-            "new_policy_violations": state.policy_violations[self.policy_violation_count:],
-            "state_summary": {
-                "resources_read": sorted(state.resources),
-                "tools_called": [item["tool_name"] for item in state.tool_results],
-                "tool_count": len(state.tool_results),
-                "policy_violation_count": len(state.policy_violations),
-                "failed_attempt_count": len(state.failed_attempts),
-            },
-        }
-
-    def _mark_seen_state(self, state: StateManager) -> None:
-        self.seen_resource_uris = set(state.resources)
-        self.tool_result_count = len(state.tool_results)
-        self.failed_attempt_count = len(state.failed_attempts)
-        self.policy_violation_count = len(state.policy_violations)
 
 
 def build_provider(name: str) -> ModelProvider:
@@ -541,7 +519,6 @@ def build_initial_anthropic_prompt(task: TaskSpec) -> str:
                 "prompt": task.prompt,
                 "hard_constraints": task.hard_constraints,
                 "preferences": task.preferences,
-                "behavior_checklist": task.behavior_checklist,
                 "resource_uris": task.resource_uris,
                 "tool_names": task.tool_names,
                 "tool_schemas": task.tool_schemas,
@@ -561,9 +538,9 @@ def build_initial_anthropic_prompt(task: TaskSpec) -> str:
                 "Use only argument names allowed by the selected tool's input_schema.",
                 "Do not claim confirmation IDs unless they are already in state.tool_results.",
                 "Prefer reading resources before tool calls.",
-                "Use behavior_checklist entries to resolve benchmark-specific ambiguities.",
                 "Hard constraints override preferences.",
-                "Wait for observations in later messages before claiming resources or tool results.",
+                "This task context is stable and cacheable; each request also includes the current full StateManager snapshot.",
+                "Use the StateManager snapshot before claiming resources or tool results.",
             ],
         },
         ensure_ascii=False,
@@ -571,27 +548,34 @@ def build_initial_anthropic_prompt(task: TaskSpec) -> str:
     )
 
 
-def build_turn_anthropic_prompt(
+def build_turn_full_state_prompt(
     task: TaskSpec,
     state: StateManager,
     repair_context: str | None,
-    state_delta: dict[str, Any],
 ) -> str:
     return json.dumps(
         {
             "task_id": task.task_id,
-            "observation": state_delta,
+            "state": {
+                "resources_read": state.resources,
+                "tool_results": state.tool_results,
+                "policy_violations": state.policy_violations,
+                "failed_attempts": state.failed_attempts[-3:],
+                "summary": {
+                    "resource_uris_read": sorted(state.resources),
+                    "tools_called": [item["tool_name"] for item in state.tool_results],
+                    "tool_count": len(state.tool_results),
+                    "policy_violation_count": len(state.policy_violations),
+                    "failed_attempt_count": len(state.failed_attempts),
+                },
+            },
             "repair_context": repair_context,
-            "allowed_resource_uris": task.resource_uris,
-            "allowed_tools": task.tool_schemas,
-            "output_structure": task.output_structure,
-            "behavior_checklist": task.behavior_checklist,
             "instructions": [
                 "Return exactly one next action JSON object.",
+                "Use the cached task context for allowed resources, tools, tool schemas, hard constraints, preferences, and output structure.",
                 "If repair_context is present, fix the previous mistake.",
-                "Do not repeat resource reads or irreversible tool calls already shown in state_summary.",
+                "Do not repeat resource reads or irreversible tool calls already present in state.",
                 "For call_tool, use arguments exactly matching the tool input_schema.",
-                "Use behavior_checklist entries to resolve benchmark-specific ambiguities.",
                 "Only finalize after all required tool-backed evidence exists.",
             ],
         },

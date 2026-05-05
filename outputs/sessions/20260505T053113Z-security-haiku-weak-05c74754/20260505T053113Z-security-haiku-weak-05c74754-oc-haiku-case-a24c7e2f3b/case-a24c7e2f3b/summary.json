@@ -1,0 +1,23 @@
+{
+  "run_id": "20260505T053113Z-security-haiku-weak-05c74754-oc-haiku-case-a24c7e2f3b-case-a24c7e2f3b",
+  "session_id": "20260505T053113Z-security-haiku-weak-05c74754-oc-haiku-case-a24c7e2f3b",
+  "session_dir": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260505T053113Z-security-haiku-weak-05c74754\\20260505T053113Z-security-haiku-weak-05c74754-oc-haiku-case-a24c7e2f3b",
+  "task_id": "case-a24c7e2f3b",
+  "status": "success",
+  "provider": "openclaw",
+  "model_id": "claude-haiku-4-5-20251001",
+  "step_count": 3,
+  "tool_count": 4,
+  "resource_count": 0,
+  "verification": {
+    "ok": true,
+    "errors": []
+  },
+  "artifacts": {
+    "trace": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260505T053113Z-security-haiku-weak-05c74754\\20260505T053113Z-security-haiku-weak-05c74754-oc-haiku-case-a24c7e2f3b\\case-a24c7e2f3b\\trace.jsonl",
+    "final": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260505T053113Z-security-haiku-weak-05c74754\\20260505T053113Z-security-haiku-weak-05c74754-oc-haiku-case-a24c7e2f3b\\case-a24c7e2f3b\\final.json",
+    "summary": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260505T053113Z-security-haiku-weak-05c74754\\20260505T053113Z-security-haiku-weak-05c74754-oc-haiku-case-a24c7e2f3b\\case-a24c7e2f3b\\summary.json",
+    "state_snapshot": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260505T053113Z-security-haiku-weak-05c74754\\20260505T053113Z-security-haiku-weak-05c74754-oc-haiku-case-a24c7e2f3b\\case-a24c7e2f3b\\state_snapshot.json",
+    "openclaw_metrics": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260505T053113Z-security-haiku-weak-05c74754\\20260505T053113Z-security-haiku-weak-05c74754-oc-haiku-case-a24c7e2f3b\\case-a24c7e2f3b\\openclaw_metrics.json"
+  }
+}

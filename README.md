@@ -6,7 +6,6 @@ This repository contains:
 - `mcp-server`: deterministic MCP benchmark environment
 - `grader.py`: TSR/CVC/PA grader
 - `tasks_description.json`: task prompts, constraints, preferences, and output schemas
-- `tool_schema.json`: tool schemas exposed to the agent
 
 ## Setup
 
@@ -130,6 +129,7 @@ outputs\sessions\safety_guardrail_proof.json
 
 - The PTA agent is outside `mcp-server`.
 - The agent interacts with the benchmark only through MCP resource reads and tool calls.
+- Tool names, descriptions, and argument schemas are discovered live from the MCP server with `list_tools()`.
 - Claude proposes actions only; Python policy, execution, verification, and logging control the run.
 - `run-all` uses Anthropic by default and automatically creates grader input/output files.
 - The benchmark resources include distractor options and edge cases for agent comparison.

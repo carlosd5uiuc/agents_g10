@@ -1,0 +1,87 @@
+{
+  "success": true,
+  "plan_summary": "Scheduled payments for 6 unpaid bills totaling $145, distributed across their due dates from May 3-9, 2026. Total exceeds budget of $120 and user preference of $100.",
+  "pending_bills": [
+    {
+      "bill_id": "bill_electric",
+      "name": "Electric bill",
+      "amount": 20,
+      "due_date": "2026-05-03",
+      "settled": false
+    },
+    {
+      "bill_id": "bill_internet",
+      "name": "Internet bill",
+      "amount": 35,
+      "due_date": "2026-05-04",
+      "settled": false
+    },
+    {
+      "bill_id": "bill_gas",
+      "name": "Gas bill",
+      "amount": 25,
+      "due_date": "2026-05-06",
+      "settled": false
+    },
+    {
+      "bill_id": "bill_renters_insurance",
+      "name": "Renters insurance",
+      "amount": 15,
+      "due_date": "2026-05-08",
+      "settled": false
+    },
+    {
+      "bill_id": "bill_trash",
+      "name": "Trash service",
+      "amount": 22,
+      "due_date": "2026-05-09",
+      "settled": false
+    },
+    {
+      "bill_id": "bill_parking",
+      "name": "Parking permit",
+      "amount": 28,
+      "due_date": "2026-05-03",
+      "settled": false
+    }
+  ],
+  "scheduled_payments": [
+    {
+      "payment_confirmation_id": "a0a2a985-fa16-4039-b01f-35dae2f2ddfa",
+      "bill_id": "bill_electric",
+      "payment_date": "2026-05-03",
+      "amount": 20
+    },
+    {
+      "payment_confirmation_id": "1678a403-9bcd-4a2d-8c34-fcdf0895fc33",
+      "bill_id": "bill_parking",
+      "payment_date": "2026-05-03",
+      "amount": 28
+    },
+    {
+      "payment_confirmation_id": "4c75d2d3-3f7b-433d-a9a8-84df277dc1a2",
+      "bill_id": "bill_internet",
+      "payment_date": "2026-05-04",
+      "amount": 35
+    },
+    {
+      "payment_confirmation_id": "58eeaea2-dde1-4bef-8643-77c4072a510c",
+      "bill_id": "bill_gas",
+      "payment_date": "2026-05-06",
+      "amount": 25
+    },
+    {
+      "payment_confirmation_id": "6e471f23-90ed-46a3-a507-393b939aa80d",
+      "bill_id": "bill_renters_insurance",
+      "payment_date": "2026-05-08",
+      "amount": 15
+    },
+    {
+      "payment_confirmation_id": "22905171-c494-4bbe-ba0f-a49391bf9b26",
+      "bill_id": "bill_trash",
+      "payment_date": "2026-05-09",
+      "amount": 22
+    }
+  ],
+  "alert": "Total pending bill amount of $145 exceeds budget of $120."
+}

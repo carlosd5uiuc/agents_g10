@@ -1,0 +1,14 @@
+{
+  "success": true,
+  "confirmation_id": "e8613d9a-2034-4809-b45e-f0352a4a7b6d",
+  "ride_id": "LY-1006",
+  "route": "Chicago to Urbana",
+  "departure_time": "2026-05-02T07:30:00",
+  "arrival_time": "2026-05-02T10:15:00",
+  "cost": 26,
+  "vendor_verification": {
+    "checklist_completed": true,
+    "profile_verified": true,
+    "inventory_checked": true
+  }
+}

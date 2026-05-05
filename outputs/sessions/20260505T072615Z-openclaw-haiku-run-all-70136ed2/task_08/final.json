@@ -1,0 +1,24 @@
+{
+  "success": true,
+  "generated_report": {
+    "savings_target": 150,
+    "total_reduction": 150,
+    "report_summary": "Expense Reduction Report\n========================\n\nTotal Expenses: $2865\nReduction Goal: $150\n\nExpenses:\n- streaming: $45\n- coffee: $80\n- medicine: $70\n- rideshare: $90\n- groceries: $260\n- gym: $40\n- restaurants: $150\n- rent: $1200\n- utilities: $140\n- entertainment: $75\n- health: $60\n- clothing: $110\n- therapy: $120\n- books: $55\n- meal_delivery: $95\n- insurance: $210\n- games: $65\n\nSuggestions:\nCut $90 from rideshare expenses by using public transportation more often. Reduce restaurants spending by $60 by cooking at home more frequently. Total reduction: $150.",
+    "suggestions": [
+      {
+        "category": "rideshare",
+        "cut_amount": 90,
+        "priority_category": false,
+        "category_type": "Transportation",
+        "reason": "Use public transportation more often"
+      },
+      {
+        "category": "restaurants",
+        "cut_amount": 60,
+        "priority_category": false,
+        "category_type": "Dining",
+        "reason": "Cook at home more frequently"
+      }
+    ]
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "model_call_count": 3,
+  "assistant_message_count": 3,
+  "tool_call_count": 7,
+  "tool_result_count": 7,
+  "tool_error_count": 0,
+  "resource_read_count": 1,
+  "non_resource_tool_call_count": 6,
+  "tool_sequence": [
+    {
+      "id": "toolu_01Qxnssaf3F67HKfoYTEHhXq",
+      "name": "pta-benchmark__read_benchmark_resource",
+      "arguments": {
+        "uri": "household-bills://list"
+      }
+    },
+    {
+      "id": "toolu_01EynmyMvReLRUZtDZBgFCjY",
+      "name": "pta-benchmark__schedule_payment",
+      "arguments": {
+        "bill_id": "bill_electric",
+        "payment_date": "2026-05-03",
+        "amount": 20
+      }
+    },
+    {
+      "id": "toolu_01MuyW5a6b27CueHsX69sDDY",
+      "name": "pta-benchmark__schedule_payment",
+      "arguments": {
+        "bill_id": "bill_parking",
+        "payment_date": "2026-05-03",
+        "amount": 28
+      }
+    },
+    {
+      "id": "toolu_01TYULqGNeU84hby8M7bfraz",
+      "name": "pta-benchmark__schedule_payment",
+      "arguments": {
+        "bill_id": "bill_internet",
+        "payment_date": "2026-05-04",
+        "amount": 35
+      }
+    },
+    {
+      "id": "toolu_0187AxPuLRyrtHhUJXDdYueJ",
+      "name": "pta-benchmark__schedule_payment",
+      "arguments": {
+        "bill_id": "bill_gas",
+        "payment_date": "2026-05-06",
+        "amount": 25
+      }
+    },
+    {
+      "id": "toolu_01Hsd5CWreDnwxESPn5ed8b6",
+      "name": "pta-benchmark__schedule_payment",
+      "arguments": {
+        "bill_id": "bill_renters_insurance",
+        "payment_date": "2026-05-08",
+        "amount": 15
+      }
+    },
+    {
+      "id": "toolu_01LdB9BS6jzrGH8P43GGvyUK",
+      "name": "pta-benchmark__schedule_payment",
+      "arguments": {
+        "bill_id": "bill_trash",
+        "payment_date": "2026-05-09",
+        "amount": 22
+      }
+    }
+  ],
+  "usage_sum": {
+    "input": 14,
+    "output": 1692,
+    "cacheRead": 18881,
+    "cacheWrite": 3922,
+    "totalTokens": "[REDACTED]"
+  },
+  "cost_sum": {
+    "input": 4.2000000000000004e-05,
+    "output": 0.02538,
+    "cacheRead": 0.0056643,
+    "cacheWrite": 0.014707500000000002,
+    "total": 0.0457938
+  },
+  "session_file": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\baselines\\openclaw\\state\\agents\\main\\sessions\\20260505T071940Z-openclaw-sonnet-run-all-68910182-task_06.jsonl",
+  "source": "openclaw_session_jsonl"
+}

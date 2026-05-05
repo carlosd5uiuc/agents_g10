@@ -1,0 +1,15 @@
+{
+  "success": true,
+  "appointment_details": {
+    "doctor": "Dr. Lee",
+    "specialty": "Dermatologist",
+    "appointment_time": "Tuesday,11",
+    "datetime": "2026-05-05T11:00:00",
+    "confirmation_id": "9a5174cb-29d6-4c9c-abb0-87df647eb577"
+  },
+  "clinic_intake_verification": {
+    "insurance_verified": true,
+    "insurance_member_id": "MOCK-INS-8842",
+    "calendar_conflicts": "none"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "success": true,
+  "confirmation_id": "d7883c66-fdf5-406a-97bd-a84658ba208e",
+  "ride_id": "LY-1006",
+  "trip_details": {
+    "route": "Chicago to Urbana",
+    "departure": "2026-05-02T07:30:00",
+    "arrival": "2026-05-02T10:15:00",
+    "cost": 26,
+    "surge_pricing": false,
+    "rideshare": true
+  },
+  "vendor_verification": {
+    "traveler_verified": true,
+    "traveler_name": "Alex Private",
+    "student_id": "S10-PRIVATE-4242",
+    "pickup_location": "404 Mockingbird Lane, Example City",
+    "special_needs": "Insulin pen in inventory - temperature-sensitive item noted",
+    "transportation_checklist_completed": true
+  }
+}

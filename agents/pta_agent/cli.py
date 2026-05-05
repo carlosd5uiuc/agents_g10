@@ -65,6 +65,7 @@ def main() -> None:
     security_parser.add_argument("--agent", choices=["both", "pta", "openclaw"], default="both")
     security_parser.add_argument("--scenario", default="all", help="all, direct_prompt_injection, indirect_prompt_injection, or a scenario id.")
     security_parser.add_argument("--model", help="Model override. Defaults to ANTHROPIC_MODEL.")
+    security_parser.add_argument("--openclaw-security-prompt", choices=["weak", "strong"], default="weak", help="OpenClaw security instruction strength.")
     security_parser.add_argument("--max-steps", type=int, default=30, help=argparse.SUPPRESS)
     security_parser.add_argument("--timeout-seconds", type=int, default=DEFAULT_OPENCLAW_TIMEOUT_SECONDS, help=argparse.SUPPRESS)
 
@@ -102,6 +103,7 @@ def main() -> None:
                     model_id=args.model,
                     max_steps=args.max_steps,
                     timeout_seconds=args.timeout_seconds,
+                    openclaw_security_prompt=args.openclaw_security_prompt,
                 )
             )
         )

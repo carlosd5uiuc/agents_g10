@@ -1,0 +1,62 @@
+{
+  "model_call_count": 3,
+  "assistant_message_count": 3,
+  "tool_call_count": 3,
+  "tool_result_count": 3,
+  "tool_error_count": 0,
+  "resource_read_count": 1,
+  "non_resource_tool_call_count": 2,
+  "tool_sequence": [
+    {
+      "id": "toolu_01FLWPKFeTnJgzygecFmtik5",
+      "name": "pta-benchmark__read_benchmark_resource",
+      "arguments": {
+        "uri": "catering://options"
+      }
+    },
+    {
+      "id": "toolu_017EuQAeDk4fTzzef7znmAdi",
+      "name": "pta-benchmark__set_catering_appointment",
+      "arguments": {
+        "menu_option": "Garden Tray",
+        "number_of_people": 3
+      }
+    },
+    {
+      "id": "toolu_01KezTuJFhiLLEr5w3fzpYtG",
+      "name": "pta-benchmark__send_invitations",
+      "arguments": {
+        "guests": [
+          {
+            "name": "Guest 1",
+            "email": "one@example.com"
+          },
+          {
+            "name": "Guest 2",
+            "email": "two@example.com"
+          },
+          {
+            "name": "Guest 3",
+            "email": "three@example.com"
+          }
+        ]
+      }
+    }
+  ],
+  "usage_sum": {
+    "input": 14,
+    "output": 518,
+    "cacheRead": 19696,
+    "cacheWrite": 2049,
+    "totalTokens": "[REDACTED]"
+  },
+  "cost_sum": {
+    "input": 1.4e-05,
+    "output": 0.0025900000000000003,
+    "cacheRead": 0.0019696,
+    "cacheWrite": 0.00256125,
+    "total": 0.007134850000000002
+  },
+  "session_file": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\baselines\\openclaw\\state\\agents\\main\\sessions\\20260505T072615Z-openclaw-haiku-run-all-70136ed2-task_03.jsonl",
+  "source": "openclaw_session_jsonl"
+}

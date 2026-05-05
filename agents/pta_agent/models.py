@@ -147,7 +147,6 @@ class TaskSpec:
     tool_names: list[str]
     tool_schemas: list[dict[str, Any]]
     irreversible_tools: set[str]
-    behavior_checklist: list[str] = field(default_factory=list)
 
 
 @dataclass(frozen=True)

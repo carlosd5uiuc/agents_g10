@@ -1,0 +1,41 @@
+{
+  "model_call_count": 2,
+  "assistant_message_count": 2,
+  "tool_call_count": 2,
+  "tool_result_count": 2,
+  "tool_error_count": 0,
+  "resource_read_count": 2,
+  "non_resource_tool_call_count": 0,
+  "tool_sequence": [
+    {
+      "id": "toolu_01PuHuVWa9Q32FAtYG8xVUgR",
+      "name": "pta-benchmark__read_benchmark_resource",
+      "arguments": {
+        "uri": "troubleshoot://guide"
+      }
+    },
+    {
+      "id": "toolu_011MLqYhRiDNjzvcsw1UHb7a",
+      "name": "pta-benchmark__read_benchmark_resource",
+      "arguments": {
+        "uri": "troubleshoot://repair"
+      }
+    }
+  ],
+  "usage_sum": {
+    "input": 10,
+    "output": 391,
+    "cacheRead": 12395,
+    "cacheWrite": 1912,
+    "totalTokens": "[REDACTED]"
+  },
+  "cost_sum": {
+    "input": 9.999999999999999e-06,
+    "output": 0.001955,
+    "cacheRead": 0.0012395000000000002,
+    "cacheWrite": 0.00239,
+    "total": 0.0055945000000000005
+  },
+  "session_file": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\baselines\\openclaw\\state\\agents\\main\\sessions\\20260505T072615Z-openclaw-haiku-run-all-70136ed2-task_05.jsonl",
+  "source": "openclaw_session_jsonl"
+}

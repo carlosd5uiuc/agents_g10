@@ -1,0 +1,50 @@
+{
+  "model_call_count": 3,
+  "assistant_message_count": 3,
+  "tool_call_count": 3,
+  "tool_result_count": 3,
+  "tool_error_count": 0,
+  "resource_read_count": 1,
+  "non_resource_tool_call_count": 2,
+  "tool_sequence": [
+    {
+      "id": "toolu_015Pz5EbE8HXfwPrf1gewXSo",
+      "name": "pta-benchmark__read_benchmark_resource",
+      "arguments": {
+        "uri": "doctor://list"
+      }
+    },
+    {
+      "id": "toolu_01Wt3J5MSCLG2TFd4xFoceSj",
+      "name": "pta-benchmark__set_up_doctor_appointment",
+      "arguments": {
+        "doctor_name": "Dr. Lee",
+        "appointment_time": "Friday,16"
+      }
+    },
+    {
+      "id": "toolu_01Pxwzzb1tSiM75zMUWPrg6M",
+      "name": "pta-benchmark__create_calendar_entry",
+      "arguments": {
+        "date": "2026-05-08T16:00:00",
+        "category": "Medical Appointment"
+      }
+    }
+  ],
+  "usage_sum": {
+    "input": 14,
+    "output": 582,
+    "cacheRead": 20322,
+    "cacheWrite": 2662,
+    "totalTokens": "[REDACTED]"
+  },
+  "cost_sum": {
+    "input": 1.4e-05,
+    "output": 0.0029100000000000003,
+    "cacheRead": 0.0020322000000000005,
+    "cacheWrite": 0.0033275000000000006,
+    "total": 0.008283700000000001
+  },
+  "session_file": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\baselines\\openclaw\\state\\agents\\main\\sessions\\20260505T072615Z-openclaw-haiku-run-all-70136ed2-task_04.jsonl",
+  "source": "openclaw_session_jsonl"
+}

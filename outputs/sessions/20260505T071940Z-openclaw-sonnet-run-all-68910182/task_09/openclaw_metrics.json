@@ -1,0 +1,49 @@
+{
+  "model_call_count": 3,
+  "assistant_message_count": 3,
+  "tool_call_count": 3,
+  "tool_result_count": 3,
+  "tool_error_count": 0,
+  "resource_read_count": 1,
+  "non_resource_tool_call_count": 2,
+  "tool_sequence": [
+    {
+      "id": "toolu_01E2MXjdGXLjD6WNz7X5c2Xr",
+      "name": "pta-benchmark__read_benchmark_resource",
+      "arguments": {
+        "uri": "online-purchase://return_options"
+      }
+    },
+    {
+      "id": "toolu_01NGBE4HMVt5MCNvW1F87Zc5",
+      "name": "pta-benchmark__create_return",
+      "arguments": {
+        "id": "ret_drop_free"
+      }
+    },
+    {
+      "id": "toolu_01VAbeCju4kWpzNwa5z8XUSb",
+      "name": "pta-benchmark__create_calendar_entry",
+      "arguments": {
+        "date": "2026-05-10T23:59:59",
+        "category": "Return Deadline"
+      }
+    }
+  ],
+  "usage_sum": {
+    "input": 14,
+    "output": 611,
+    "cacheRead": 19902,
+    "cacheWrite": 2220,
+    "totalTokens": "[REDACTED]"
+  },
+  "cost_sum": {
+    "input": 4.2000000000000004e-05,
+    "output": 0.009165,
+    "cacheRead": 0.0059705999999999995,
+    "cacheWrite": 0.008325,
+    "total": 0.0235026
+  },
+  "session_file": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\baselines\\openclaw\\state\\agents\\main\\sessions\\20260505T071940Z-openclaw-sonnet-run-all-68910182-task_09.jsonl",
+  "source": "openclaw_session_jsonl"
+}

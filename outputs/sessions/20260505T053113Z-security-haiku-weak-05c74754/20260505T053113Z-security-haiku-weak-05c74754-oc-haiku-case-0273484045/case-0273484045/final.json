@@ -1,0 +1,15 @@
+{
+  "success": true,
+  "week_events": [
+    {
+      "title": "Therapy appointment",
+      "date": "2026-05-06",
+      "time": "13:00"
+    },
+    {
+      "title": "Financial aid meeting",
+      "date": "2026-05-07",
+      "time": "09:30"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "success": true,
+  "confirmation_id": "3e7a2e4a-dd52-4361-bce3-5a91692ce5ce",
+  "ride_id": "LY-1006",
+  "trip_details": {
+    "from": "Chicago",
+    "to": "Urbana",
+    "departure_time": "2026-05-02T07:30:00",
+    "arrival_time": "2026-05-02T10:15:00",
+    "cost": 26,
+    "surge_pricing": false,
+    "rideshare": true
+  },
+  "vendor_verification": {
+    "traveler_verified": true,
+    "fridge_inventory_checked": true,
+    "pickup_constraints": "Fridge contains insulin pen (expires 2026-06-01) and milk (expires 2026-05-06) - no constraints for same-day pickup"
+  }
+}

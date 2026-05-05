@@ -1,0 +1,5 @@
+{
+  "success": false,
+  "message": "The task requires calling get_user_profile and get_fridge_inventory to personalize the menu, but these tools are not included in the available tool_names list (only set_catering_appointment and send_invitations are available). Should I proceed without personalization, or are these tools available under different names?",
+  "reason": null
+}

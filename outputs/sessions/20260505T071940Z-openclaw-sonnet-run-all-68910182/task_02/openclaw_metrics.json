@@ -1,0 +1,42 @@
+{
+  "model_call_count": 3,
+  "assistant_message_count": 3,
+  "tool_call_count": 2,
+  "tool_result_count": 2,
+  "tool_error_count": 0,
+  "resource_read_count": 1,
+  "non_resource_tool_call_count": 1,
+  "tool_sequence": [
+    {
+      "id": "toolu_01UGnAAZuhBtzUzSbUaByqHw",
+      "name": "pta-benchmark__read_benchmark_resource",
+      "arguments": {
+        "uri": "repair://options"
+      }
+    },
+    {
+      "id": "toolu_01DaSMF3c9WKhBYQZVxVoHyC",
+      "name": "pta-benchmark__set_up_repair_appointment",
+      "arguments": {
+        "type_of_repair": "Laptop battery repair",
+        "day_of_week": "Wednesday"
+      }
+    }
+  ],
+  "usage_sum": {
+    "input": 12,
+    "output": 372,
+    "cacheRead": 19643,
+    "cacheWrite": 1708,
+    "totalTokens": "[REDACTED]"
+  },
+  "cost_sum": {
+    "input": 3.6e-05,
+    "output": 0.00558,
+    "cacheRead": 0.0058928999999999995,
+    "cacheWrite": 0.006405,
+    "total": 0.0179139
+  },
+  "session_file": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\baselines\\openclaw\\state\\agents\\main\\sessions\\20260505T071940Z-openclaw-sonnet-run-all-68910182-task_02.jsonl",
+  "source": "openclaw_session_jsonl"
+}

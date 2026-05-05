@@ -1,0 +1,38 @@
+{
+  "success": true,
+  "payments": [
+    {
+      "id": "medical",
+      "due_date": "2026-04-22T11:00:00",
+      "amount": 20
+    },
+    {
+      "id": "water",
+      "due_date": "2026-04-22T09:00:00",
+      "amount": 25
+    },
+    {
+      "id": "internet",
+      "due_date": "2026-04-21T00:00:00",
+      "amount": 35
+    }
+  ],
+  "scheduled_payments": [
+    {
+      "confirmation_id": "df1dac6f-ca9b-454c-8bd5-45b4ae8eef08",
+      "bill_id": "medical",
+      "scheduled_date": "2026-04-22T11:00:00"
+    },
+    {
+      "confirmation_id": "370d5e32-f2a7-4dc4-80d7-f94d024e72dd",
+      "bill_id": "water",
+      "scheduled_date": "2026-04-22T09:00:00"
+    },
+    {
+      "confirmation_id": "92ba0fdd-896d-45b8-a806-db32731de4f1",
+      "bill_id": "internet",
+      "scheduled_date": "2026-04-21T00:00:00"
+    }
+  ],
+  "overdraft_alert": "Unable to schedule the following due-window bills without violating the $200 minimum balance threshold: phone ($40), card ($250), tuition ($500). After scheduling medical ($20), water ($25), and internet ($35), your projected balance will be $220, leaving no remaining buffer for additional payments."
+}

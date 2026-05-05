@@ -1,0 +1,24 @@
+{
+  "success": true,
+  "generated_report": {
+    "savings_target": 150,
+    "total_reduction": 155,
+    "report_summary": "Expense Reduction Report suggesting cuts totaling $155 to meet the $150 savings target. Recommendations focus on coffee and entertainment spending while avoiding priority categories and respecting preferences for health and gym categories.",
+    "suggestions": [
+      {
+        "category": "coffee",
+        "cut_amount": 80,
+        "priority_category": false,
+        "category_type": "discretionary",
+        "reason": "Brew at home instead of buying daily coffee"
+      },
+      {
+        "category": "entertainment",
+        "cut_amount": 75,
+        "priority_category": false,
+        "category_type": "discretionary",
+        "reason": "Choose free or lower-cost activities"
+      }
+    ]
+  }
+}

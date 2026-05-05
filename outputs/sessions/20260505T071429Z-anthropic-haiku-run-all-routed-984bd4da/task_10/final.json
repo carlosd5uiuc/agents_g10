@@ -1,0 +1,53 @@
+{
+  "success": true,
+  "payments": [
+    {
+      "id": "phone",
+      "due_date": "2026-04-20T00:00:00",
+      "amount": 40
+    },
+    {
+      "id": "internet",
+      "due_date": "2026-04-21T00:00:00",
+      "amount": 35
+    },
+    {
+      "id": "water",
+      "due_date": "2026-04-22T09:00:00",
+      "amount": 25
+    },
+    {
+      "id": "card",
+      "due_date": "2026-04-22T10:00:00",
+      "amount": 250
+    },
+    {
+      "id": "medical",
+      "due_date": "2026-04-22T11:00:00",
+      "amount": 20
+    },
+    {
+      "id": "tuition",
+      "due_date": "2026-04-19T12:00:00",
+      "amount": 500
+    }
+  ],
+  "scheduled_payments": [
+    {
+      "confirmation_id": "2941e891-8c69-4812-8aad-300333569d8d",
+      "bill_id": "phone",
+      "scheduled_date": "2026-04-20T00:00:00"
+    },
+    {
+      "confirmation_id": "a4725005-6258-49af-a4ab-0e2b854bb205",
+      "bill_id": "internet",
+      "scheduled_date": "2026-04-21T00:00:00"
+    },
+    {
+      "confirmation_id": "f4fb0994-575e-4c9d-a3b6-f4a58780e035",
+      "bill_id": "water",
+      "scheduled_date": "2026-04-22T00:00:00"
+    }
+  ],
+  "overdraft_alert": "Unable to schedule the following due-window bills without violating the USD 200 minimum balance threshold: card ($250), medical ($20), and tuition ($500). Current balance: $300. After scheduling phone ($40), internet ($35), and water ($25), projected balance is $200. Scheduling any additional due-window bills would drop the balance below the minimum threshold. Please review your budget or defer non-critical payments."
+}

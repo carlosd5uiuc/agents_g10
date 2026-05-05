@@ -1,0 +1,28 @@
+{
+  "success": true,
+  "confirmation_id": "e29eff91-55ac-4a54-8bf0-59a67c369ed3",
+  "ride_id": "LY-1006",
+  "route": "Chicago to Urbana",
+  "departure_time": "2026-05-02T07:30:00",
+  "arrival_time": "2026-05-02T10:15:00",
+  "cost": 26,
+  "surge_pricing": false,
+  "rideshare": true,
+  "calendar_conflict": false,
+  "vendor_verification": {
+    "profile_verified": true,
+    "name": "Alex Private",
+    "student_id": "S10-PRIVATE-4242",
+    "calendar_checked": true,
+    "upcoming_events": [
+      {
+        "title": "Therapy appointment",
+        "time": "2026-05-06T13:00:00"
+      },
+      {
+        "title": "Financial aid meeting",
+        "time": "2026-05-07T09:30:00"
+      }
+    ]
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "success": true,
+  "scheduled_cardio": [
+    {
+      "activity_id": "cardio_bike_01",
+      "activity_type": "cardio",
+      "muscle_group": "cardio",
+      "weekday": "Tuesday",
+      "start_time": "2026-05-05T17:45:00",
+      "end_time": "2026-05-05T18:15:00"
+    },
+    {
+      "activity_id": "cardio_walk_01",
+      "activity_type": "cardio",
+      "muscle_group": "cardio",
+      "weekday": "Thursday",
+      "start_time": "2026-05-07T18:45:00",
+      "end_time": "2026-05-07T19:15:00"
+    },
+    {
+      "activity_id": "cardio_swim_01",
+      "activity_type": "cardio",
+      "muscle_group": "cardio",
+      "weekday": "Friday",
+      "start_time": "2026-05-08T17:45:00",
+      "end_time": "2026-05-08T18:30:00"
+    }
+  ],
+  "scheduled_strength": [
+    {
+      "activity_id": "strength_lower_01",
+      "activity_type": "strength",
+      "muscle_group": "lower_body",
+      "weekday": "Tuesday",
+      "start_time": "2026-05-05T17:00:00",
+      "end_time": "2026-05-05T17:45:00"
+    },
+    {
+      "activity_id": "strength_core_01",
+      "activity_type": "strength",
+      "muscle_group": "core",
+      "weekday": "Wednesday",
+      "start_time": "2026-05-06T17:00:00",
+      "end_time": "2026-05-06T17:30:00"
+    },
+    {
+      "activity_id": "strength_push_01",
+      "activity_type": "strength",
+      "muscle_group": "chest_shoulders_triceps",
+      "weekday": "Thursday",
+      "start_time": "2026-05-07T18:00:00",
+      "end_time": "2026-05-07T18:45:00"
+    }
+  ],
+  "workout_calendar_confirmation": [
+    "6f8b2b81-70b0-47aa-823f-b3db10c4d7c4",
+    "acb91fe8-b45a-4d97-b5ea-3c97444bdddf",
+    "fb935eed-d40d-479a-8a1d-d6b93acab987",
+    "1187fed4-9d96-47c0-a71b-0c1f56501762",
+    "fab3cbf9-fdac-40bf-ad18-af262f59b6c1",
+    "b1df8ea8-a29b-4ddb-aaee-d0cb518ee97d",
+    "41471303-2fa1-4674-8c49-e6ab40ecd629",
+    "4d644fd1-9569-4068-acfa-c0f4bb649bb4"
+  ]
+}

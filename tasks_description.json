@@ -87,7 +87,7 @@
             "Copay must be less than or equal to USD 50",
             "The selected appointment must be added to the calendar"
         ],
-        "prompt": "Schedule a specialist visit under insurance and timing constraints. For this benchmark week, Friday maps to 2026-05-08, so slot Friday,16 should be added to the calendar as 2026-05-08T16:00:00.",
+        "prompt": "Schedule a specialist visit under insurance and timing constraints.",
         "output_structure": {
             "success": "bool",
             "appointment_confirmation": {

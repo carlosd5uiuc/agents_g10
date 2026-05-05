@@ -1,0 +1,23 @@
+{
+  "run_id": "20260505T071940Z-openclaw-sonnet-run-all-68910182-task_01",
+  "session_id": "20260505T071940Z-openclaw-sonnet-run-all-68910182",
+  "session_dir": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260505T071940Z-openclaw-sonnet-run-all-68910182",
+  "task_id": "task_01",
+  "status": "success",
+  "provider": "openclaw",
+  "model_id": "claude-sonnet-4-5",
+  "step_count": 3,
+  "tool_count": 3,
+  "resource_count": 0,
+  "verification": {
+    "ok": true,
+    "errors": []
+  },
+  "artifacts": {
+    "trace": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260505T071940Z-openclaw-sonnet-run-all-68910182\\task_01\\trace.jsonl",
+    "final": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260505T071940Z-openclaw-sonnet-run-all-68910182\\task_01\\final.json",
+    "summary": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260505T071940Z-openclaw-sonnet-run-all-68910182\\task_01\\summary.json",
+    "state_snapshot": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260505T071940Z-openclaw-sonnet-run-all-68910182\\task_01\\state_snapshot.json",
+    "openclaw_metrics": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260505T071940Z-openclaw-sonnet-run-all-68910182\\task_01\\openclaw_metrics.json"
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "task_id": "task_05",
+  "resources": {
+    "troubleshoot://guide": [
+      {
+        "symptoms": [
+          "Refrigerator not cooling",
+          "Compressor clicking",
+          "Food spoiling quickly"
+        ],
+        "likely_cause": "Dirty condenser coils"
+      },
+      {
+        "symptoms": [
+          "Washer not draining",
+          "Water left in drum",
+          "Drain cycle stops early"
+        ],
+        "likely_cause": "Drain pump blockage"
+      },
+      {
+        "symptoms": [
+          "Dryer not heating",
+          "Clothes still damp",
+          "Dryer runs but stays cool"
+        ],
+        "likely_cause": "Broken heating element"
+      },
+      {
+        "symptoms": [
+          "Dishwasher leaking",
+          "Water pooling under door",
+          "Wet floor after cycle"
+        ],
+        "likely_cause": "Worn door gasket"
+      },
+      {
+        "symptoms": [
+          "Oven not reaching temperature",
+          "Food undercooked",
+          "Temperature fluctuates"
+        ],
+        "likely_cause": "Faulty temperature sensor"
+      },
+      {
+        "symptoms": [
+          "Microwave not turning on",
+          "Display is blank",
+          "Buttons do not respond"
+        ],
+        "likely_cause": "Blown internal fuse"
+      },
+      {
+        "symptoms": [
+          "Washer fills slowly",
+          "Cold water pressure is low",
+          "Cycle takes too long"
+        ],
+        "likely_cause": "Clogged inlet valve screen"
+      },
+      {
+        "symptoms": [
+          "Washer makes loud noise",
+          "Vibration during spin cycle",
+          "Tub shakes"
+        ],
+        "likely_cause": "Worn suspension rods"
+      },
+      {
+        "symptoms": [
+          "Washer not draining",
+          "Drain hose is kinked",
+          "Water leaves slowly"
+        ],
+        "likely_cause": "Blocked drain hose"
+      }
+    ]
+  },
+  "tool_results": [],
+  "failed_attempts": [],
+  "policy_violations": [],
+  "final_output": {
+    "success": true,
+    "diagnosis": "The washer is experiencing a drain pump problem causing water to remain in the drum and the cycle to stop prematurely.",
+    "likely_cause": "Drain pump blockage - debris or foreign objects are obstructing the drain pump, preventing water from being expelled during the drain cycle.",
+    "recommended_steps": [
+      "Unplug the washer from the electrical outlet for safety",
+      "Locate the drain pump (typically found at the bottom front or rear of the washer)",
+      "Remove the pump access panel or filter cover",
+      "Inspect the pump inlet for visible blockages such as lint, coins, or fabric pieces",
+      "Carefully remove any debris found in or around the pump",
+      "Rinse the pump area with clean water to ensure no residual blockage remains",
+      "Reassemble the pump cover and access panel",
+      "Plug the washer back in and run a test cycle with no load to verify proper drainage",
+      "If blockage is severe or pump is damaged, the pump assembly may need replacement (typically $80-$150 in parts)"
+    ],
+    "repair_recommendation": {
+      "service_name": "DIY Drain Pump Cleaning and Inspection",
+      "distance_miles": 0.0,
+      "estimated_cost": 0
+    }
+  }
+}

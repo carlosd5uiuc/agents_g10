@@ -1,0 +1,333 @@
+{
+  "task_01": {
+    "success": true,
+    "travel_confirmation": {
+      "confirmation_id": "54eb974d-a6c8-4c5a-9f11-f73c77b7afce",
+      "arrival_time": "2026-05-02T08:15:00",
+      "departure_time": "2026-05-02T05:45:00",
+      "cost": 35,
+      "surge_pricing": false,
+      "rideshare": true,
+      "from": "Chicago",
+      "to": "Urbana"
+    },
+    "calendar": {
+      "confirmation_id": "994a767b-4bdb-4bf0-b6f4-b1ca4f2fca93"
+    }
+  },
+  "task_02": {
+    "success": true,
+    "repair_confirmation": {
+      "confirmation_id": "9af14f1a-cabe-4322-b033-f98580fbc798",
+      "type_of_repair": "Laptop battery repair",
+      "in_network": true,
+      "deductible": 120,
+      "weekday": "Wednesday",
+      "current_week": true
+    }
+  },
+  "task_03": {
+    "success": true,
+    "catering_confirmation": {
+      "confirmation_id": "83dd96e0-fcee-4541-882d-003177b7ced8",
+      "name": "Garden Tray",
+      "total": 138,
+      "vegetarian": true,
+      "contains_nuts": false
+    },
+    "invite_log": [
+      "An invitation was sent to one@example.com",
+      "An invitation was sent to two@example.com",
+      "An invitation was sent to three@example.com"
+    ]
+  },
+  "task_04": {
+    "success": true,
+    "appointment_confirmation": {
+      "confirmation_id": "4f30cd52-07d6-49d5-8c3f-c4869e5cbdda",
+      "name": "Dr. Lee",
+      "specialty": "Dermatologist",
+      "supports": [
+        "Skin Conditions",
+        "Eczema"
+      ],
+      "copay": 40,
+      "weekday": "Friday",
+      "time": "16:00"
+    },
+    "calendar": {
+      "confirmation_id": "079c6826-dd7d-4d96-82f1-71ba80214bc5"
+    }
+  },
+  "task_05": {
+    "success": true,
+    "diagnosis": "The washer is experiencing a drain pump problem causing water to remain in the drum and the cycle to stop prematurely.",
+    "likely_cause": "Drain pump blockage - debris or foreign objects are obstructing the drain pump, preventing water from being expelled during the drain cycle.",
+    "recommended_steps": [
+      "Unplug the washer from the electrical outlet for safety",
+      "Locate the drain pump (typically found at the bottom front or rear of the washer)",
+      "Remove the pump access panel or filter cover",
+      "Inspect the pump inlet for visible blockages such as lint, coins, or fabric pieces",
+      "Carefully remove any debris found in or around the pump",
+      "Rinse the pump area with clean water to ensure no residual blockage remains",
+      "Reassemble the pump cover and access panel",
+      "Plug the washer back in and run a test cycle with no load to verify proper drainage",
+      "If blockage is severe or pump is damaged, the pump assembly may need replacement (typically $80-$150 in parts)"
+    ],
+    "repair_recommendation": {
+      "service_name": "DIY Drain Pump Cleaning and Inspection",
+      "distance_miles": 0.0,
+      "estimated_cost": 0
+    }
+  },
+  "task_06": {
+    "success": true,
+    "plan_summary": "Identified 6 unpaid bills totaling $165. Created a payment plan scheduling all 6 unsettled bills ($165 total) across their respective due dates. Alert issued: total pending bill amount ($165) exceeds budget constraint of $120.",
+    "pending_bills": [
+      {
+        "bill_id": "bill_electric",
+        "name": "Electric bill",
+        "amount": 20,
+        "due_date": "2026-05-03",
+        "settled": false
+      },
+      {
+        "bill_id": "bill_internet",
+        "name": "Internet bill",
+        "amount": 35,
+        "due_date": "2026-05-04",
+        "settled": false
+      },
+      {
+        "bill_id": "bill_gas",
+        "name": "Gas bill",
+        "amount": 25,
+        "due_date": "2026-05-06",
+        "settled": false
+      },
+      {
+        "bill_id": "bill_renters_insurance",
+        "name": "Renters insurance",
+        "amount": 15,
+        "due_date": "2026-05-08",
+        "settled": false
+      },
+      {
+        "bill_id": "bill_trash",
+        "name": "Trash service",
+        "amount": 22,
+        "due_date": "2026-05-09",
+        "settled": false
+      },
+      {
+        "bill_id": "bill_parking",
+        "name": "Parking permit",
+        "amount": 28,
+        "due_date": "2026-05-03",
+        "settled": false
+      }
+    ],
+    "scheduled_payments": [
+      {
+        "payment_confirmation_id": "6c689d6e-6091-4ec1-bb7b-d7204a32043a",
+        "bill_id": "bill_electric",
+        "payment_date": "2026-05-03",
+        "amount": 20
+      },
+      {
+        "payment_confirmation_id": "39250dd9-3076-4786-b53a-b5b5f31edc84",
+        "bill_id": "bill_parking",
+        "payment_date": "2026-05-03",
+        "amount": 28
+      },
+      {
+        "payment_confirmation_id": "8923c6f2-eebe-4b9c-a41f-3960a3e2591c",
+        "bill_id": "bill_internet",
+        "payment_date": "2026-05-04",
+        "amount": 35
+      },
+      {
+        "payment_confirmation_id": "6877aa6b-589c-438e-bfdb-141b9a75ad69",
+        "bill_id": "bill_gas",
+        "payment_date": "2026-05-06",
+        "amount": 25
+      },
+      {
+        "payment_confirmation_id": "6082dac4-50fa-4ca0-90e5-7685c6704511",
+        "bill_id": "bill_renters_insurance",
+        "payment_date": "2026-05-08",
+        "amount": 15
+      },
+      {
+        "payment_confirmation_id": "4ca02a72-652c-42d5-8f59-5a7a69eba29a",
+        "bill_id": "bill_trash",
+        "payment_date": "2026-05-09",
+        "amount": 22
+      }
+    ],
+    "alert": "BUDGET ALERT: Total pending bill amount ($165) exceeds budget constraint of $120. All 6 unsettled bills have been scheduled for payment. User preference to pay less than $100 cannot be met as all bills are essential and must be paid."
+  },
+  "task_07": {
+    "success": true,
+    "scheduled_cardio": [
+      {
+        "activity_id": "cardio_run_01",
+        "activity_type": "cardio",
+        "muscle_group": "cardio",
+        "weekday": "Monday",
+        "start_time": "2026-05-04T17:30:00",
+        "end_time": "2026-05-04T18:00:00"
+      },
+      {
+        "activity_id": "cardio_bike_01",
+        "activity_type": "cardio",
+        "muscle_group": "cardio",
+        "weekday": "Tuesday",
+        "start_time": "2026-05-05T17:45:00",
+        "end_time": "2026-05-05T18:15:00"
+      },
+      {
+        "activity_id": "cardio_walk_01",
+        "activity_type": "cardio",
+        "muscle_group": "cardio",
+        "weekday": "Thursday",
+        "start_time": "2026-05-07T18:45:00",
+        "end_time": "2026-05-07T19:15:00"
+      }
+    ],
+    "scheduled_strength": [
+      {
+        "activity_id": "strength_lower_01",
+        "activity_type": "strength",
+        "muscle_group": "lower_body",
+        "weekday": "Tuesday",
+        "start_time": "2026-05-05T17:00:00",
+        "end_time": "2026-05-05T17:45:00"
+      },
+      {
+        "activity_id": "strength_push_01",
+        "activity_type": "strength",
+        "muscle_group": "chest_shoulders_triceps",
+        "weekday": "Thursday",
+        "start_time": "2026-05-07T18:00:00",
+        "end_time": "2026-05-07T18:45:00"
+      },
+      {
+        "activity_id": "strength_upper_01",
+        "activity_type": "strength",
+        "muscle_group": "upper_body",
+        "weekday": "Friday",
+        "start_time": "2026-05-08T17:00:00",
+        "end_time": "2026-05-08T17:45:00"
+      }
+    ],
+    "workout_calendar_confirmation": [
+      "0e4d56b2-b375-4242-a1d9-78bf298c60a0",
+      "aa265944-3c60-4801-82b2-ef870b6da023",
+      "7475bb59-5d46-4455-9c25-7a4675688db3",
+      "8d676f0b-7f83-4844-ba90-f3c739b4ba34",
+      "5fa52d66-9255-4769-83a2-684297a0131c",
+      "60932c6b-6905-4ee2-8ade-71e2948121bd"
+    ]
+  },
+  "task_08": {
+    "success": true,
+    "generated_report": {
+      "savings_target": 150,
+      "total_reduction": 150,
+      "report_summary": "Expense Reduction Report: Successfully identified $150 in spending cuts from non-priority categories while respecting user preferences to avoid health and gym category reductions.",
+      "suggestions": [
+        {
+          "category": "streaming",
+          "cut_amount": 45,
+          "priority_category": false,
+          "category_type": "entertainment",
+          "reason": "Eliminate streaming subscription service"
+        },
+        {
+          "category": "meal_delivery",
+          "cut_amount": 95,
+          "priority_category": false,
+          "category_type": "food",
+          "reason": "Reduce meal delivery service usage"
+        },
+        {
+          "category": "books",
+          "cut_amount": 10,
+          "priority_category": false,
+          "category_type": "entertainment",
+          "reason": "Reduce book purchases from $55 to $45"
+        }
+      ]
+    }
+  },
+  "task_09": {
+    "success": true,
+    "return": {
+      "return_id": "96173492-1f81-471c-93fa-bfc339360e8c",
+      "label_id": "e90ba491-0a9b-4ef2-a8f2-ae2cc7777ee4",
+      "free_return": true,
+      "delivery_method": "drop-off",
+      "refund_method": "original_payment"
+    },
+    "calendar_entry": {
+      "confirmation_id": "78540e0a-877f-4d5a-9f40-85d0d0875f88",
+      "title": "Return Deadline",
+      "deadline": "2026-05-15"
+    },
+    "summary": "Return successfully created with free drop-off delivery and refund to original payment method. Return deadline of 2026-05-15 added to calendar, meeting the preference for completion before the 15th. All hard constraints satisfied: free return method, drop-off delivery, original payment refund, and calendar entry created."
+  },
+  "task_10": {
+    "success": true,
+    "payments": [
+      {
+        "id": "phone",
+        "due_date": "2026-04-20T00:00:00",
+        "amount": 40
+      },
+      {
+        "id": "internet",
+        "due_date": "2026-04-21T00:00:00",
+        "amount": 35
+      },
+      {
+        "id": "water",
+        "due_date": "2026-04-22T09:00:00",
+        "amount": 25
+      },
+      {
+        "id": "card",
+        "due_date": "2026-04-22T10:00:00",
+        "amount": 250
+      },
+      {
+        "id": "medical",
+        "due_date": "2026-04-22T11:00:00",
+        "amount": 20
+      },
+      {
+        "id": "tuition",
+        "due_date": "2026-04-19T12:00:00",
+        "amount": 500
+      }
+    ],
+    "scheduled_payments": [
+      {
+        "confirmation_id": "2941e891-8c69-4812-8aad-300333569d8d",
+        "bill_id": "phone",
+        "scheduled_date": "2026-04-20T00:00:00"
+      },
+      {
+        "confirmation_id": "a4725005-6258-49af-a4ab-0e2b854bb205",
+        "bill_id": "internet",
+        "scheduled_date": "2026-04-21T00:00:00"
+      },
+      {
+        "confirmation_id": "f4fb0994-575e-4c9d-a3b6-f4a58780e035",
+        "bill_id": "water",
+        "scheduled_date": "2026-04-22T00:00:00"
+      }
+    ],
+    "overdraft_alert": "Unable to schedule the following due-window bills without violating the USD 200 minimum balance threshold: card ($250), medical ($20), and tuition ($500). Current balance: $300. After scheduling phone ($40), internet ($35), and water ($25), projected balance is $200. Scheduling any additional due-window bills would drop the balance below the minimum threshold. Please review your budget or defer non-critical payments."
+  }
+}

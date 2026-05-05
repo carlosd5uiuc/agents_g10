@@ -1,0 +1,70 @@
+{
+  "model_call_count": 3,
+  "assistant_message_count": 3,
+  "tool_call_count": 5,
+  "tool_result_count": 5,
+  "tool_error_count": 0,
+  "resource_read_count": 1,
+  "non_resource_tool_call_count": 4,
+  "tool_sequence": [
+    {
+      "id": "toolu_01SPij65RUta7KDKoUZo23oa",
+      "name": "pta-benchmark__read_benchmark_resource",
+      "arguments": {
+        "uri": "household-bills://list"
+      }
+    },
+    {
+      "id": "toolu_01JxuU98QQFgwBB4mM8MYJnu",
+      "name": "pta-benchmark__schedule_payment",
+      "arguments": {
+        "bill_id": "bill_electric",
+        "payment_date": "2026-05-03",
+        "amount": 20
+      }
+    },
+    {
+      "id": "toolu_01GqwH6a8JvJbdxRD5SSgMLa",
+      "name": "pta-benchmark__schedule_payment",
+      "arguments": {
+        "bill_id": "bill_parking",
+        "payment_date": "2026-05-03",
+        "amount": 28
+      }
+    },
+    {
+      "id": "toolu_01UMmnrGF45D6e1WMCPBPAZ8",
+      "name": "pta-benchmark__schedule_payment",
+      "arguments": {
+        "bill_id": "bill_internet",
+        "payment_date": "2026-05-04",
+        "amount": 35
+      }
+    },
+    {
+      "id": "toolu_01992NMQ8NysTv3qSJHEvjoo",
+      "name": "pta-benchmark__schedule_payment",
+      "arguments": {
+        "bill_id": "bill_gas",
+        "payment_date": "2026-05-06",
+        "amount": 25
+      }
+    }
+  ],
+  "usage_sum": {
+    "input": 14,
+    "output": 1486,
+    "cacheRead": 18892,
+    "cacheWrite": 3479,
+    "totalTokens": "[REDACTED]"
+  },
+  "cost_sum": {
+    "input": 1.4e-05,
+    "output": 0.007430000000000001,
+    "cacheRead": 0.0018892000000000002,
+    "cacheWrite": 0.00434875,
+    "total": 0.01368195
+  },
+  "session_file": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\baselines\\openclaw\\state\\agents\\main\\sessions\\20260505T072615Z-openclaw-haiku-run-all-70136ed2-task_06.jsonl",
+  "source": "openclaw_session_jsonl"
+}

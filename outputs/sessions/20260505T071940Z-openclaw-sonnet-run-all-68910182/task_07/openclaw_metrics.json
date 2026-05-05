@@ -1,0 +1,103 @@
+{
+  "model_call_count": 3,
+  "assistant_message_count": 3,
+  "tool_call_count": 10,
+  "tool_result_count": 10,
+  "tool_error_count": 0,
+  "resource_read_count": 1,
+  "non_resource_tool_call_count": 9,
+  "tool_sequence": [
+    {
+      "id": "toolu_01LmJ2dQCWNa1CfwtNwnmSTv",
+      "name": "pta-benchmark__read_benchmark_resource",
+      "arguments": {
+        "uri": "workout-sessions://list"
+      }
+    },
+    {
+      "id": "toolu_01U5bCz4CGoxT1rXon5bYxuC",
+      "name": "pta-benchmark__get_calendar_events",
+      "arguments": {}
+    },
+    {
+      "id": "toolu_01JZPU5S2Tp8XixockfnkyFa",
+      "name": "pta-benchmark__create_calendar_entry",
+      "arguments": {
+        "date": "2026-05-05T17:00:00",
+        "category": "Lower Body Strength"
+      }
+    },
+    {
+      "id": "toolu_018oWyBN51YnFJDwWyTfBgGy",
+      "name": "pta-benchmark__create_calendar_entry",
+      "arguments": {
+        "date": "2026-05-05T17:45:00",
+        "category": "Stationary Bike"
+      }
+    },
+    {
+      "id": "toolu_01BZ13AtTFR6UYj6ap3LZBcx",
+      "name": "pta-benchmark__create_calendar_entry",
+      "arguments": {
+        "date": "2026-05-06T17:00:00",
+        "category": "Core Strength"
+      }
+    },
+    {
+      "id": "toolu_016retxLCnTmwv1nJ53KSV3x",
+      "name": "pta-benchmark__create_calendar_entry",
+      "arguments": {
+        "date": "2026-05-07T18:00:00",
+        "category": "Push Strength"
+      }
+    },
+    {
+      "id": "toolu_01Ujr4VYmPcw4td4pkStoNdA",
+      "name": "pta-benchmark__create_calendar_entry",
+      "arguments": {
+        "date": "2026-05-07T18:45:00",
+        "category": "Brisk Walk"
+      }
+    },
+    {
+      "id": "toolu_013KYyJSHFBMG4PMyoEspgNB",
+      "name": "pta-benchmark__create_calendar_entry",
+      "arguments": {
+        "date": "2026-05-08T17:00:00",
+        "category": "Upper Body Strength"
+      }
+    },
+    {
+      "id": "toolu_01Y695n2x3u9z7WExMRmGPVx",
+      "name": "pta-benchmark__create_calendar_entry",
+      "arguments": {
+        "date": "2026-05-08T17:45:00",
+        "category": "Swimming"
+      }
+    },
+    {
+      "id": "toolu_01X5abBYA4KZ4nCf1Q6p8LPN",
+      "name": "pta-benchmark__create_calendar_entry",
+      "arguments": {
+        "date": "2026-05-04T17:30:00",
+        "category": "Outdoor Run"
+      }
+    }
+  ],
+  "usage_sum": {
+    "input": 17,
+    "output": 1853,
+    "cacheRead": 20889,
+    "cacheWrite": 4459,
+    "totalTokens": "[REDACTED]"
+  },
+  "cost_sum": {
+    "input": 5.1000000000000006e-05,
+    "output": 0.027795,
+    "cacheRead": 0.0062667,
+    "cacheWrite": 0.01672125,
+    "total": 0.05083395
+  },
+  "session_file": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\baselines\\openclaw\\state\\agents\\main\\sessions\\20260505T071940Z-openclaw-sonnet-run-all-68910182-task_07.jsonl",
+  "source": "openclaw_session_jsonl"
+}

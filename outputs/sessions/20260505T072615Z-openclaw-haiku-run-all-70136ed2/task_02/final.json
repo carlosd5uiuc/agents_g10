@@ -1,0 +1,11 @@
+{
+  "success": true,
+  "repair_confirmation": {
+    "confirmation_id": "6dba8442-9dea-43e2-9a0b-8f413a851f27",
+    "type_of_repair": "Laptop battery repair",
+    "in_network": true,
+    "deductible": 120,
+    "weekday": "Wednesday",
+    "current_week": true
+  }
+}

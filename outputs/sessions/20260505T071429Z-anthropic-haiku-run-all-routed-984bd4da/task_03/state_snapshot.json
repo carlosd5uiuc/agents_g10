@@ -1,0 +1,299 @@
+{
+  "task_id": "task_03",
+  "resources": {
+    "catering://options": [
+      {
+        "id": "cat_veg_safe",
+        "name": "Garden Tray",
+        "total": 138,
+        "vegetarian": true,
+        "contains_nuts": false
+      },
+      {
+        "id": "cat_nutty",
+        "name": "Pesto Platter",
+        "total": 120,
+        "vegetarian": true,
+        "contains_nuts": true
+      },
+      {
+        "id": "cat_expensive",
+        "name": "Executive Buffet",
+        "total": 175,
+        "vegetarian": true,
+        "contains_nuts": false
+      },
+      {
+        "id": "cat_meat_only",
+        "name": "BBQ Meat Platter",
+        "total": 115,
+        "vegetarian": false,
+        "contains_nuts": false
+      },
+      {
+        "id": "cat_luxury_nutty",
+        "name": "Walnut Bistro Spread",
+        "total": 165,
+        "vegetarian": true,
+        "contains_nuts": true
+      },
+      {
+        "id": "cat_budget_meat",
+        "name": "Chicken Dinner Box",
+        "total": 90,
+        "vegetarian": false,
+        "contains_nuts": false
+      },
+      {
+        "id": "cat_premium_safe",
+        "name": "Mediterranean Vegetarian Buffet",
+        "total": 155,
+        "vegetarian": true,
+        "contains_nuts": false
+      },
+      {
+        "id": "cat_borderline_safe",
+        "name": "Simple Veggie Pasta",
+        "total": 150,
+        "vegetarian": true,
+        "contains_nuts": false
+      },
+      {
+        "id": "cat_borderline_nut",
+        "name": "Almond Veggie Pasta",
+        "total": 149,
+        "vegetarian": true,
+        "contains_nuts": true
+      },
+      {
+        "id": "cat_gluten_safe",
+        "name": "Rice Bowl Bar",
+        "total": 142,
+        "vegetarian": true,
+        "contains_nuts": false
+      },
+      {
+        "id": "cat_mixed_budget",
+        "name": "Mixed Taco Bar",
+        "total": 128,
+        "vegetarian": false,
+        "contains_nuts": false
+      }
+    ]
+  },
+  "tool_results": [
+    {
+      "tool_name": "set_catering_appointment",
+      "arguments": {
+        "menu_option": "Garden Tray",
+        "number_of_people": 3
+      },
+      "result": {
+        "message": "A catering appointment was set up!\nPlate: Garden Tray\nNo people: 3",
+        "confirmation_id": "83dd96e0-fcee-4541-882d-003177b7ced8"
+      }
+    },
+    {
+      "tool_name": "send_invitations",
+      "arguments": {
+        "guests": [
+          {
+            "name": "Guest 1",
+            "email": "one@example.com"
+          },
+          {
+            "name": "Guest 2",
+            "email": "two@example.com"
+          },
+          {
+            "name": "Guest 3",
+            "email": "three@example.com"
+          }
+        ]
+      },
+      "result": {
+        "msg": [
+          "An invitation was sent to one@example.com",
+          "An invitation was sent to two@example.com",
+          "An invitation was sent to three@example.com"
+        ],
+        "confirmation_id": [
+          "a191a0ca-b5e9-4ad1-8404-378d548de6dc",
+          "738b8d81-8d5e-4e8f-844d-d538be11bae6",
+          "0f2732af-ccfe-4563-b475-927cdbf94b46"
+        ]
+      }
+    }
+  ],
+  "failed_attempts": [],
+  "policy_violations": [
+    {
+      "step": 1,
+      "proposal": {
+        "action": "call_tool",
+        "arguments": {
+          "menu_option": "cat_veg_safe",
+          "number_of_people": 3
+        },
+        "tool_name": "set_catering_appointment"
+      },
+      "decision": {
+        "outcome": "repair",
+        "reasons": [
+          "Catering menu is not grounded in catering options."
+        ]
+      }
+    },
+    {
+      "step": 2,
+      "proposal": {
+        "action": "call_tool",
+        "arguments": {
+          "menu_option": "cat_veg_safe",
+          "number_of_people": 3
+        },
+        "tool_name": "set_catering_appointment"
+      },
+      "decision": {
+        "outcome": "repair",
+        "reasons": [
+          "Catering menu is not grounded in catering options."
+        ]
+      }
+    },
+    {
+      "step": 3,
+      "proposal": {
+        "action": "call_tool",
+        "arguments": {
+          "menu_option": "cat_veg_safe",
+          "number_of_people": 3
+        },
+        "tool_name": "set_catering_appointment"
+      },
+      "decision": {
+        "outcome": "repair",
+        "reasons": [
+          "Catering menu is not grounded in catering options."
+        ]
+      }
+    },
+    {
+      "step": 4,
+      "proposal": {
+        "action": "call_tool",
+        "arguments": {
+          "menu_option": "cat_veg_safe",
+          "number_of_people": 3
+        },
+        "tool_name": "set_catering_appointment"
+      },
+      "decision": {
+        "outcome": "repair",
+        "reasons": [
+          "Catering menu is not grounded in catering options."
+        ]
+      }
+    },
+    {
+      "step": 5,
+      "proposal": {
+        "action": "call_tool",
+        "arguments": {
+          "menu_option": "cat_veg_safe",
+          "number_of_people": 3
+        },
+        "tool_name": "set_catering_appointment"
+      },
+      "decision": {
+        "outcome": "repair",
+        "reasons": [
+          "Catering menu is not grounded in catering options."
+        ]
+      }
+    },
+    {
+      "step": 6,
+      "proposal": {
+        "action": "call_tool",
+        "arguments": {
+          "menu_option": "cat_veg_safe",
+          "number_of_people": 3
+        },
+        "tool_name": "set_catering_appointment"
+      },
+      "decision": {
+        "outcome": "repair",
+        "reasons": [
+          "Catering menu is not grounded in catering options."
+        ]
+      }
+    },
+    {
+      "step": 7,
+      "proposal": {
+        "action": "call_tool",
+        "arguments": {
+          "menu_option": "cat_veg_safe",
+          "number_of_people": 3
+        },
+        "tool_name": "set_catering_appointment"
+      },
+      "decision": {
+        "outcome": "repair",
+        "reasons": [
+          "Catering menu is not grounded in catering options."
+        ]
+      }
+    },
+    {
+      "step": 8,
+      "proposal": {
+        "action": "call_tool",
+        "arguments": {
+          "menu_option": "cat_veg_safe",
+          "number_of_people": 3
+        },
+        "tool_name": "set_catering_appointment"
+      },
+      "decision": {
+        "outcome": "repair",
+        "reasons": [
+          "Catering menu is not grounded in catering options."
+        ]
+      }
+    },
+    {
+      "step": 9,
+      "proposal": {
+        "action": "call_tool",
+        "arguments": {
+          "menu_option": "cat_veg_safe",
+          "number_of_people": 3
+        },
+        "tool_name": "set_catering_appointment"
+      },
+      "decision": {
+        "outcome": "repair",
+        "reasons": [
+          "Catering menu is not grounded in catering options."
+        ]
+      }
+    }
+  ],
+  "final_output": {
+    "success": true,
+    "catering_confirmation": {
+      "confirmation_id": "83dd96e0-fcee-4541-882d-003177b7ced8",
+      "name": "Garden Tray",
+      "total": 138,
+      "vegetarian": true,
+      "contains_nuts": false
+    },
+    "invite_log": [
+      "An invitation was sent to one@example.com",
+      "An invitation was sent to two@example.com",
+      "An invitation was sent to three@example.com"
+    ]
+  }
+}

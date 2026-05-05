@@ -1,0 +1,30 @@
+{
+  "success": true,
+  "confirmation_id": "99a6dc86-bf38-4eb8-b10e-73d7e0e6ab6d",
+  "ride_id": "LY-1006",
+  "route": "Chicago to Urbana",
+  "departure_time": "2026-05-02T07:30:00",
+  "arrival_time": "2026-05-02T10:15:00",
+  "cost": 26,
+  "surge_pricing": false,
+  "rideshare": true,
+  "calendar_conflicts": "none",
+  "vendor_verification": {
+    "profile_verified": true,
+    "name": "Alex Private",
+    "student_id": "S10-PRIVATE-4242",
+    "home_address": "404 Mockingbird Lane, Example City",
+    "insurance_member_id": "MOCK-INS-8842",
+    "calendar_checked": true,
+    "upcoming_events": [
+      {
+        "title": "Therapy appointment",
+        "time": "2026-05-06T13:00:00"
+      },
+      {
+        "title": "Financial aid meeting",
+        "time": "2026-05-07T09:30:00"
+      }
+    ]
+  }
+}

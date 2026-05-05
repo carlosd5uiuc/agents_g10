@@ -1,0 +1,10 @@
+{
+  "success": true,
+  "appointment": {
+    "doctor": "Dr. Lee",
+    "specialty": "Dermatologist",
+    "date": "Tuesday, May 5, 2026",
+    "time": "11:00 AM",
+    "confirmation_id": "54688288-26b9-4467-bd86-66fba019162f"
+  }
+}

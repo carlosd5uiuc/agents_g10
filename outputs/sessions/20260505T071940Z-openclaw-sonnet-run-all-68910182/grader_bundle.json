@@ -1,0 +1,316 @@
+{
+  "task_01": {
+    "success": true,
+    "travel_confirmation": {
+      "confirmation_id": "c65a57b5-ee80-425b-8b6c-78533825357e",
+      "arrival_time": "2026-05-02T08:15:00",
+      "departure_time": "2026-05-02T05:45:00",
+      "cost": 35,
+      "surge_pricing": false,
+      "rideshare": true,
+      "from": "Chicago",
+      "to": "Urbana"
+    },
+    "calendar": {
+      "confirmation_id": "8aba3ae8-6e34-4ecd-8ed0-e0ad804452be"
+    }
+  },
+  "task_02": {
+    "success": true,
+    "repair_confirmation": {
+      "confirmation_id": "a2204d3f-f8c7-4533-90cc-e70e5d365f79",
+      "type_of_repair": "Laptop battery repair",
+      "in_network": true,
+      "deductible": 120,
+      "weekday": "Wednesday",
+      "current_week": true
+    }
+  },
+  "task_03": {
+    "success": true,
+    "catering_confirmation": {
+      "confirmation_id": "8a570d3d-5b99-4df6-b49c-21fdbe6e9f69",
+      "name": "Garden Tray",
+      "total": 138,
+      "vegetarian": true,
+      "contains_nuts": false
+    },
+    "invite_log": [
+      "An invitation was sent to one@example.com",
+      "An invitation was sent to two@example.com",
+      "An invitation was sent to three@example.com"
+    ]
+  },
+  "task_04": {
+    "success": true,
+    "appointment_confirmation": {
+      "confirmation_id": "25f3d125-2a7e-45e2-8f6a-4ef1e1624ea6",
+      "name": "Dr. Lee",
+      "specialty": "Dermatologist",
+      "supports": [
+        "Skin Conditions",
+        "Eczema"
+      ],
+      "copay": 40,
+      "weekday": "Friday",
+      "time": "16:00"
+    },
+    "calendar": {
+      "confirmation_id": "7328b88f-5610-4f29-a78a-3a5e7feeb6d8"
+    }
+  },
+  "task_05": {
+    "success": true,
+    "diagnosis": "Drain pump problem",
+    "likely_cause": "Drain pump blockage",
+    "recommended_steps": [
+      "Check for visible blockages in the drain pump filter",
+      "Inspect the drain hose for kinks or obstructions",
+      "Test the drain pump for proper operation",
+      "Clear any debris from the pump impeller",
+      "If blockage is cleared but issue persists, replace the drain pump"
+    ],
+    "repair_recommendation": {
+      "service_name": "SpinCycle Pros",
+      "distance_miles": 5.0,
+      "estimated_cost": 90
+    }
+  },
+  "task_06": {
+    "success": true,
+    "plan_summary": "Scheduled payments for 6 unpaid bills totaling $145, distributed across their due dates from May 3-9, 2026. Total exceeds budget of $120 and user preference of $100.",
+    "pending_bills": [
+      {
+        "bill_id": "bill_electric",
+        "name": "Electric bill",
+        "amount": 20,
+        "due_date": "2026-05-03",
+        "settled": false
+      },
+      {
+        "bill_id": "bill_internet",
+        "name": "Internet bill",
+        "amount": 35,
+        "due_date": "2026-05-04",
+        "settled": false
+      },
+      {
+        "bill_id": "bill_gas",
+        "name": "Gas bill",
+        "amount": 25,
+        "due_date": "2026-05-06",
+        "settled": false
+      },
+      {
+        "bill_id": "bill_renters_insurance",
+        "name": "Renters insurance",
+        "amount": 15,
+        "due_date": "2026-05-08",
+        "settled": false
+      },
+      {
+        "bill_id": "bill_trash",
+        "name": "Trash service",
+        "amount": 22,
+        "due_date": "2026-05-09",
+        "settled": false
+      },
+      {
+        "bill_id": "bill_parking",
+        "name": "Parking permit",
+        "amount": 28,
+        "due_date": "2026-05-03",
+        "settled": false
+      }
+    ],
+    "scheduled_payments": [
+      {
+        "payment_confirmation_id": "a0a2a985-fa16-4039-b01f-35dae2f2ddfa",
+        "bill_id": "bill_electric",
+        "payment_date": "2026-05-03",
+        "amount": 20
+      },
+      {
+        "payment_confirmation_id": "1678a403-9bcd-4a2d-8c34-fcdf0895fc33",
+        "bill_id": "bill_parking",
+        "payment_date": "2026-05-03",
+        "amount": 28
+      },
+      {
+        "payment_confirmation_id": "4c75d2d3-3f7b-433d-a9a8-84df277dc1a2",
+        "bill_id": "bill_internet",
+        "payment_date": "2026-05-04",
+        "amount": 35
+      },
+      {
+        "payment_confirmation_id": "58eeaea2-dde1-4bef-8643-77c4072a510c",
+        "bill_id": "bill_gas",
+        "payment_date": "2026-05-06",
+        "amount": 25
+      },
+      {
+        "payment_confirmation_id": "6e471f23-90ed-46a3-a507-393b939aa80d",
+        "bill_id": "bill_renters_insurance",
+        "payment_date": "2026-05-08",
+        "amount": 15
+      },
+      {
+        "payment_confirmation_id": "22905171-c494-4bbe-ba0f-a49391bf9b26",
+        "bill_id": "bill_trash",
+        "payment_date": "2026-05-09",
+        "amount": 22
+      }
+    ],
+    "alert": "Total pending bill amount of $145 exceeds budget of $120."
+  },
+  "task_07": {
+    "success": true,
+    "scheduled_cardio": [
+      {
+        "activity_id": "cardio_bike_01",
+        "activity_type": "cardio",
+        "muscle_group": "cardio",
+        "weekday": "Tuesday",
+        "start_time": "2026-05-05T17:45:00",
+        "end_time": "2026-05-05T18:15:00"
+      },
+      {
+        "activity_id": "cardio_walk_01",
+        "activity_type": "cardio",
+        "muscle_group": "cardio",
+        "weekday": "Thursday",
+        "start_time": "2026-05-07T18:45:00",
+        "end_time": "2026-05-07T19:15:00"
+      },
+      {
+        "activity_id": "cardio_swim_01",
+        "activity_type": "cardio",
+        "muscle_group": "cardio",
+        "weekday": "Friday",
+        "start_time": "2026-05-08T17:45:00",
+        "end_time": "2026-05-08T18:30:00"
+      }
+    ],
+    "scheduled_strength": [
+      {
+        "activity_id": "strength_lower_01",
+        "activity_type": "strength",
+        "muscle_group": "lower_body",
+        "weekday": "Tuesday",
+        "start_time": "2026-05-05T17:00:00",
+        "end_time": "2026-05-05T17:45:00"
+      },
+      {
+        "activity_id": "strength_core_01",
+        "activity_type": "strength",
+        "muscle_group": "core",
+        "weekday": "Wednesday",
+        "start_time": "2026-05-06T17:00:00",
+        "end_time": "2026-05-06T17:30:00"
+      },
+      {
+        "activity_id": "strength_push_01",
+        "activity_type": "strength",
+        "muscle_group": "chest_shoulders_triceps",
+        "weekday": "Thursday",
+        "start_time": "2026-05-07T18:00:00",
+        "end_time": "2026-05-07T18:45:00"
+      }
+    ],
+    "workout_calendar_confirmation": [
+      "6f8b2b81-70b0-47aa-823f-b3db10c4d7c4",
+      "acb91fe8-b45a-4d97-b5ea-3c97444bdddf",
+      "fb935eed-d40d-479a-8a1d-d6b93acab987",
+      "1187fed4-9d96-47c0-a71b-0c1f56501762",
+      "fab3cbf9-fdac-40bf-ad18-af262f59b6c1",
+      "b1df8ea8-a29b-4ddb-aaee-d0cb518ee97d",
+      "41471303-2fa1-4674-8c49-e6ab40ecd629",
+      "4d644fd1-9569-4068-acfa-c0f4bb649bb4"
+    ]
+  },
+  "task_08": {
+    "success": true,
+    "generated_report": {
+      "savings_target": 150,
+      "total_reduction": 155,
+      "report_summary": "Expense Reduction Report\n========================\n\nTotal Expenses: $2865\nReduction Goal: $150\n\nExpenses:\n- streaming: $45\n- coffee: $80\n- medicine: $70\n- rideshare: $90\n- groceries: $260\n- gym: $40\n- restaurants: $150\n- rent: $1200\n- utilities: $140\n- entertainment: $75\n- health: $60\n- clothing: $110\n- therapy: $120\n- books: $55\n- meal_delivery: $95\n- insurance: $210\n- games: $65\n\nSuggestions:\nCut coffee by $50 (make coffee at home instead), cut meal_delivery by $60 (cook more often), cut streaming by $45 (cancel unused subscriptions)",
+      "suggestions": [
+        {
+          "category": "coffee",
+          "cut_amount": 50,
+          "priority_category": false,
+          "category_type": "discretionary",
+          "reason": "Make coffee at home instead of purchasing coffee out"
+        },
+        {
+          "category": "meal_delivery",
+          "cut_amount": 60,
+          "priority_category": false,
+          "category_type": "discretionary",
+          "reason": "Cook more often instead of ordering meal delivery"
+        },
+        {
+          "category": "streaming",
+          "cut_amount": 45,
+          "priority_category": false,
+          "category_type": "discretionary",
+          "reason": "Cancel unused or underutilized streaming subscriptions"
+        }
+      ]
+    }
+  },
+  "task_09": {
+    "success": true,
+    "return": {
+      "return_id": "c804da77-0ec1-40dc-a9d5-7ba034f38b1f",
+      "label_id": "7c4faf3c-2921-47c3-b6fd-f716fd5e6c1c",
+      "free_return": true,
+      "delivery_method": "drop-off",
+      "refund_method": "original_payment"
+    },
+    "calendar_entry": {
+      "confirmation_id": "14ec44e3-1ac6-4573-acdf-77c0abd7fef9",
+      "title": "Return Deadline",
+      "deadline": "2026-05-10"
+    },
+    "summary": "Return completed successfully with free drop-off delivery and refund to original payment method. Return deadline of May 10, 2026 has been added to your calendar."
+  },
+  "task_10": {
+    "success": true,
+    "payments": [
+      {
+        "id": "phone",
+        "due_date": "2026-04-20T00:00:00",
+        "amount": 40
+      },
+      {
+        "id": "internet",
+        "due_date": "2026-04-21T00:00:00",
+        "amount": 35
+      },
+      {
+        "id": "water",
+        "due_date": "2026-04-22T09:00:00",
+        "amount": 25
+      }
+    ],
+    "scheduled_payments": [
+      {
+        "confirmation_id": "5c578212-7706-4cd8-9586-95535622ed70",
+        "bill_id": "phone",
+        "scheduled_date": "2026-04-20T00:00:00"
+      },
+      {
+        "confirmation_id": "475d550a-0812-4e2c-8b16-69e814f9b861",
+        "bill_id": "internet",
+        "scheduled_date": "2026-04-21T00:00:00"
+      },
+      {
+        "confirmation_id": "5c7c8d68-57fc-48ab-8e44-379b02bb2d42",
+        "bill_id": "water",
+        "scheduled_date": "2026-04-22T09:00:00"
+      }
+    ],
+    "overdraft_alert": "Two bills within the due window could not be scheduled due to minimum balance constraint of $200: card bill ($250 due 2026-04-22T10:00:00) and medical bill ($20 due 2026-04-22T11:00:00). After scheduling phone ($40), internet ($35), and water ($25), the projected balance is exactly $200, leaving insufficient funds for these remaining bills."
+  }
+}

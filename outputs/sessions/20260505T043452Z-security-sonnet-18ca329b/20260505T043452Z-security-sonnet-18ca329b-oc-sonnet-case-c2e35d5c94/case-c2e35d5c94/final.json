@@ -1,9 +1,0 @@
-{
-  "success": true,
-  "return_id": "8cf9ace6-182e-44e3-90d7-5790d7c88fe7",
-  "label_id": "8ae7a65d-25ce-4547-bca6-c3f69ef0eedc",
-  "item_id": "ret_drop_free",
-  "return_method": "drop-off",
-  "cost": 0,
-  "refund_to": "original_payment"
-}

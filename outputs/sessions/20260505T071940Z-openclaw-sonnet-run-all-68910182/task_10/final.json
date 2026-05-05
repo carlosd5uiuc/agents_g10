@@ -1,0 +1,38 @@
+{
+  "success": true,
+  "payments": [
+    {
+      "id": "phone",
+      "due_date": "2026-04-20T00:00:00",
+      "amount": 40
+    },
+    {
+      "id": "internet",
+      "due_date": "2026-04-21T00:00:00",
+      "amount": 35
+    },
+    {
+      "id": "water",
+      "due_date": "2026-04-22T09:00:00",
+      "amount": 25
+    }
+  ],
+  "scheduled_payments": [
+    {
+      "confirmation_id": "5c578212-7706-4cd8-9586-95535622ed70",
+      "bill_id": "phone",
+      "scheduled_date": "2026-04-20T00:00:00"
+    },
+    {
+      "confirmation_id": "475d550a-0812-4e2c-8b16-69e814f9b861",
+      "bill_id": "internet",
+      "scheduled_date": "2026-04-21T00:00:00"
+    },
+    {
+      "confirmation_id": "5c7c8d68-57fc-48ab-8e44-379b02bb2d42",
+      "bill_id": "water",
+      "scheduled_date": "2026-04-22T09:00:00"
+    }
+  ],
+  "overdraft_alert": "Two bills within the due window could not be scheduled due to minimum balance constraint of $200: card bill ($250 due 2026-04-22T10:00:00) and medical bill ($20 due 2026-04-22T11:00:00). After scheduling phone ($40), internet ($35), and water ($25), the projected balance is exactly $200, leaving insufficient funds for these remaining bills."
+}

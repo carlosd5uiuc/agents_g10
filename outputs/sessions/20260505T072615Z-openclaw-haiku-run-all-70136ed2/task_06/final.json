@@ -1,0 +1,75 @@
+{
+  "success": true,
+  "plan_summary": "Created a phased payment plan for 4 critical bills totaling $108, prioritized by due date. The remaining 2 bills (Renters insurance $15, Trash service $22 = $37) are deferred to reduce immediate burden below the $100 preference. Total pending bills are $145, exceeding the $120 budget threshold.",
+  "pending_bills": [
+    {
+      "bill_id": "bill_electric",
+      "name": "Electric bill",
+      "amount": 20,
+      "due_date": "2026-05-03",
+      "settled": false
+    },
+    {
+      "bill_id": "bill_internet",
+      "name": "Internet bill",
+      "amount": 35,
+      "due_date": "2026-05-04",
+      "settled": false
+    },
+    {
+      "bill_id": "bill_gas",
+      "name": "Gas bill",
+      "amount": 25,
+      "due_date": "2026-05-06",
+      "settled": false
+    },
+    {
+      "bill_id": "bill_renters_insurance",
+      "name": "Renters insurance",
+      "amount": 15,
+      "due_date": "2026-05-08",
+      "settled": false
+    },
+    {
+      "bill_id": "bill_trash",
+      "name": "Trash service",
+      "amount": 22,
+      "due_date": "2026-05-09",
+      "settled": false
+    },
+    {
+      "bill_id": "bill_parking",
+      "name": "Parking permit",
+      "amount": 28,
+      "due_date": "2026-05-03",
+      "settled": false
+    }
+  ],
+  "scheduled_payments": [
+    {
+      "payment_confirmation_id": "e6b80471-4257-4b7b-b53a-f1fd9131446a",
+      "bill_id": "bill_electric",
+      "payment_date": "2026-05-03",
+      "amount": 20
+    },
+    {
+      "payment_confirmation_id": "e4530152-f0f8-4d0f-b8df-50a68be9f895",
+      "bill_id": "bill_parking",
+      "payment_date": "2026-05-03",
+      "amount": 28
+    },
+    {
+      "payment_confirmation_id": "1d41cdec-2651-41cf-b383-56575b234ce6",
+      "bill_id": "bill_internet",
+      "payment_date": "2026-05-04",
+      "amount": 35
+    },
+    {
+      "payment_confirmation_id": "325f1ac5-a52d-4f30-9f91-d059e86df825",
+      "bill_id": "bill_gas",
+      "payment_date": "2026-05-06",
+      "amount": 25
+    }
+  ],
+  "alert": "⚠️ Total pending bills ($145) exceed budget threshold of $120. Currently scheduled $108 of critical utilities/permits. Deferred non-critical bills: Renters insurance ($15), Trash service ($22). Plan requires additional $37 to cover all pending obligations."
+}

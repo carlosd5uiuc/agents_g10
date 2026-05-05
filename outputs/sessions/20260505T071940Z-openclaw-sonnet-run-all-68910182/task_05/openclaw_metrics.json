@@ -1,0 +1,41 @@
+{
+  "model_call_count": 2,
+  "assistant_message_count": 2,
+  "tool_call_count": 2,
+  "tool_result_count": 2,
+  "tool_error_count": 0,
+  "resource_read_count": 2,
+  "non_resource_tool_call_count": 0,
+  "tool_sequence": [
+    {
+      "id": "toolu_01F5pr9SamrWNwbdzH2uCAkB",
+      "name": "pta-benchmark__read_benchmark_resource",
+      "arguments": {
+        "uri": "troubleshoot://guide"
+      }
+    },
+    {
+      "id": "toolu_013DyjXV1EssRSBn3GXHgbFq",
+      "name": "pta-benchmark__read_benchmark_resource",
+      "arguments": {
+        "uri": "troubleshoot://repair"
+      }
+    }
+  ],
+  "usage_sum": {
+    "input": 10,
+    "output": 440,
+    "cacheRead": 12387,
+    "cacheWrite": 1912,
+    "totalTokens": "[REDACTED]"
+  },
+  "cost_sum": {
+    "input": 3.0000000000000004e-05,
+    "output": 0.0066,
+    "cacheRead": 0.0037161,
+    "cacheWrite": 0.00717,
+    "total": 0.0175161
+  },
+  "session_file": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\baselines\\openclaw\\state\\agents\\main\\sessions\\20260505T071940Z-openclaw-sonnet-run-all-68910182-task_05.jsonl",
+  "source": "openclaw_session_jsonl"
+}

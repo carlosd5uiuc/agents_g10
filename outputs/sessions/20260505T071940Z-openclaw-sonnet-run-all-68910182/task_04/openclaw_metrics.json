@@ -1,0 +1,50 @@
+{
+  "model_call_count": 4,
+  "assistant_message_count": 4,
+  "tool_call_count": 3,
+  "tool_result_count": 3,
+  "tool_error_count": 0,
+  "resource_read_count": 1,
+  "non_resource_tool_call_count": 2,
+  "tool_sequence": [
+    {
+      "id": "toolu_011hZ77SAx9Rj5QWoUNawuqr",
+      "name": "pta-benchmark__read_benchmark_resource",
+      "arguments": {
+        "uri": "doctor://list"
+      }
+    },
+    {
+      "id": "toolu_01SMQbVY1tUmJNyRxGY63HTa",
+      "name": "pta-benchmark__set_up_doctor_appointment",
+      "arguments": {
+        "doctor_name": "Dr. Lee",
+        "appointment_time": "Friday,16"
+      }
+    },
+    {
+      "id": "toolu_01Cjj7dRgqVSDVFrxchNK8SQ",
+      "name": "pta-benchmark__create_calendar_entry",
+      "arguments": {
+        "date": "2026-05-08T16:00:00",
+        "category": "Doctor Appointment - Dr. Lee (Dermatologist)"
+      }
+    }
+  ],
+  "usage_sum": {
+    "input": 15,
+    "output": 520,
+    "cacheRead": 28444,
+    "cacheWrite": 2567,
+    "totalTokens": "[REDACTED]"
+  },
+  "cost_sum": {
+    "input": 4.5e-05,
+    "output": 0.0078000000000000005,
+    "cacheRead": 0.0085332,
+    "cacheWrite": 0.00962625,
+    "total": 0.02600445
+  },
+  "session_file": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\baselines\\openclaw\\state\\agents\\main\\sessions\\20260505T071940Z-openclaw-sonnet-run-all-68910182-task_04.jsonl",
+  "source": "openclaw_session_jsonl"
+}

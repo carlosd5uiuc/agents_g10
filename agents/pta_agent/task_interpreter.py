@@ -32,12 +32,6 @@ TASK_RUNTIME: dict[str, dict[str, Any]] = {
         "resource_uris": ["doctor://list"],
         "tool_names": ["set_up_doctor_appointment", "create_calendar_entry"],
         "irreversible_tools": {"set_up_doctor_appointment", "create_calendar_entry"},
-        "behavior_checklist": [
-            "Read doctor://list before choosing a provider.",
-            "For the slot Friday,16, use calendar datetime 2026-05-08T16:00:00.",
-            "Do not ask the user for the Friday date; this benchmark encodes the current week.",
-            "Create a MEDICAL calendar entry after the doctor appointment tool succeeds.",
-        ],
     },
     "task_05": {
         "prompt": "Troubleshoot a washer that is not draining and recommend a repair service under distance and cost constraints.",
@@ -47,10 +41,6 @@ TASK_RUNTIME: dict[str, dict[str, Any]] = {
         "resource_uris": ["troubleshoot://guide", "troubleshoot://repair"],
         "tool_names": [],
         "irreversible_tools": set(),
-        "behavior_checklist": [
-            "Use top-level recommended_steps as the canonical output field.",
-            "repair_recommendation should contain only service_name, distance_miles, and estimated_cost.",
-        ],
     },
     "task_06": {
         "prompt": "Identify unsettled household bills and schedule reminders or payment-plan entries.",
@@ -60,11 +50,6 @@ TASK_RUNTIME: dict[str, dict[str, Any]] = {
         "resource_uris": ["household-bills://list"],
         "tool_names": ["schedule_payment"],
         "irreversible_tools": {"schedule_payment"},
-        "behavior_checklist": [
-            "pending_bills must include only bills where settled is false.",
-            "scheduled_payments must correspond exactly to the unsettled bills that were scheduled.",
-            "Do not include settled bills in pending_bills, even as context.",
-        ],
     },
     "task_07": {
         "prompt": "Create a weekly exercise routine with three strength and three cardio sessions.",
@@ -101,12 +86,6 @@ TASK_RUNTIME: dict[str, dict[str, Any]] = {
         "resource_uris": ["pending-bills://list"],
         "tool_names": ["schedule_payment"],
         "irreversible_tools": {"schedule_payment"},
-        "behavior_checklist": [
-            "Given date is 2026-04-22T12:00:00; the due window is the 3 days before that timestamp.",
-            "Schedule due-window bills in due-date order only while the projected balance remains at least USD 200.",
-            "If a due-window bill cannot be scheduled without dropping below USD 200, omit that payment and provide a non-empty overdraft_alert.",
-            "Do not schedule bills outside the due window.",
-        ],
     },
 }
 
@@ -118,7 +97,6 @@ class TaskInterpreter:
     def load(self, task_id: str) -> TaskSpec:
         normalized = normalize_task_id(task_id)
         descriptions = self._load_task_descriptions()
-        tool_schemas = self._load_tool_schemas()
         raw = deepcopy(descriptions.get(normalized, {}))
         runtime = TASK_RUNTIME.get(normalized)
         if runtime is None:
@@ -128,10 +106,6 @@ class TaskInterpreter:
         merged["resource_uris"] = runtime.get("resource_uris", [])
         merged["tool_names"] = runtime.get("tool_names", [])
         merged["irreversible_tools"] = runtime.get("irreversible_tools", set())
-        selected_tool_schemas = [
-            schema for schema in tool_schemas
-            if schema.get("name") in set(merged["tool_names"])
-        ]
 
         return TaskSpec(
             task_id=normalized,
@@ -141,9 +115,8 @@ class TaskInterpreter:
             output_structure=clean_output_structure(dict(merged.get("output_structure", {"success": "bool"}))),
             resource_uris=list(merged.get("resource_uris", [])),
             tool_names=list(merged.get("tool_names", [])),
-            tool_schemas=selected_tool_schemas,
+            tool_schemas=[],
             irreversible_tools=set(merged.get("irreversible_tools", set())),
-            behavior_checklist=list(merged.get("behavior_checklist", [])),
         )
 
     def available_task_ids(self) -> list[str]:
@@ -156,17 +129,6 @@ class TaskInterpreter:
         with path.open("r", encoding="utf-8") as handle:
             data = json.load(handle)
         return {normalize_task_id(key): value for key, value in data.items()}
-
-    def _load_tool_schemas(self) -> list[dict[str, Any]]:
-        path = self.repo_root / "tool_schema.json"
-        if not path.exists():
-            return []
-        with path.open("r", encoding="utf-8") as handle:
-            data = json.load(handle)
-        if not isinstance(data, list):
-            return []
-        return [item for item in data if isinstance(item, dict) and item.get("name")]
-
 
 def normalize_task_id(task_id: str) -> str:
     lowered = task_id.strip().lower()

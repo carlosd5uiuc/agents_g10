@@ -1,0 +1,112 @@
+{
+  "model_call_count": 3,
+  "assistant_message_count": 3,
+  "tool_call_count": 2,
+  "tool_result_count": 2,
+  "tool_error_count": 0,
+  "resource_read_count": 1,
+  "non_resource_tool_call_count": 1,
+  "tool_sequence": [
+    {
+      "id": "toolu_01Md8GhYGC33pisGBSEadzHx",
+      "name": "pta-benchmark__read_benchmark_resource",
+      "arguments": {
+        "uri": "expenses://list"
+      }
+    },
+    {
+      "id": "toolu_016khRvyKNnr7F5Bk7WQYJ1k",
+      "name": "pta-benchmark__generate_report",
+      "arguments": {
+        "expenses": [
+          {
+            "category": "streaming",
+            "amount": 45
+          },
+          {
+            "category": "coffee",
+            "amount": 80
+          },
+          {
+            "category": "medicine",
+            "amount": 70
+          },
+          {
+            "category": "rideshare",
+            "amount": 90
+          },
+          {
+            "category": "groceries",
+            "amount": 260
+          },
+          {
+            "category": "gym",
+            "amount": 40
+          },
+          {
+            "category": "restaurants",
+            "amount": 150
+          },
+          {
+            "category": "rent",
+            "amount": 1200
+          },
+          {
+            "category": "utilities",
+            "amount": 140
+          },
+          {
+            "category": "entertainment",
+            "amount": 75
+          },
+          {
+            "category": "health",
+            "amount": 60
+          },
+          {
+            "category": "clothing",
+            "amount": 110
+          },
+          {
+            "category": "therapy",
+            "amount": 120
+          },
+          {
+            "category": "books",
+            "amount": 55
+          },
+          {
+            "category": "meal_delivery",
+            "amount": 95
+          },
+          {
+            "category": "insurance",
+            "amount": 210
+          },
+          {
+            "category": "games",
+            "amount": 65
+          }
+        ],
+        "reduction_goal": "$150",
+        "suggestions": "Cut coffee by $50 (make coffee at home instead), cut meal_delivery by $60 (cook more often), cut streaming by $45 (cancel unused subscriptions)"
+      }
+    }
+  ],
+  "usage_sum": {
+    "input": 12,
+    "output": 954,
+    "cacheRead": 18739,
+    "cacheWrite": 2830,
+    "totalTokens": "[REDACTED]"
+  },
+  "cost_sum": {
+    "input": 3.6e-05,
+    "output": 0.01431,
+    "cacheRead": 0.0056217,
+    "cacheWrite": 0.0106125,
+    "total": 0.030580200000000002
+  },
+  "session_file": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\baselines\\openclaw\\state\\agents\\main\\sessions\\20260505T071940Z-openclaw-sonnet-run-all-68910182-task_08.jsonl",
+  "source": "openclaw_session_jsonl"
+}

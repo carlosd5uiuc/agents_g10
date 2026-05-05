@@ -1,0 +1,16 @@
+{
+  "success": true,
+  "return": {
+    "return_id": "c804da77-0ec1-40dc-a9d5-7ba034f38b1f",
+    "label_id": "7c4faf3c-2921-47c3-b6fd-f716fd5e6c1c",
+    "free_return": true,
+    "delivery_method": "drop-off",
+    "refund_method": "original_payment"
+  },
+  "calendar_entry": {
+    "confirmation_id": "14ec44e3-1ac6-4573-acdf-77c0abd7fef9",
+    "title": "Return Deadline",
+    "deadline": "2026-05-10"
+  },
+  "summary": "Return completed successfully with free drop-off delivery and refund to original payment method. Return deadline of May 10, 2026 has been added to your calendar."
+}

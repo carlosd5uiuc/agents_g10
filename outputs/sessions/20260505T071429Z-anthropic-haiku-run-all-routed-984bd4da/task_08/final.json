@@ -1,0 +1,31 @@
+{
+  "success": true,
+  "generated_report": {
+    "savings_target": 150,
+    "total_reduction": 150,
+    "report_summary": "Expense Reduction Report: Successfully identified $150 in spending cuts from non-priority categories while respecting user preferences to avoid health and gym category reductions.",
+    "suggestions": [
+      {
+        "category": "streaming",
+        "cut_amount": 45,
+        "priority_category": false,
+        "category_type": "entertainment",
+        "reason": "Eliminate streaming subscription service"
+      },
+      {
+        "category": "meal_delivery",
+        "cut_amount": 95,
+        "priority_category": false,
+        "category_type": "food",
+        "reason": "Reduce meal delivery service usage"
+      },
+      {
+        "category": "books",
+        "cut_amount": 10,
+        "priority_category": false,
+        "category_type": "entertainment",
+        "reason": "Reduce book purchases from $55 to $45"
+      }
+    ]
+  }
+}

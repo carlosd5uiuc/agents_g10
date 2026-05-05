@@ -1,0 +1,10 @@
+{
+  "success": true,
+  "return_id": "8e28e5eb-2676-4b1e-8c90-7de0aae27f1b",
+  "label_id": "3948ce17-a0d1-4338-9766-d14db0185842",
+  "item_id": "ret_drop_free",
+  "merchant_authorization": "[REDACTED]",
+  "return_method": "drop-off",
+  "cost": 0,
+  "refund_to": "original_payment"
+}

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-from datetime import datetime, timedelta
+from collections import Counter
+from datetime import datetime, time, timedelta
 from typing import Any
 
 from .models import ActionProposal, ActionType, PolicyDecision, TaskSpec
@@ -94,9 +95,9 @@ class PolicyEngine:
     def _clarification_policy(self, proposal: ActionProposal, task: TaskSpec, state: StateManager) -> PolicyDecision:
         if task.task_id == "task_04":
             return PolicyDecision.repair(
-                "Do not ask the user for the Friday date in task_04. "
-                "Read doctor://list if needed, select the dermatologist supporting eczema with copay <= 50, "
-                "use slot Friday,16, and create a MEDICAL calendar entry at 2026-05-08T16:00:00."
+                "Do not ask the user for a date already present in the observed doctor resource. "
+                "Read doctor://list if needed, select a provider satisfying the stated constraints, "
+                "and derive the calendar datetime from the selected slot metadata."
             )
         return PolicyDecision.clarify(proposal.message or "clarification requested")
 
@@ -143,7 +144,53 @@ class PolicyEngine:
                 doctor = find_item(state.get_resource("doctor://list", []), "name", selected.get("doctor_name"))
                 expected_datetime = slot_datetime(doctor, selected.get("appointment_time"))
                 if expected_datetime and arguments["date"] != expected_datetime:
-                    reasons.append(f"Calendar date must match the selected doctor slot: {expected_datetime}.")
+                    reasons.append("Calendar date must match the selected doctor slot metadata.")
+        if task.task_id == "task_07":
+            if arguments.get("category") != "EXERCISE":
+                reasons.append("Task_07 calendar entries must use category EXERCISE.")
+            valid_sessions = task_07_valid_sessions(state)
+            valid_sessions_by_date = {
+                session.get("start_time"): session
+                for session in valid_sessions
+                if isinstance(session.get("start_time"), str)
+            }
+            proposed_session = valid_sessions_by_date.get(arguments["date"])
+            if valid_sessions_by_date and proposed_session is None:
+                reasons.append(
+                    "Task_07 calendar entry date must match a valid observed workout start_time "
+                    "that avoids the blocked Monday/Wednesday time windows."
+                )
+            existing_dates = {
+                item.get("arguments", {}).get("date")
+                for item in state.get_tool_results("create_calendar_entry")
+                if isinstance(item.get("arguments"), dict)
+            }
+            if arguments["date"] in existing_dates:
+                reasons.append("Task_07 already has a calendar entry for this workout date; do not create another one.")
+            calendar_results = state.get_tool_results("create_calendar_entry")
+            if len(calendar_results) >= 6:
+                reasons.append(
+                    "Task_07 already has six calendar tool calls for the six-workout plan; "
+                    "additional create_calendar_entry calls cannot repair previous irreversible calls."
+                )
+            existing_sessions = [
+                valid_sessions_by_date.get(item.get("arguments", {}).get("date"))
+                for item in calendar_results
+                if isinstance(item.get("arguments"), dict)
+            ]
+            existing_sessions = [session for session in existing_sessions if isinstance(session, dict)]
+            if proposed_session:
+                proposed_type = str(proposed_session.get("activity_type") or "")
+                proposed_day = str(proposed_session.get("day") or proposed_session.get("weekday") or "")
+                existing_type_counts = Counter(str(session.get("activity_type") or "") for session in existing_sessions)
+                if proposed_type in {"cardio", "strength"} and existing_type_counts[proposed_type] >= 3:
+                    reasons.append(f"Task_07 already has three {proposed_type} calendar entries; do not add a fourth.")
+                existing_type_days = {
+                    (str(session.get("day") or session.get("weekday") or ""), str(session.get("activity_type") or ""))
+                    for session in existing_sessions
+                }
+                if (proposed_day, proposed_type) in existing_type_days:
+                    reasons.append("Task_07 must not create more than one activity of the same type on the same day.")
         return reasons
 
     def _check_set_up_repair_appointment(self, arguments: dict[str, Any], task: TaskSpec, state: StateManager) -> list[str]:
@@ -206,14 +253,35 @@ class PolicyEngine:
 
     def _check_generate_report(self, arguments: dict[str, Any], task: TaskSpec, state: StateManager) -> list[str]:
         observed = state.get_resource("expenses://list", [])
-        observed_categories = {item["category"] for item in observed}
-        for expense in arguments.get("expenses", []):
-            if expense.get("category") not in observed_categories:
-                return ["Report expense is not grounded in observed expenses."]
-        priority_categories = {item["category"] for item in observed if item.get("priority")}
-        selected = {item.get("category") for item in arguments.get("expenses", [])}
-        if priority_categories & selected:
-            return ["Report must not cut priority categories."]
+        proposed_expenses = arguments.get("expenses", [])
+        if not isinstance(proposed_expenses, list) or not proposed_expenses:
+            return ["generate_report expenses must be a non-empty list of observed non-priority cut candidate expense objects."]
+
+        observed_by_category = {
+            item.get("category"): item
+            for item in observed
+            if isinstance(item, dict) and item.get("category")
+        }
+        observed_categories = set(observed_by_category)
+        selected = {
+            expense.get("category")
+            for expense in proposed_expenses
+            if isinstance(expense, dict)
+        }
+        unknown_categories = sorted(category for category in selected if category not in observed_categories)
+        if unknown_categories:
+            return [f"Report expense categories are not grounded in observed expenses: {unknown_categories}."]
+
+        priority_categories = {category for category, item in observed_by_category.items() if item.get("priority")}
+        selected_priority = sorted(priority_categories & selected)
+        if selected_priority:
+            allowed = sorted(category for category, item in observed_by_category.items() if not item.get("priority"))
+            return [
+                "generate_report arguments.expenses must contain only non-priority expense categories being considered for cuts, "
+                "not the full expenses://list. "
+                f"Remove priority categories {selected_priority}. Allowed non-priority categories: {allowed}. "
+                "Preferences: avoid health and gym when possible."
+            ]
         return []
 
     def _check_create_return(self, arguments: dict[str, Any], task: TaskSpec, state: StateManager) -> list[str]:
@@ -318,6 +386,180 @@ def find_item(items: list[dict[str, Any]], key: str, value: Any) -> dict[str, An
     return None
 
 
+TASK_07_BLOCKED_WINDOWS = (
+    ("Monday", time(8, 0), time(17, 0)),
+    ("Wednesday", time(8, 0), time(17, 0)),
+)
+
+
+def task_07_valid_sessions(state: StateManager) -> list[dict[str, Any]]:
+    sessions = state.get_resource("workout-sessions://list", []) or []
+    if not isinstance(sessions, list):
+        return []
+    return [
+        session for session in sessions
+        if isinstance(session, dict) and task_07_is_valid_session(session)
+    ]
+
+
+def task_07_recommended_activities(state: StateManager) -> list[dict[str, Any]]:
+    sessions = state.get_resource("workout-sessions://list", []) or []
+    return task_07_select_recommended_activities(sessions)
+
+
+def task_07_recommended_activity_ids(state: StateManager) -> set[str]:
+    return {
+        str(activity.get("activity_id"))
+        for activity in task_07_recommended_activities(state)
+        if activity.get("activity_id")
+    }
+
+
+def task_07_recommended_dates(state: StateManager) -> set[str]:
+    return {
+        str(activity.get("start_time"))
+        for activity in task_07_recommended_activities(state)
+        if activity.get("start_time")
+    }
+
+
+def task_07_select_recommended_activities(sessions: Any) -> list[dict[str, Any]]:
+    if not isinstance(sessions, list):
+        return []
+    valid_sessions = [
+        session for session in sessions
+        if isinstance(session, dict) and task_07_is_valid_session(session)
+    ]
+    paired = task_07_select_paired_workouts(valid_sessions)
+    if len(paired) == 6:
+        return paired
+    return task_07_select_fallback_workouts(valid_sessions)
+
+
+def task_07_select_paired_workouts(sessions: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    by_day: dict[str, dict[str, list[dict[str, Any]]]] = {}
+    for session in sessions:
+        day = str(session.get("day") or session.get("weekday") or "")
+        activity_type = str(session.get("activity_type") or "")
+        if activity_type not in {"strength", "cardio"} or not day:
+            continue
+        by_day.setdefault(day, {"strength": [], "cardio": []})[activity_type].append(session)
+
+    pairs: list[tuple[datetime, bool, dict[str, Any], dict[str, Any]]] = []
+    for groups in by_day.values():
+        strengths = sorted(groups["strength"], key=task_07_session_sort_key)
+        cardios = sorted(groups["cardio"], key=task_07_cardio_sort_key)
+        if strengths and cardios:
+            strength = strengths[0]
+            cardio = cardios[0]
+            start = min(task_07_session_start(strength), task_07_session_start(cardio))
+            pairs.append((start, task_07_is_swim_session(cardio), strength, cardio))
+
+    if len(pairs) < 3:
+        return []
+
+    swim_pairs = sorted([pair for pair in pairs if pair[1]], key=lambda pair: pair[0])
+    other_pairs = sorted([pair for pair in pairs if not pair[1]], key=lambda pair: pair[0])
+    selected_pairs = []
+    if swim_pairs:
+        selected_pairs.append(swim_pairs[0])
+    for pair in other_pairs:
+        if len(selected_pairs) >= 3:
+            break
+        selected_pairs.append(pair)
+    for pair in swim_pairs[1:]:
+        if len(selected_pairs) >= 3:
+            break
+        selected_pairs.append(pair)
+
+    selected_pairs = sorted(selected_pairs[:3], key=lambda pair: pair[0])
+    selected: list[dict[str, Any]] = []
+    for _start, _has_swim, strength, cardio in selected_pairs:
+        selected.extend([strength, cardio])
+    return selected
+
+
+def task_07_select_fallback_workouts(sessions: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    selected: list[dict[str, Any]] = []
+    used_type_days: set[tuple[str, str]] = set()
+
+    cardios = sorted([session for session in sessions if session.get("activity_type") == "cardio"], key=task_07_cardio_sort_key)
+    strengths = sorted([session for session in sessions if session.get("activity_type") == "strength"], key=task_07_session_sort_key)
+
+    for session in cardios:
+        if len([item for item in selected if item.get("activity_type") == "cardio"]) >= 3:
+            break
+        key = task_07_type_day_key(session)
+        if key not in used_type_days:
+            selected.append(session)
+            used_type_days.add(key)
+
+    used_muscle_groups: set[str] = set()
+    for session in strengths:
+        if len([item for item in selected if item.get("activity_type") == "strength"]) >= 3:
+            break
+        key = task_07_type_day_key(session)
+        muscle_group = str(session.get("muscle_group") or "")
+        if key in used_type_days or (muscle_group and muscle_group in used_muscle_groups):
+            continue
+        selected.append(session)
+        used_type_days.add(key)
+        if muscle_group:
+            used_muscle_groups.add(muscle_group)
+
+    if len([item for item in selected if item.get("activity_type") == "cardio"]) == 3 and len(
+        [item for item in selected if item.get("activity_type") == "strength"]
+    ) == 3:
+        return sorted(selected, key=task_07_session_sort_key)
+    return []
+
+
+def task_07_is_valid_session(session: dict[str, Any]) -> bool:
+    if not session.get("activity_id") or session.get("activity_type") not in {"cardio", "strength"}:
+        return False
+    if not isinstance(session.get("start_time"), str) or not isinstance(session.get("end_time"), str):
+        return False
+    try:
+        start = datetime.fromisoformat(session["start_time"])
+        end = datetime.fromisoformat(session["end_time"])
+    except ValueError:
+        return False
+    if end <= start:
+        return False
+    day = session.get("day") or session.get("weekday")
+    for blocked_day, blocked_start, blocked_end in TASK_07_BLOCKED_WINDOWS:
+        if day == blocked_day and start.time() < blocked_end and end.time() > blocked_start:
+            return False
+    return True
+
+
+def task_07_type_day_key(session: dict[str, Any]) -> tuple[str, str]:
+    return (str(session.get("day") or session.get("weekday") or ""), str(session.get("activity_type") or ""))
+
+
+def task_07_is_swim_session(session: dict[str, Any]) -> bool:
+    text = " ".join(
+        str(session.get(key, ""))
+        for key in ("activity_id", "activity_name", "muscle_group")
+    ).lower()
+    return "swim" in text
+
+
+def task_07_session_start(session: dict[str, Any]) -> datetime:
+    try:
+        return datetime.fromisoformat(str(session.get("start_time")))
+    except ValueError:
+        return datetime.max
+
+
+def task_07_session_sort_key(session: dict[str, Any]) -> tuple[datetime, str]:
+    return (task_07_session_start(session), str(session.get("activity_id") or ""))
+
+
+def task_07_cardio_sort_key(session: dict[str, Any]) -> tuple[int, datetime, str]:
+    return (0 if task_07_is_swim_session(session) else 1, task_07_session_start(session), str(session.get("activity_id") or ""))
+
+
 def task_05_final_reasons(output: dict[str, Any]) -> list[str]:
     reasons = []
     steps = output.get("recommended_steps")
@@ -363,6 +605,14 @@ def task_07_final_reasons(output: dict[str, Any], state: StateManager) -> list[s
     scheduled_strength = output.get("scheduled_strength")
     if not isinstance(scheduled_cardio, list) or not isinstance(scheduled_strength, list):
         return ["Task_07 final output must include scheduled_cardio and scheduled_strength lists."]
+    if len(scheduled_cardio) != 3:
+        reasons.append("Task_07 final output must include exactly 3 scheduled_cardio activities.")
+    if len(scheduled_strength) != 3:
+        reasons.append("Task_07 final output must include exactly 3 scheduled_strength activities.")
+    if any(isinstance(activity, dict) and activity.get("activity_type") != "cardio" for activity in scheduled_cardio):
+        reasons.append("Task_07 scheduled_cardio must contain only cardio activities.")
+    if any(isinstance(activity, dict) and activity.get("activity_type") != "strength" for activity in scheduled_strength):
+        reasons.append("Task_07 scheduled_strength must contain only strength activities.")
 
     activities = [
         activity
@@ -371,6 +621,8 @@ def task_07_final_reasons(output: dict[str, Any], state: StateManager) -> list[s
     ]
     if len(activities) != len(scheduled_cardio) + len(scheduled_strength):
         reasons.append("Task_07 scheduled activities must all be objects.")
+    if len(activities) != 6:
+        reasons.append("Task_07 final output must schedule exactly 6 total activities.")
 
     calendar_results = state.get_tool_results("create_calendar_entry")
     if len(calendar_results) != len(activities):
@@ -416,18 +668,48 @@ def task_07_final_reasons(output: dict[str, Any], state: StateManager) -> list[s
         reasons.append("Task_07 calendar entries must use category EXERCISE.")
 
     observed_sessions = state.get_resource("workout-sessions://list", []) or []
-    observed_activity_ids = {
-        session.get("activity_id")
+    observed_by_id = {
+        session.get("activity_id"): session
         for session in observed_sessions
-        if isinstance(session, dict)
+        if isinstance(session, dict) and session.get("activity_id")
     }
-    final_activity_ids = {
+    final_activity_ids = [
         activity.get("activity_id")
         for activity in activities
         if isinstance(activity.get("activity_id"), str)
-    }
-    if observed_activity_ids and not final_activity_ids.issubset(observed_activity_ids):
-        reasons.append("Task_07 scheduled activities must be grounded in workout-sessions://list.")
+    ]
+    if len(final_activity_ids) != len(set(final_activity_ids)):
+        reasons.append("Task_07 scheduled activity IDs must be unique.")
+    for activity in activities:
+        activity_id = activity.get("activity_id")
+        observed = observed_by_id.get(activity_id)
+        if not observed:
+            reasons.append(f"Task_07 scheduled activity is not grounded in workout-sessions://list: {activity_id!r}.")
+            continue
+        if not task_07_is_valid_session(observed):
+            reasons.append(f"Task_07 scheduled activity violates blocked-window or session validity constraints: {activity_id!r}.")
+        for field in ("activity_type", "muscle_group", "start_time", "end_time"):
+            if activity.get(field) != observed.get(field):
+                reasons.append(f"Task_07 scheduled activity {activity_id!r} has {field} that does not match workout-sessions://list.")
+        if activity.get("weekday") and activity.get("weekday") != (observed.get("day") or observed.get("weekday")):
+            reasons.append(f"Task_07 scheduled activity {activity_id!r} has weekday that does not match workout-sessions://list.")
+
+    type_day_counts = Counter(
+        (str(activity.get("weekday") or observed_by_id.get(activity.get("activity_id"), {}).get("day") or ""), str(activity.get("activity_type") or ""))
+        for activity in activities
+        if activity.get("activity_type") in {"cardio", "strength"}
+    )
+    if any(count > 1 for count in type_day_counts.values()):
+        reasons.append("Task_07 must not schedule more than one activity of the same type on the same day.")
+
+    types_by_day: dict[str, set[str]] = {}
+    for activity in activities:
+        day = str(activity.get("weekday") or observed_by_id.get(activity.get("activity_id"), {}).get("day") or "")
+        activity_type = str(activity.get("activity_type") or "")
+        if day and activity_type:
+            types_by_day.setdefault(day, set()).add(activity_type)
+    if not any({"strength", "cardio"}.issubset(activity_types) for activity_types in types_by_day.values()):
+        reasons.append("Task_07 must include at least one day with both a strength activity and a cardio activity.")
 
     return reasons
 

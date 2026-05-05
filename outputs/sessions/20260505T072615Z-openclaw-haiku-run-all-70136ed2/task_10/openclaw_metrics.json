@@ -1,0 +1,61 @@
+{
+  "model_call_count": 3,
+  "assistant_message_count": 3,
+  "tool_call_count": 4,
+  "tool_result_count": 4,
+  "tool_error_count": 0,
+  "resource_read_count": 1,
+  "non_resource_tool_call_count": 3,
+  "tool_sequence": [
+    {
+      "id": "toolu_018zpbkY1aEVe1H4kswXTVTD",
+      "name": "pta-benchmark__read_benchmark_resource",
+      "arguments": {
+        "uri": "pending-bills://list"
+      }
+    },
+    {
+      "id": "toolu_01JT61TRMqEEWDWdombSRMSC",
+      "name": "pta-benchmark__schedule_payment",
+      "arguments": {
+        "bill_id": "medical",
+        "payment_date": "2026-04-22T11:00:00",
+        "amount": 20
+      }
+    },
+    {
+      "id": "toolu_01SzG3XTxyzrGtZFzCWyR43F",
+      "name": "pta-benchmark__schedule_payment",
+      "arguments": {
+        "bill_id": "water",
+        "payment_date": "2026-04-22T09:00:00",
+        "amount": 25
+      }
+    },
+    {
+      "id": "toolu_01QBLxxwWBFuHjb4w3HCQYnU",
+      "name": "pta-benchmark__schedule_payment",
+      "arguments": {
+        "bill_id": "internet",
+        "payment_date": "2026-04-21T00:00:00",
+        "amount": 35
+      }
+    }
+  ],
+  "usage_sum": {
+    "input": 14,
+    "output": 1263,
+    "cacheRead": 19707,
+    "cacheWrite": 2588,
+    "totalTokens": "[REDACTED]"
+  },
+  "cost_sum": {
+    "input": 1.4e-05,
+    "output": 0.006315,
+    "cacheRead": 0.0019707,
+    "cacheWrite": 0.0032350000000000005,
+    "total": 0.011534700000000002
+  },
+  "session_file": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\baselines\\openclaw\\state\\agents\\main\\sessions\\20260505T072615Z-openclaw-haiku-run-all-70136ed2-task_10.jsonl",
+  "source": "openclaw_session_jsonl"
+}

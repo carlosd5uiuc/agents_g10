@@ -1,0 +1,21 @@
+{
+  "success": true,
+  "diagnosis": "The washer is experiencing a drain pump problem causing water to remain in the drum and the cycle to stop prematurely.",
+  "likely_cause": "Drain pump blockage - debris or foreign objects are obstructing the drain pump, preventing water from being expelled during the drain cycle.",
+  "recommended_steps": [
+    "Unplug the washer from the electrical outlet for safety",
+    "Locate the drain pump (typically found at the bottom front or rear of the washer)",
+    "Remove the pump access panel or filter cover",
+    "Inspect the pump inlet for visible blockages such as lint, coins, or fabric pieces",
+    "Carefully remove any debris found in or around the pump",
+    "Rinse the pump area with clean water to ensure no residual blockage remains",
+    "Reassemble the pump cover and access panel",
+    "Plug the washer back in and run a test cycle with no load to verify proper drainage",
+    "If blockage is severe or pump is damaged, the pump assembly may need replacement (typically $80-$150 in parts)"
+  ],
+  "repair_recommendation": {
+    "service_name": "DIY Drain Pump Cleaning and Inspection",
+    "distance_miles": 0.0,
+    "estimated_cost": 0
+  }
+}
