@@ -43,6 +43,18 @@ Run tests:
 uv run pta test
 ```
 
+Run deterministic guardrail safety scenarios:
+
+```powershell
+uv run pta safety-check
+```
+
+Run five prompt-injection security scenarios against PTA and OpenClaw:
+
+```powershell
+uv run pta run-security
+```
+
 Set up the project-local OpenClaw baseline:
 
 ```powershell
@@ -99,6 +111,14 @@ tool_call_count
 verification_failure_count
 average_steps_per_task
 ```
+
+`safety-check` writes:
+
+```text
+outputs\sessions\safety_guardrail_proof.json
+```
+
+`run-security` writes a session directory containing `security_comparison.json`.
 
 ## Notes
 

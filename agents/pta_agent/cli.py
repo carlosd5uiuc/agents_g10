@@ -20,6 +20,8 @@ from .openclaw_baseline import (
 )
 from .providers import AnthropicProvider
 from .runner import default_output_root, make_session_id, run_suite, run_task, write_grader_bundle, write_session_summary
+from .safety_probe import run_safety_probe
+from .security_benchmark import SecurityRunConfig, run_security_benchmark
 
 
 DEFAULT_PROVIDER = "anthropic"
@@ -31,7 +33,7 @@ def main() -> None:
     subparsers = parser.add_subparsers(
         dest="command",
         required=True,
-        metavar="{run-all,run-task,test,setup-openclaw,run-openclaw-all,run-openclaw-task}",
+        metavar="{run-all,run-task,test,safety-check,run-security,setup-openclaw,run-openclaw-all,run-openclaw-task}",
     )
 
     run_task_parser = subparsers.add_parser("run-task", help="Run one task with Anthropic.")
@@ -43,6 +45,19 @@ def main() -> None:
 
     test_parser = subparsers.add_parser("test", help="Run PTA unit tests.")
     test_parser.add_argument("--repo-root", default=str(Path.cwd()), help=argparse.SUPPRESS)
+
+    safety_parser = subparsers.add_parser("safety-check", help="Run deterministic PTA guardrail scenarios.")
+    safety_parser.add_argument("--repo-root", default=str(Path.cwd()), help=argparse.SUPPRESS)
+    safety_parser.add_argument("--output", help=argparse.SUPPRESS)
+
+    security_parser = subparsers.add_parser("run-security", help="Run direct/indirect prompt-injection scenarios against PTA and OpenClaw.")
+    security_parser.add_argument("--repo-root", default=str(Path.cwd()), help=argparse.SUPPRESS)
+    security_parser.add_argument("--output-root", help=argparse.SUPPRESS)
+    security_parser.add_argument("--agent", choices=["both", "pta", "openclaw"], default="both")
+    security_parser.add_argument("--scenario", default="all", help="all, direct_prompt_injection, indirect_prompt_injection, or a scenario id.")
+    security_parser.add_argument("--model", help="Model override. Defaults to ANTHROPIC_MODEL.")
+    security_parser.add_argument("--max-steps", type=int, default=30, help=argparse.SUPPRESS)
+    security_parser.add_argument("--timeout-seconds", type=int, default=DEFAULT_OPENCLAW_TIMEOUT_SECONDS, help=argparse.SUPPRESS)
 
     setup_openclaw_parser = subparsers.add_parser("setup-openclaw", help="Install and configure the project-local OpenClaw baseline.")
     setup_openclaw_parser.add_argument("--repo-root", default=str(Path.cwd()), help=argparse.SUPPRESS)
@@ -60,6 +75,30 @@ def main() -> None:
     if args.command == "test":
         raise SystemExit(run_tests(repo_root))
 
+    if args.command == "safety-check":
+        output_path = Path(args.output).resolve() if args.output else default_output_root(repo_root) / "safety_guardrail_proof.json"
+        result = run_safety_probe(repo_root, output_path)
+        print(json.dumps(result, indent=2))
+        raise SystemExit(0 if result["unsafe_bypass_count"] == 0 and result["pass_count"] == result["scenario_count"] else 1)
+
+    if args.command == "run-security":
+        output_root = Path(args.output_root).resolve() if args.output_root else None
+        result = asyncio.run(
+            run_security_benchmark(
+                SecurityRunConfig(
+                    repo_root=repo_root,
+                    output_root=output_root,
+                    agent=args.agent,
+                    scenario=args.scenario,
+                    model_id=args.model,
+                    max_steps=args.max_steps,
+                    timeout_seconds=args.timeout_seconds,
+                )
+            )
+        )
+        print(json.dumps(result, indent=2))
+        raise SystemExit(0)
+
     if args.command == "setup-openclaw":
         result = setup_openclaw_baseline(repo_root)
         print(json.dumps(result, indent=2))
@@ -76,14 +115,6 @@ def main() -> None:
         )
         return
 
-    if args.command == "run-openclaw-task":
-        run_openclaw_one(args, args.task_id)
-        return
-
-    if args.command == "run-openclaw-all":
-        run_openclaw_many(args)
-        return
-
     if args.command == "run-all":
         model_label = current_model_label(DEFAULT_PROVIDER)
         run_many(
@@ -92,6 +123,14 @@ def main() -> None:
             task_delay_seconds=DEFAULT_TASK_DELAY_SECONDS,
             model_label=model_label,
         )
+        return
+
+    if args.command == "run-openclaw-task":
+        run_openclaw_one(args, args.task_id)
+        return
+
+    if args.command == "run-openclaw-all":
+        run_openclaw_many(args)
         return
 
 

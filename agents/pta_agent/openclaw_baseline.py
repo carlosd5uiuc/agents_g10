@@ -5,7 +5,7 @@ import os
 import subprocess
 import sys
 import asyncio
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from pathlib import Path
 from typing import Any
 
@@ -29,6 +29,8 @@ class OpenClawRunConfig:
     timeout_seconds: int = DEFAULT_OPENCLAW_TIMEOUT_SECONDS
     task_delay_seconds: float = DEFAULT_OPENCLAW_DELAY_SECONDS
     session_id: str | None = None
+    task_override: TaskSpec | None = None
+    message_override: str | None = None
 
 
 def setup_openclaw_baseline(repo_root: Path) -> dict[str, Any]:
@@ -70,7 +72,7 @@ def setup_openclaw_baseline(repo_root: Path) -> dict[str, Any]:
 async def run_openclaw_task(config: OpenClawRunConfig) -> dict[str, Any]:
     repo_root = config.repo_root.resolve()
     output_root = (config.output_root or default_output_root(repo_root)).resolve()
-    task = TaskInterpreter(repo_root).load(config.task_id)
+    task = config.task_override or TaskInterpreter(repo_root).load(config.task_id)
     model_id = config.model_id or current_openclaw_model_id()
     model_label = compact_openclaw_model_label(model_id)
     session_id = config.session_id or make_session_id("openclaw", session_label(task.task_id, model_label))
@@ -129,6 +131,7 @@ async def run_openclaw_task(config: OpenClawRunConfig) -> dict[str, Any]:
                 model_id=model_id,
                 timeout_seconds=config.timeout_seconds,
                 openclaw_session_id=logger.run_id,
+                message_override=config.message_override,
             )
             logger.log("openclaw_command_started", {"command": redact_command(command)})
             completed = subprocess.run(
@@ -219,6 +222,10 @@ async def run_openclaw_task(config: OpenClawRunConfig) -> dict[str, Any]:
     return summary
 
 
+async def run_openclaw_task_spec(config: OpenClawRunConfig, task: TaskSpec) -> dict[str, Any]:
+    return await run_openclaw_task(replace(config, task_id=task.task_id, task_override=task))
+
+
 async def run_openclaw_suite(config: OpenClawRunConfig, task_ids: list[str] | None = None) -> list[dict[str, Any]]:
     interpreter = TaskInterpreter(config.repo_root.resolve())
     ids = task_ids or interpreter.available_task_ids()
@@ -253,6 +260,7 @@ def build_openclaw_agent_command(
     model_id: str,
     timeout_seconds: int,
     openclaw_session_id: str,
+    message_override: str | None = None,
 ) -> list[str]:
     return [
         npm_executable(),
@@ -268,7 +276,7 @@ def build_openclaw_agent_command(
         "--model",
         openclaw_model_arg(model_id),
         "--message",
-        build_openclaw_message(task),
+        message_override or build_openclaw_message(task),
         "--timeout",
         str(timeout_seconds),
         "--json",
