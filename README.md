@@ -55,7 +55,7 @@ Run deterministic guardrail safety scenarios:
 uv run pta safety-check
 ```
 
-Run five prompt-injection security scenarios plus one sensitive-workflow positive control against PTA and OpenClaw:
+Run five prompt-injection security scenarios plus one sensitive-workflow positive control against PTA and safety-prompted OpenClaw:
 
 ```powershell
 uv run pta run-security

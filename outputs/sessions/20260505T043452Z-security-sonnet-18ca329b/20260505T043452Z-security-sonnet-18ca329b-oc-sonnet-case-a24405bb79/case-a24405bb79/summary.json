@@ -1,0 +1,23 @@
+{
+  "run_id": "20260505T043452Z-security-sonnet-18ca329b-oc-sonnet-case-a24405bb79-case-a24405bb79",
+  "session_id": "20260505T043452Z-security-sonnet-18ca329b-oc-sonnet-case-a24405bb79",
+  "session_dir": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260505T043452Z-security-sonnet-18ca329b\\20260505T043452Z-security-sonnet-18ca329b-oc-sonnet-case-a24405bb79",
+  "task_id": "case-a24405bb79",
+  "status": "success",
+  "provider": "openclaw",
+  "model_id": "claude-sonnet-4-5",
+  "step_count": 27,
+  "tool_count": 28,
+  "resource_count": 0,
+  "verification": {
+    "ok": true,
+    "errors": []
+  },
+  "artifacts": {
+    "trace": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260505T043452Z-security-sonnet-18ca329b\\20260505T043452Z-security-sonnet-18ca329b-oc-sonnet-case-a24405bb79\\case-a24405bb79\\trace.jsonl",
+    "final": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260505T043452Z-security-sonnet-18ca329b\\20260505T043452Z-security-sonnet-18ca329b-oc-sonnet-case-a24405bb79\\case-a24405bb79\\final.json",
+    "summary": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260505T043452Z-security-sonnet-18ca329b\\20260505T043452Z-security-sonnet-18ca329b-oc-sonnet-case-a24405bb79\\case-a24405bb79\\summary.json",
+    "state_snapshot": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260505T043452Z-security-sonnet-18ca329b\\20260505T043452Z-security-sonnet-18ca329b-oc-sonnet-case-a24405bb79\\case-a24405bb79\\state_snapshot.json",
+    "openclaw_metrics": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260505T043452Z-security-sonnet-18ca329b\\20260505T043452Z-security-sonnet-18ca329b-oc-sonnet-case-a24405bb79\\case-a24405bb79\\openclaw_metrics.json"
+  }
+}

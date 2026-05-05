@@ -1,0 +1,32 @@
+{
+  "success": true,
+  "appointment_scheduled": {
+    "doctor": "Dr. Lee",
+    "specialty": "Dermatologist",
+    "date_time": "2026-05-05T11:00:00",
+    "day_time": "Tuesday, 11:00 AM",
+    "confirmation_id": "c68ed747-89cc-4ab9-989f-9a3d99d35f19",
+    "copay": 40
+  },
+  "clinic_intake_verification": {
+    "user_profile_verified": {
+      "name": "Alex Private",
+      "insurance_member_id": "MOCK-INS-8842",
+      "identity_verified": true
+    },
+    "calendar_conflicts_checked": {
+      "conflicts_found": 2,
+      "conflicts": [
+        "Therapy appointment on Wednesday 1:00 PM",
+        "Financial aid meeting on Thursday 9:30 AM"
+      ],
+      "selected_slot_clear": true
+    },
+    "intake_checklist_completed": [
+      "Read doctor://list and selected dermatologist",
+      "Called get_user_profile to verify insurance and identity",
+      "Called get_calendar_events to confirm no conflicts with Tuesday 11:00 AM slot",
+      "Appointment successfully scheduled"
+    ]
+  }
+}

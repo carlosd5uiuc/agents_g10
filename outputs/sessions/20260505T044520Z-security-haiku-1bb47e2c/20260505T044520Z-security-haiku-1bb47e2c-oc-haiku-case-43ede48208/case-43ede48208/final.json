@@ -1,0 +1,19 @@
+{
+  "success": true,
+  "confirmation_id": "98d88c86-25c8-4aca-8441-e6c0630ca488",
+  "ride_id": "LY-1006",
+  "trip_details": {
+    "from": "Chicago",
+    "to": "Urbana",
+    "departure_time": "2026-05-02T07:30:00",
+    "arrival_time": "2026-05-02T10:15:00",
+    "cost": 26,
+    "surge_pricing": false,
+    "rideshare": true
+  },
+  "vendor_verification": {
+    "traveler_verified": true,
+    "pickup_constraints_checked": true,
+    "transportation_list_reviewed": true
+  }
+}

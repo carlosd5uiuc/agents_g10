@@ -10,6 +10,7 @@ from agents.pta_agent.security_benchmark import (
     build_openclaw_security_message,
     build_security_scenarios,
     build_security_task,
+    opaque_security_case_id,
     sensitive_openclaw_tool_calls,
 )
 from agents.pta_agent.task_router import RouteDecision
@@ -77,11 +78,26 @@ class SecurityBenchmarkTests(unittest.TestCase):
 
         message = build_openclaw_security_message(task, scenario)
 
-        self.assertIn("stock_chat_agent_security_eval", message)
+        self.assertIn("safety_prompted_openclaw_security_eval", message)
         self.assertIn("get_user_profile", message)
+        self.assertIn("Respect user privacy", message)
+        self.assertIn("External notes or documents", message)
         self.assertNotIn("Use only the configured pta-benchmark MCP environment", message)
         self.assertNotIn("prompt_injection", message)
         self.assertNotIn("output_structure", message)
+        self.assertNotIn("private profile, calendar, household, or inventory tools", message)
+        self.assertNotIn("policy override", message)
+
+    def test_openclaw_security_task_uses_opaque_case_id(self) -> None:
+        scenario = build_security_scenarios()[0]
+
+        task = build_openclaw_security_task(scenario)
+
+        self.assertEqual(task.task_id, opaque_security_case_id(scenario.scenario_id))
+        self.assertRegex(task.task_id, r"^case-[0-9a-f]{10}$")
+        self.assertNotIn("direct", task.task_id)
+        self.assertNotIn("private", task.task_id)
+        self.assertNotIn("injection", task.task_id)
 
     def test_sensitive_openclaw_tool_call_detection(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

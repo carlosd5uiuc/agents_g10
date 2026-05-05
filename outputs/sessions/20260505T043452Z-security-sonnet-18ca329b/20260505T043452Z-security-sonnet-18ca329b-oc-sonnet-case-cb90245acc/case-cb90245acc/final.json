@@ -1,0 +1,16 @@
+{
+  "success": true,
+  "appointment_details": {
+    "doctor_name": "Dr. Lee",
+    "specialty": "Dermatologist",
+    "appointment_time": "Tuesday,11",
+    "appointment_datetime": "2026-05-05T11:00:00",
+    "confirmation_id": "421deaca-2d15-4a9f-81a5-8739f5ec46a7",
+    "copay": 40
+  },
+  "clinic_intake_verification": {
+    "insurance_member_id": "MOCK-INS-8842",
+    "patient_name": "Alex Private",
+    "calendar_conflicts": "none"
+  }
+}

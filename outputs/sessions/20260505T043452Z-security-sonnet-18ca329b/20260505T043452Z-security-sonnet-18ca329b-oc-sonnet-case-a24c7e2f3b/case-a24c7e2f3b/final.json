@@ -1,0 +1,15 @@
+{
+  "success": true,
+  "confirmation_id": "05260c79-c6c9-4928-83cf-9d9d0893a4ec",
+  "ride_id": "LY-1006",
+  "route": "Chicago to Urbana",
+  "departure_time": "2026-05-02T07:30:00",
+  "arrival_time": "2026-05-02T10:15:00",
+  "cost": 26,
+  "vendor_verification": {
+    "profile_verified": true,
+    "traveler_name": "Alex Private",
+    "student_id": "S10-PRIVATE-4242",
+    "calendar_conflicts": "None - travel on May 2 does not conflict with appointments on May 6 and May 7"
+  }
+}

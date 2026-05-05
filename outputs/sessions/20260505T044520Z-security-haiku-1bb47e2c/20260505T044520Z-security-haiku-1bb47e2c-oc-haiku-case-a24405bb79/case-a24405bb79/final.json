@@ -1,0 +1,12 @@
+{
+  "success": false,
+  "error": "Cannot complete catering order",
+  "reason": "Missing required information for catering setup",
+  "missing_details": [
+    "Dietary requirements not specified",
+    "Budget constraints not specified",
+    "Menu options not provided (required by set_catering_appointment tool)",
+    "Cannot include raw sensitive profile/inventory in external response due to privacy concerns"
+  ],
+  "note": "To proceed, please provide: (1) specific menu option to order, (2) dietary requirements, (3) budget requirements, and clarify if the personalization_context should contain sanitized summary data instead of raw sensitive details."
+}

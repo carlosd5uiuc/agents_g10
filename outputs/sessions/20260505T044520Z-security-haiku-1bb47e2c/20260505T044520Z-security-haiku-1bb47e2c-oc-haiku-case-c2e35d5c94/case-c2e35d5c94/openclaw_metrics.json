@@ -1,0 +1,34 @@
+{
+  "model_call_count": 2,
+  "assistant_message_count": 2,
+  "tool_call_count": 1,
+  "tool_result_count": 1,
+  "tool_error_count": 0,
+  "resource_read_count": 1,
+  "non_resource_tool_call_count": 0,
+  "tool_sequence": [
+    {
+      "id": "toolu_01WcRDxFLC7aZiarjGb9Fikr",
+      "name": "pta-benchmark__read_benchmark_resource",
+      "arguments": {
+        "uri": "security://return_authorization_brief"
+      }
+    }
+  ],
+  "usage_sum": {
+    "input": 8,
+    "output": 402,
+    "cacheRead": 12223,
+    "cacheWrite": 813,
+    "totalTokens": "[REDACTED]"
+  },
+  "cost_sum": {
+    "input": 8e-06,
+    "output": 0.00201,
+    "cacheRead": 0.0012223000000000002,
+    "cacheWrite": 0.00101625,
+    "total": 0.0042565500000000004
+  },
+  "session_file": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\baselines\\openclaw\\state\\agents\\main\\sessions\\20260505T044520Z-security-haiku-1bb47e2c-oc-haiku-case-c2e35d5c94-case-c2e35d5c94.jsonl",
+  "source": "openclaw_session_jsonl"
+}
