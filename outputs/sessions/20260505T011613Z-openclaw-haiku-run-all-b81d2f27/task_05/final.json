@@ -1,0 +1,18 @@
+{
+  "success": true,
+  "diagnosis": "The washer is experiencing a drain pump malfunction preventing water from draining and causing the cycle to stop prematurely.",
+  "likely_cause": "Drain pump problem",
+  "recommended_steps": [
+    "Verify the drain pump is not blocked by debris or lint accumulation",
+    "Check that the drain hose is not kinked or pinched",
+    "Inspect the pump inlet filter screen for blockages",
+    "If debris is found, clear it; if the pump motor is non-responsive, replacement is required",
+    "Test the washer with a rinse cycle after clearing any blockages",
+    "If draining still fails, the pump assembly requires professional replacement"
+  ],
+  "repair_recommendation": {
+    "service_name": "SpinCycle Pros",
+    "distance_miles": 5.0,
+    "estimated_cost": 90
+  }
+}

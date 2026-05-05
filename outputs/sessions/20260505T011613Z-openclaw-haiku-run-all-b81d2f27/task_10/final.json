@@ -1,0 +1,48 @@
+{
+  "success": true,
+  "payments": [
+    {
+      "id": "phone",
+      "due_date": "2026-04-20T00:00:00",
+      "amount": 40
+    },
+    {
+      "id": "internet",
+      "due_date": "2026-04-21T00:00:00",
+      "amount": 35
+    },
+    {
+      "id": "water",
+      "due_date": "2026-04-22T09:00:00",
+      "amount": 25
+    },
+    {
+      "id": "medical",
+      "due_date": "2026-04-22T11:00:00",
+      "amount": 20
+    },
+    {
+      "id": "card",
+      "due_date": "2026-04-22T10:00:00",
+      "amount": 250
+    }
+  ],
+  "scheduled_payments": [
+    {
+      "confirmation_id": "c17c41ac-d4c8-4e3a-81c7-8ef05da33236",
+      "bill_id": "phone",
+      "scheduled_date": "2026-04-20T00:00:00"
+    },
+    {
+      "confirmation_id": "69b93c3b-67e0-4144-9ce7-8ce17a43045a",
+      "bill_id": "internet",
+      "scheduled_date": "2026-04-21T00:00:00"
+    },
+    {
+      "confirmation_id": "f788c486-f2aa-4f31-b5ef-0460ccbb1583",
+      "bill_id": "water",
+      "scheduled_date": "2026-04-22T00:00:00"
+    }
+  ],
+  "overdraft_alert": "Two bills due within the window could not be scheduled due to balance constraints: medical ($20, due 2026-04-22T11:00:00) and card ($250, due 2026-04-22T10:00:00). Scheduling these would drop the projected balance below the $200 minimum threshold. After the three scheduled payments, your balance will be $200."
+}

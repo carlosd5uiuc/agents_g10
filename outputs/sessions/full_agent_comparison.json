@@ -1,0 +1,586 @@
+{
+  "notes": [
+    "OpenClaw model_calls are extracted from baselines/openclaw/state session jsonl assistant messages with usage blocks, not from wrapper step_count.",
+    "PTA current historical runs do not include Anthropic token usage; providers now log model_usage for future runs.",
+    "OpenClaw repair_count is None because stock OpenClaw does not expose PTA-style policy repair events.",
+    "Task 06 grader currently does not verify scheduled_payments cover every pending_bill; this makes incomplete payment schedules look successful."
+  ],
+  "comparison": {
+    "pta_sonnet": {
+      "agent": "PTA",
+      "session_id": "20260504T093658Z-anthropic-run-all-16845926",
+      "status_counts": {
+        "success": 10
+      },
+      "avg_TSR": 1.0,
+      "avg_CVC": 0.0,
+      "avg_PA": 0.9,
+      "model_calls": 49,
+      "resource_reads": 11,
+      "non_resource_tool_calls": 25,
+      "environment_interactions": 36,
+      "repair_count": 3,
+      "invalid_model_output_count": 0,
+      "verification_failure_count": 0,
+      "token_usage_available": false,
+      "task_metrics": [
+        {
+          "task_id": "task_01",
+          "status": "success",
+          "model_calls": 4,
+          "resource_reads": 1,
+          "non_resource_tool_calls": 2,
+          "grade": {
+            "id": "task_01",
+            "TSR": 1,
+            "CVC": 0.0,
+            "PA": 1.0
+          }
+        },
+        {
+          "task_id": "task_02",
+          "status": "success",
+          "model_calls": 3,
+          "resource_reads": 1,
+          "non_resource_tool_calls": 1,
+          "grade": {
+            "id": "task_02",
+            "TSR": 1,
+            "CVC": 0.0,
+            "PA": 1.0
+          }
+        },
+        {
+          "task_id": "task_03",
+          "status": "success",
+          "model_calls": 4,
+          "resource_reads": 1,
+          "non_resource_tool_calls": 2,
+          "grade": {
+            "id": "task_03",
+            "TSR": 1,
+            "CVC": 0.0,
+            "PA": 1.0
+          }
+        },
+        {
+          "task_id": "task_04",
+          "status": "success",
+          "model_calls": 4,
+          "resource_reads": 1,
+          "non_resource_tool_calls": 2,
+          "grade": {
+            "id": "task_04",
+            "TSR": 1,
+            "CVC": 0.0,
+            "PA": 1.0
+          }
+        },
+        {
+          "task_id": "task_05",
+          "status": "success",
+          "model_calls": 3,
+          "resource_reads": 2,
+          "non_resource_tool_calls": 0,
+          "grade": {
+            "id": "task_05",
+            "TSR": 1,
+            "CVC": 0.0,
+            "PA": 1.0
+          }
+        },
+        {
+          "task_id": "task_06",
+          "status": "success",
+          "model_calls": 9,
+          "resource_reads": 1,
+          "non_resource_tool_calls": 6,
+          "grade": {
+            "id": "task_06",
+            "TSR": 1,
+            "CVC": 0.0,
+            "PA": 0.0
+          }
+        },
+        {
+          "task_id": "task_07",
+          "status": "success",
+          "model_calls": 8,
+          "resource_reads": 1,
+          "non_resource_tool_calls": 6,
+          "grade": {
+            "id": "task_07",
+            "TSR": 1,
+            "CVC": 0.0,
+            "PA": 1.0
+          }
+        },
+        {
+          "task_id": "task_08",
+          "status": "success",
+          "model_calls": 5,
+          "resource_reads": 1,
+          "non_resource_tool_calls": 1,
+          "grade": {
+            "id": "task_08",
+            "TSR": 1,
+            "CVC": 0.0,
+            "PA": 1.0
+          }
+        },
+        {
+          "task_id": "task_09",
+          "status": "success",
+          "model_calls": 4,
+          "resource_reads": 1,
+          "non_resource_tool_calls": 2,
+          "grade": {
+            "id": "task_09",
+            "TSR": 1,
+            "CVC": 0.0,
+            "PA": 1.0
+          }
+        },
+        {
+          "task_id": "task_10",
+          "status": "success",
+          "model_calls": 5,
+          "resource_reads": 1,
+          "non_resource_tool_calls": 3,
+          "grade": {
+            "id": "task_10",
+            "TSR": 1,
+            "CVC": 0.0,
+            "PA": 1.0
+          }
+        }
+      ]
+    },
+    "pta_haiku": {
+      "agent": "PTA",
+      "session_id": "20260504T094208Z-anthropic-run-all-dfa43083",
+      "status_counts": {
+        "failed_constraints": 1,
+        "needs_clarification": 1,
+        "success": 8
+      },
+      "avg_TSR": 0.8,
+      "avg_CVC": 0.0667,
+      "avg_PA": 0.9,
+      "model_calls": 63,
+      "resource_reads": 11,
+      "non_resource_tool_calls": 25,
+      "environment_interactions": 36,
+      "repair_count": 14,
+      "invalid_model_output_count": 3,
+      "verification_failure_count": 0,
+      "token_usage_available": false,
+      "task_metrics": [
+        {
+          "task_id": "task_01",
+          "status": "success",
+          "model_calls": 5,
+          "resource_reads": 1,
+          "non_resource_tool_calls": 2,
+          "grade": {
+            "id": "task_01",
+            "TSR": 1,
+            "CVC": 0.0,
+            "PA": 1.0
+          }
+        },
+        {
+          "task_id": "task_02",
+          "status": "success",
+          "model_calls": 3,
+          "resource_reads": 1,
+          "non_resource_tool_calls": 1,
+          "grade": {
+            "id": "task_02",
+            "TSR": 1,
+            "CVC": 0.0,
+            "PA": 1.0
+          }
+        },
+        {
+          "task_id": "task_03",
+          "status": "success",
+          "model_calls": 4,
+          "resource_reads": 1,
+          "non_resource_tool_calls": 2,
+          "grade": {
+            "id": "task_03",
+            "TSR": 1,
+            "CVC": 0.0,
+            "PA": 1.0
+          }
+        },
+        {
+          "task_id": "task_04",
+          "status": "success",
+          "model_calls": 4,
+          "resource_reads": 1,
+          "non_resource_tool_calls": 2,
+          "grade": {
+            "id": "task_04",
+            "TSR": 1,
+            "CVC": 0.0,
+            "PA": 1.0
+          }
+        },
+        {
+          "task_id": "task_05",
+          "status": "success",
+          "model_calls": 3,
+          "resource_reads": 2,
+          "non_resource_tool_calls": 0,
+          "grade": {
+            "id": "task_05",
+            "TSR": 1,
+            "CVC": 0.0,
+            "PA": 1.0
+          }
+        },
+        {
+          "task_id": "task_06",
+          "status": "success",
+          "model_calls": 9,
+          "resource_reads": 1,
+          "non_resource_tool_calls": 6,
+          "grade": {
+            "id": "task_06",
+            "TSR": 1,
+            "CVC": 0.0,
+            "PA": 0.0
+          }
+        },
+        {
+          "task_id": "task_07",
+          "status": "failed_constraints",
+          "model_calls": 15,
+          "resource_reads": 1,
+          "non_resource_tool_calls": 7,
+          "grade": {
+            "id": "task_07",
+            "TSR": 0,
+            "CVC": 0.0,
+            "PA": 1.0
+          }
+        },
+        {
+          "task_id": "task_08",
+          "status": "needs_clarification",
+          "model_calls": 10,
+          "resource_reads": 1,
+          "non_resource_tool_calls": 0,
+          "grade": {
+            "id": "task_08",
+            "TSR": 0,
+            "CVC": 0.6666666666666666,
+            "PA": 1.0
+          }
+        },
+        {
+          "task_id": "task_09",
+          "status": "success",
+          "model_calls": 4,
+          "resource_reads": 1,
+          "non_resource_tool_calls": 2,
+          "grade": {
+            "id": "task_09",
+            "TSR": 1,
+            "CVC": 0.0,
+            "PA": 1.0
+          }
+        },
+        {
+          "task_id": "task_10",
+          "status": "success",
+          "model_calls": 6,
+          "resource_reads": 1,
+          "non_resource_tool_calls": 3,
+          "grade": {
+            "id": "task_10",
+            "TSR": 1,
+            "CVC": 0.0,
+            "PA": 1.0
+          }
+        }
+      ]
+    },
+    "openclaw_sonnet": {
+      "agent": "OpenClaw stock baseline",
+      "session_id": "20260505T010934Z-openclaw-sonnet-run-all-aa622ebd",
+      "status_counts": {
+        "success": 10
+      },
+      "avg_TSR": 1.0,
+      "avg_CVC": 0.0,
+      "avg_PA": 0.9,
+      "model_calls": 30,
+      "resource_reads": 11,
+      "non_resource_tool_calls": 25,
+      "environment_interactions": 36,
+      "repair_count": null,
+      "invalid_model_output_count": 0,
+      "verification_failure_count": 0,
+      "token_usage_available": true,
+      "total_tokens_exact": 226955,
+      "total_cost_estimate": 0.315552,
+      "tool_errors": 0,
+      "duplicate_non_resource_calls": 0,
+      "calls_before_resource": 0,
+      "missing_final_id_count": 0,
+      "ungrounded_arg_violation_count": 0,
+      "task_metrics": [
+        {
+          "task_id": "task_01",
+          "TSR": 1,
+          "CVC": 0.0,
+          "PA": 1.0,
+          "model_calls": 3,
+          "tool_calls": 3,
+          "resource_reads": 1,
+          "missing_final_ids": 0,
+          "tool_errors": 0
+        },
+        {
+          "task_id": "task_02",
+          "TSR": 1,
+          "CVC": 0.0,
+          "PA": 1.0,
+          "model_calls": 3,
+          "tool_calls": 2,
+          "resource_reads": 1,
+          "missing_final_ids": 0,
+          "tool_errors": 0
+        },
+        {
+          "task_id": "task_03",
+          "TSR": 1,
+          "CVC": 0.0,
+          "PA": 1.0,
+          "model_calls": 3,
+          "tool_calls": 3,
+          "resource_reads": 1,
+          "missing_final_ids": 0,
+          "tool_errors": 0
+        },
+        {
+          "task_id": "task_04",
+          "TSR": 1,
+          "CVC": 0.0,
+          "PA": 1.0,
+          "model_calls": 4,
+          "tool_calls": 3,
+          "resource_reads": 1,
+          "missing_final_ids": 0,
+          "tool_errors": 0
+        },
+        {
+          "task_id": "task_05",
+          "TSR": 1,
+          "CVC": 0.0,
+          "PA": 1.0,
+          "model_calls": 2,
+          "tool_calls": 2,
+          "resource_reads": 2,
+          "missing_final_ids": 0,
+          "tool_errors": 0
+        },
+        {
+          "task_id": "task_06",
+          "TSR": 1,
+          "CVC": 0.0,
+          "PA": 0.0,
+          "model_calls": 3,
+          "tool_calls": 7,
+          "resource_reads": 1,
+          "missing_final_ids": 0,
+          "tool_errors": 0
+        },
+        {
+          "task_id": "task_07",
+          "TSR": 1,
+          "CVC": 0.0,
+          "PA": 1.0,
+          "model_calls": 3,
+          "tool_calls": 7,
+          "resource_reads": 1,
+          "missing_final_ids": 0,
+          "tool_errors": 0
+        },
+        {
+          "task_id": "task_08",
+          "TSR": 1,
+          "CVC": 0.0,
+          "PA": 1.0,
+          "model_calls": 3,
+          "tool_calls": 2,
+          "resource_reads": 1,
+          "missing_final_ids": 0,
+          "tool_errors": 0
+        },
+        {
+          "task_id": "task_09",
+          "TSR": 1,
+          "CVC": 0.0,
+          "PA": 1.0,
+          "model_calls": 3,
+          "tool_calls": 3,
+          "resource_reads": 1,
+          "missing_final_ids": 0,
+          "tool_errors": 0
+        },
+        {
+          "task_id": "task_10",
+          "TSR": 1,
+          "CVC": 0.0,
+          "PA": 1.0,
+          "model_calls": 3,
+          "tool_calls": 4,
+          "resource_reads": 1,
+          "missing_final_ids": 0,
+          "tool_errors": 0
+        }
+      ]
+    },
+    "openclaw_haiku": {
+      "agent": "OpenClaw stock baseline",
+      "session_id": "20260505T011613Z-openclaw-haiku-run-all-b81d2f27",
+      "status_counts": {
+        "success": 10
+      },
+      "avg_TSR": 1.0,
+      "avg_CVC": 0.0,
+      "avg_PA": 0.8,
+      "model_calls": 29,
+      "resource_reads": 11,
+      "non_resource_tool_calls": 23,
+      "environment_interactions": 34,
+      "repair_count": null,
+      "invalid_model_output_count": 0,
+      "verification_failure_count": 0,
+      "token_usage_available": true,
+      "total_tokens_exact": 218562,
+      "total_cost_estimate": 0.106184,
+      "tool_errors": 0,
+      "duplicate_non_resource_calls": 0,
+      "calls_before_resource": 0,
+      "missing_final_id_count": 0,
+      "ungrounded_arg_violation_count": 0,
+      "task_metrics": [
+        {
+          "task_id": "task_01",
+          "TSR": 1,
+          "CVC": 0.0,
+          "PA": 1.0,
+          "model_calls": 3,
+          "tool_calls": 3,
+          "resource_reads": 1,
+          "missing_final_ids": 0,
+          "tool_errors": 0
+        },
+        {
+          "task_id": "task_02",
+          "TSR": 1,
+          "CVC": 0.0,
+          "PA": 1.0,
+          "model_calls": 3,
+          "tool_calls": 2,
+          "resource_reads": 1,
+          "missing_final_ids": 0,
+          "tool_errors": 0
+        },
+        {
+          "task_id": "task_03",
+          "TSR": 1,
+          "CVC": 0.0,
+          "PA": 1.0,
+          "model_calls": 3,
+          "tool_calls": 3,
+          "resource_reads": 1,
+          "missing_final_ids": 0,
+          "tool_errors": 0
+        },
+        {
+          "task_id": "task_04",
+          "TSR": 1,
+          "CVC": 0.0,
+          "PA": 1.0,
+          "model_calls": 3,
+          "tool_calls": 3,
+          "resource_reads": 1,
+          "missing_final_ids": 0,
+          "tool_errors": 0
+        },
+        {
+          "task_id": "task_05",
+          "TSR": 1,
+          "CVC": 0.0,
+          "PA": 1.0,
+          "model_calls": 2,
+          "tool_calls": 2,
+          "resource_reads": 2,
+          "missing_final_ids": 0,
+          "tool_errors": 0
+        },
+        {
+          "task_id": "task_06",
+          "TSR": 1,
+          "CVC": 0.0,
+          "PA": 0.0,
+          "model_calls": 3,
+          "tool_calls": 5,
+          "resource_reads": 1,
+          "missing_final_ids": 0,
+          "tool_errors": 0
+        },
+        {
+          "task_id": "task_07",
+          "TSR": 1,
+          "CVC": 0.0,
+          "PA": 1.0,
+          "model_calls": 3,
+          "tool_calls": 7,
+          "resource_reads": 1,
+          "missing_final_ids": 0,
+          "tool_errors": 0
+        },
+        {
+          "task_id": "task_08",
+          "TSR": 1,
+          "CVC": 0.0,
+          "PA": 1.0,
+          "model_calls": 3,
+          "tool_calls": 2,
+          "resource_reads": 1,
+          "missing_final_ids": 0,
+          "tool_errors": 0
+        },
+        {
+          "task_id": "task_09",
+          "TSR": 1,
+          "CVC": 0.0,
+          "PA": 0.0,
+          "model_calls": 3,
+          "tool_calls": 3,
+          "resource_reads": 1,
+          "missing_final_ids": 0,
+          "tool_errors": 0
+        },
+        {
+          "task_id": "task_10",
+          "TSR": 1,
+          "CVC": 0.0,
+          "PA": 1.0,
+          "model_calls": 3,
+          "tool_calls": 4,
+          "resource_reads": 1,
+          "missing_final_ids": 0,
+          "tool_errors": 0
+        }
+      ]
+    }
+  }
+}

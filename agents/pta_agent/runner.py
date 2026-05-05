@@ -11,7 +11,7 @@ from typing import Any
 from .action_selector import ActionSelector
 from .execution import ExecutionLayer
 from .mcp_client import McpClient
-from .models import ActionType, PolicyOutcome, RunConfig, RunStatus
+from .models import ActionType, PolicyOutcome, RunConfig, RunStatus, TaskSpec
 from .policy import PolicyEngine
 from .providers import build_provider
 from .state import StateManager
@@ -21,12 +21,16 @@ from .verifier import Verifier
 
 
 async def run_task(config: RunConfig) -> dict[str, Any]:
+    interpreter = TaskInterpreter(config.repo_root.resolve())
+    task = interpreter.load(config.task_id)
+    return await run_task_spec(config, task)
+
+
+async def run_task_spec(config: RunConfig, task: TaskSpec) -> dict[str, Any]:
     repo_root = config.repo_root.resolve()
     output_root = (config.output_root or default_output_root(repo_root)).resolve()
     server_script = (config.server_script or repo_root / "mcp-server" / "main.py").resolve()
 
-    interpreter = TaskInterpreter(repo_root)
-    task = interpreter.load(config.task_id)
     provider = build_provider(config.provider)
     selector = ActionSelector(provider)
     policy = PolicyEngine()
@@ -59,6 +63,9 @@ async def run_task(config: RunConfig) -> dict[str, Any]:
             for step in range(config.max_steps):
                 selection = await selector.next_action(task, state, repair_context=repair_context)
                 logger.log("model_proposal", {"step": step, "raw": selection.raw, "error": selection.error})
+                provider_usage = getattr(provider, "last_usage", None)
+                if provider_usage:
+                    logger.log("model_usage", {"step": step, "usage": provider_usage})
 
                 if selection.error or selection.proposal is None:
                     state.add_failed_attempt(
@@ -245,10 +252,15 @@ def build_session_metrics(summaries: list[dict[str, Any]]) -> dict[str, Any]:
     task_count = len(summaries)
     trace_paths = [Path(summary["artifacts"]["trace"]) for summary in summaries]
     total_steps = sum(int(summary.get("step_count", 0)) for summary in summaries)
+    model_error_counts = [count_model_errors(path) for path in trace_paths]
     return {
         "total_llm_calls": total_steps,
         "repair_count": sum(count_policy_outcomes(path, {"repair"}) for path in trace_paths),
-        "invalid_model_output_count": sum(count_model_errors(path) for path in trace_paths),
+        "invalid_model_output_count": sum(model_error_counts) + sum(
+            1
+            for summary, model_error_count in zip(summaries, model_error_counts, strict=False)
+            if summary.get("status") == RunStatus.MODEL_INVALID_OUTPUT.value and model_error_count == 0
+        ),
         "tool_call_count": sum(int(summary.get("tool_count", 0)) for summary in summaries),
         "verification_failure_count": sum(
             1 for summary in summaries

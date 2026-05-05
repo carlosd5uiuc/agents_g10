@@ -1,0 +1,53 @@
+{
+  "success": true,
+  "payments": [
+    {
+      "id": "tuition",
+      "due_date": "2026-04-19T12:00:00",
+      "amount": 500
+    },
+    {
+      "id": "phone",
+      "due_date": "2026-04-20T00:00:00",
+      "amount": 40
+    },
+    {
+      "id": "internet",
+      "due_date": "2026-04-21T00:00:00",
+      "amount": 35
+    },
+    {
+      "id": "water",
+      "due_date": "2026-04-22T09:00:00",
+      "amount": 25
+    },
+    {
+      "id": "card",
+      "due_date": "2026-04-22T10:00:00",
+      "amount": 250
+    },
+    {
+      "id": "medical",
+      "due_date": "2026-04-22T11:00:00",
+      "amount": 20
+    }
+  ],
+  "scheduled_payments": [
+    {
+      "confirmation_id": "9f1bc912-73e7-4fac-b2a3-a83448be91e7",
+      "bill_id": "phone",
+      "scheduled_date": "2026-04-20T00:00:00"
+    },
+    {
+      "confirmation_id": "f8408935-eb1b-49c1-bd98-7355cc71a84b",
+      "bill_id": "internet",
+      "scheduled_date": "2026-04-21T00:00:00"
+    },
+    {
+      "confirmation_id": "8bb811e3-3145-43fe-92c4-38642dbb8419",
+      "bill_id": "water",
+      "scheduled_date": "2026-04-22T09:00:00"
+    }
+  ],
+  "overdraft_alert": "Unable to schedule the following bills without violating the $200 minimum balance: tuition ($500, due 2026-04-19T12:00:00), card ($250, due 2026-04-22T10:00:00), and medical ($20, due 2026-04-22T11:00:00). After scheduling phone, internet, and water, the projected balance is $200."
+}

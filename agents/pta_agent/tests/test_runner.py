@@ -112,6 +112,31 @@ class RunnerTests(unittest.TestCase):
             self.assertEqual(payload["metrics"]["invalid_model_output_count"], 1)
             self.assertEqual(payload["metrics"]["verification_failure_count"], 1)
 
+    def test_session_summary_counts_status_only_invalid_output(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            trace_path = root / "trace.jsonl"
+            trace_path.write_text("", encoding="utf-8")
+
+            payload = write_session_summary(
+                [
+                    {
+                        "session_id": "session-1",
+                        "session_dir": str(root),
+                        "task_id": "task_01",
+                        "status": "model_invalid_output",
+                        "step_count": 1,
+                        "tool_count": 0,
+                        "resource_count": 0,
+                        "verification": {"ok": False},
+                        "artifacts": {"final": "task_01/final.json", "trace": str(trace_path)},
+                    }
+                ],
+                root / "session_summary.json",
+            )
+
+            self.assertEqual(payload["metrics"]["invalid_model_output_count"], 1)
+
     def test_grade_bundle_writes_results_without_crashing_on_failed_task(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

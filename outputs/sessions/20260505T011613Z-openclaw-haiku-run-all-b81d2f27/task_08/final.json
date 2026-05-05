@@ -1,0 +1,31 @@
+{
+  "success": true,
+  "generated_report": {
+    "savings_target": 150,
+    "total_reduction": 150,
+    "report_summary": "Expense Reduction Report: To meet the $150 monthly savings target, suggested cuts include: (1) Cancel streaming subscription ($45), (2) Reduce coffee spending from $80 to $30 ($50 cut), and (3) Reduce restaurant spending from $150 to $95 ($55 cut). These cuts target discretionary spending while preserving all priority categories and respecting preferences to avoid cuts from health and gym.",
+    "suggestions": [
+      {
+        "category": "streaming",
+        "cut_amount": 45,
+        "priority_category": false,
+        "category_type": "discretionary",
+        "reason": "Cancel streaming subscription - entertainment is discretionary spending"
+      },
+      {
+        "category": "coffee",
+        "cut_amount": 50,
+        "priority_category": false,
+        "category_type": "discretionary",
+        "reason": "Reduce coffee spending from $80 to $30 by brewing at home 2-3x per week"
+      },
+      {
+        "category": "restaurants",
+        "cut_amount": 55,
+        "priority_category": false,
+        "category_type": "discretionary",
+        "reason": "Reduce restaurant spending from $150 to $95 by dining out 1 fewer time per week"
+      }
+    ]
+  }
+}

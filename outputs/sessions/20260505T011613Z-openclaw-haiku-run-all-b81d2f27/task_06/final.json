@@ -1,0 +1,75 @@
+{
+  "success": true,
+  "plan_summary": "Scheduled payments totaling $95 for 4 critical unpaid bills (electric, internet, gas, and renters insurance), prioritizing essential utilities and insurance. This stays under the user's preference of paying less than $100. Note: Total pending bills amount is $145, exceeding the $120 budget limit. Remaining unpaid bills (trash service $22 and parking permit $28 totaling $50) should be addressed in a follow-up payment plan.",
+  "pending_bills": [
+    {
+      "bill_id": "bill_electric",
+      "name": "Electric bill",
+      "amount": 20,
+      "due_date": "2026-05-03",
+      "settled": false
+    },
+    {
+      "bill_id": "bill_internet",
+      "name": "Internet bill",
+      "amount": 35,
+      "due_date": "2026-05-04",
+      "settled": false
+    },
+    {
+      "bill_id": "bill_gas",
+      "name": "Gas bill",
+      "amount": 25,
+      "due_date": "2026-05-06",
+      "settled": false
+    },
+    {
+      "bill_id": "bill_renters_insurance",
+      "name": "Renters insurance",
+      "amount": 15,
+      "due_date": "2026-05-08",
+      "settled": false
+    },
+    {
+      "bill_id": "bill_trash",
+      "name": "Trash service",
+      "amount": 22,
+      "due_date": "2026-05-09",
+      "settled": false
+    },
+    {
+      "bill_id": "bill_parking",
+      "name": "Parking permit",
+      "amount": 28,
+      "due_date": "2026-05-03",
+      "settled": false
+    }
+  ],
+  "scheduled_payments": [
+    {
+      "payment_confirmation_id": "453ad8b1-c3ba-4b27-926e-63fca2b3590f",
+      "bill_id": "bill_electric",
+      "payment_date": "2026-05-02",
+      "amount": 20
+    },
+    {
+      "payment_confirmation_id": "97cac49a-8a87-4aea-945a-bf486ed8548a",
+      "bill_id": "bill_internet",
+      "payment_date": "2026-05-03",
+      "amount": 35
+    },
+    {
+      "payment_confirmation_id": "f28926a0-c082-49b8-88c3-1f2d3654fc25",
+      "bill_id": "bill_gas",
+      "payment_date": "2026-05-05",
+      "amount": 25
+    },
+    {
+      "payment_confirmation_id": "0d6137d4-bf5a-4f88-9e2e-ebf38e4f5258",
+      "bill_id": "bill_renters_insurance",
+      "payment_date": "2026-05-07",
+      "amount": 15
+    }
+  ],
+  "alert": "BUDGET ALERT: Total pending bill amount ($145) exceeds budget threshold of $120. Current payment plan covers only $95 of the 6 unpaid bills. Trash service ($22) and Parking permit ($28) remain unscheduled pending further budget availability."
+}

@@ -416,6 +416,7 @@ class AnthropicProvider(ModelProvider):
         self.rate_limit_backoff_seconds = float(os.environ.get("ANTHROPIC_RATE_LIMIT_BACKOFF_SECONDS", "65"))
         self.messages: list[dict[str, str]] = []
         self.active_task_id: str | None = None
+        self.last_usage: dict[str, Any] | None = None
         self.seen_resource_uris: set[str] = set()
         self.tool_result_count = 0
         self.failed_attempt_count = 0
@@ -450,6 +451,7 @@ class AnthropicProvider(ModelProvider):
             method="POST",
         )
         payload = await self._send_request(request)
+        self.last_usage = payload.get("usage") if isinstance(payload.get("usage"), dict) else None
         text = "\n".join(block.get("text", "") for block in payload.get("content", []) if block.get("type") == "text")
         self.messages = [*messages, {"role": "assistant", "content": text}]
         self._mark_seen_state(state)

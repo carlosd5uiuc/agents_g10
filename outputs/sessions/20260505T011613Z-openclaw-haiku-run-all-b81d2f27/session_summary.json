@@ -1,0 +1,120 @@
+{
+  "session_id": "20260505T011613Z-openclaw-haiku-run-all-b81d2f27",
+  "session_dir": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260505T011613Z-openclaw-haiku-run-all-b81d2f27",
+  "task_count": 10,
+  "status_counts": {
+    "success": 10
+  },
+  "metrics": {
+    "total_llm_calls": 10,
+    "repair_count": 0,
+    "invalid_model_output_count": 0,
+    "tool_call_count": 34,
+    "verification_failure_count": 0,
+    "average_steps_per_task": 1.0
+  },
+  "grader_bundle": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260505T011613Z-openclaw-haiku-run-all-b81d2f27\\grader_bundle.json",
+  "grader_results": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260505T011613Z-openclaw-haiku-run-all-b81d2f27\\grader_results.json",
+  "tasks": [
+    {
+      "task_id": "task_01",
+      "status": "success",
+      "step_count": 1,
+      "tool_count": 3,
+      "resource_count": 0,
+      "verification_ok": true,
+      "final": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260505T011613Z-openclaw-haiku-run-all-b81d2f27\\task_01\\final.json",
+      "trace": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260505T011613Z-openclaw-haiku-run-all-b81d2f27\\task_01\\trace.jsonl"
+    },
+    {
+      "task_id": "task_02",
+      "status": "success",
+      "step_count": 1,
+      "tool_count": 2,
+      "resource_count": 0,
+      "verification_ok": true,
+      "final": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260505T011613Z-openclaw-haiku-run-all-b81d2f27\\task_02\\final.json",
+      "trace": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260505T011613Z-openclaw-haiku-run-all-b81d2f27\\task_02\\trace.jsonl"
+    },
+    {
+      "task_id": "task_03",
+      "status": "success",
+      "step_count": 1,
+      "tool_count": 3,
+      "resource_count": 0,
+      "verification_ok": true,
+      "final": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260505T011613Z-openclaw-haiku-run-all-b81d2f27\\task_03\\final.json",
+      "trace": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260505T011613Z-openclaw-haiku-run-all-b81d2f27\\task_03\\trace.jsonl"
+    },
+    {
+      "task_id": "task_04",
+      "status": "success",
+      "step_count": 1,
+      "tool_count": 3,
+      "resource_count": 0,
+      "verification_ok": true,
+      "final": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260505T011613Z-openclaw-haiku-run-all-b81d2f27\\task_04\\final.json",
+      "trace": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260505T011613Z-openclaw-haiku-run-all-b81d2f27\\task_04\\trace.jsonl"
+    },
+    {
+      "task_id": "task_05",
+      "status": "success",
+      "step_count": 1,
+      "tool_count": 2,
+      "resource_count": 0,
+      "verification_ok": true,
+      "final": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260505T011613Z-openclaw-haiku-run-all-b81d2f27\\task_05\\final.json",
+      "trace": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260505T011613Z-openclaw-haiku-run-all-b81d2f27\\task_05\\trace.jsonl"
+    },
+    {
+      "task_id": "task_06",
+      "status": "success",
+      "step_count": 1,
+      "tool_count": 5,
+      "resource_count": 0,
+      "verification_ok": true,
+      "final": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260505T011613Z-openclaw-haiku-run-all-b81d2f27\\task_06\\final.json",
+      "trace": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260505T011613Z-openclaw-haiku-run-all-b81d2f27\\task_06\\trace.jsonl"
+    },
+    {
+      "task_id": "task_07",
+      "status": "success",
+      "step_count": 1,
+      "tool_count": 7,
+      "resource_count": 0,
+      "verification_ok": true,
+      "final": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260505T011613Z-openclaw-haiku-run-all-b81d2f27\\task_07\\final.json",
+      "trace": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260505T011613Z-openclaw-haiku-run-all-b81d2f27\\task_07\\trace.jsonl"
+    },
+    {
+      "task_id": "task_08",
+      "status": "success",
+      "step_count": 1,
+      "tool_count": 2,
+      "resource_count": 0,
+      "verification_ok": true,
+      "final": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260505T011613Z-openclaw-haiku-run-all-b81d2f27\\task_08\\final.json",
+      "trace": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260505T011613Z-openclaw-haiku-run-all-b81d2f27\\task_08\\trace.jsonl"
+    },
+    {
+      "task_id": "task_09",
+      "status": "success",
+      "step_count": 1,
+      "tool_count": 3,
+      "resource_count": 0,
+      "verification_ok": true,
+      "final": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260505T011613Z-openclaw-haiku-run-all-b81d2f27\\task_09\\final.json",
+      "trace": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260505T011613Z-openclaw-haiku-run-all-b81d2f27\\task_09\\trace.jsonl"
+    },
+    {
+      "task_id": "task_10",
+      "status": "success",
+      "step_count": 1,
+      "tool_count": 4,
+      "resource_count": 0,
+      "verification_ok": true,
+      "final": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260505T011613Z-openclaw-haiku-run-all-b81d2f27\\task_10\\final.json",
+      "trace": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260505T011613Z-openclaw-haiku-run-all-b81d2f27\\task_10\\trace.jsonl"
+    }
+  ]
+}

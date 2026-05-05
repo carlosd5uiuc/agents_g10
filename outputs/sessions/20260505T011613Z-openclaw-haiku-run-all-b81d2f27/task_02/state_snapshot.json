@@ -1,0 +1,26 @@
+{
+  "provider": "openclaw",
+  "model_id": "claude-haiku-4-5-20251001",
+  "command": [
+    "npm.cmd",
+    "--prefix",
+    "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\baselines\\openclaw",
+    "exec",
+    "--",
+    "openclaw",
+    "agent",
+    "--local",
+    "--session-id",
+    "20260505T011613Z-openclaw-haiku-run-all-b81d2f27-task_02",
+    "--model",
+    "anthropic/claude-haiku-4-5-20251001",
+    "--message",
+    "{\"role\": \"stock_openclaw_baseline\", \"benchmark_rules\": [\"Use only the configured pta-benchmark MCP environment.\", \"Do not inspect repository files, grader code, prior outputs, or expected answers.\", \"Read the listed MCP resources before selecting irreversible actions.\", \"If native MCP resources are not directly available, call pta-benchmark__read_benchmark_resource with the resource URI.\", \"Call MCP benchmark tools directly when action is required.\", \"Do not use the PTA action proposal schema.\", \"When finished, reply with exactly one JSON object matching output_structure and no markdown.\"], \"task\": {\"task_id\": \"task_02\", \"prompt\": \"Schedule a covered repair under warranty constraints.\", \"hard_constraints\": [\"Type of repair should be for a laptop battery\", \"Repair provider must be in-network\", \"Appointment must not be on Thursday\", \"Deductible must be less than or equal to USD 120\"], \"preferences\": [\"User would prefer an appointment scheduled this week\"], \"behavior_checklist\": [], \"resource_uris\": [\"repair://options\"], \"tool_names\": [\"set_up_repair_appointment\"], \"tool_schemas\": [{\"name\": \"set_up_repair_appointment\", \"description\": \"Use this tool after choosing a repair option. It schedules a mock repair appointment for a specific type of repair on a chosen day of the week.\", \"input_schema\": {\"type\": \"object\", \"properties\": {\"type_of_repair\": {\"type\": \"string\", \"description\": \"The kind of repair the user needs, such as 'Washer', 'Refrigerator', 'Dryer', or another appliance/repair type.\"}, \"day_of_week\": {\"type\": \"string\", \"description\": \"The day the user wants the repair appointment, for example 'Monday', 'Tuesday', or 'Friday'.\"}}, \"required\": [\"type_of_repair\", \"day_of_week\"]}}], \"output_structure\": {\"success\": \"bool\", \"repair_confirmation\": {\"confirmation_id\": \"string\", \"type_of_repair\": \"string\", \"in_network\": \"bool\", \"deductible\": \"int\", \"weekday\": \"string\", \"current_week\": \"bool\"}}}}",
+    "--timeout",
+    "900",
+    "--json"
+  ],
+  "returncode": 0,
+  "stdout_path": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260505T011613Z-openclaw-haiku-run-all-b81d2f27\\task_02\\openclaw_stdout.txt",
+  "stderr_path": "C:\\Users\\hjr02\\OneDrive\\Documents\\cs498\\agents_g10\\outputs\\sessions\\20260505T011613Z-openclaw-haiku-run-all-b81d2f27\\task_02\\openclaw_stderr.txt"
+}

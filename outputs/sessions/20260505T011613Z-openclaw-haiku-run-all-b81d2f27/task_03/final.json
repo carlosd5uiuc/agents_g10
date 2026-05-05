@@ -1,0 +1,15 @@
+{
+  "success": true,
+  "catering_confirmation": {
+    "confirmation_id": "abd185b6-ef9c-463d-9e06-007c1936ba2b",
+    "name": "Garden Tray",
+    "total": 138,
+    "vegetarian": true,
+    "contains_nuts": false
+  },
+  "invite_log": [
+    "An invitation was sent to one@example.com",
+    "An invitation was sent to two@example.com",
+    "An invitation was sent to three@example.com"
+  ]
+}
