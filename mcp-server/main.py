@@ -11,6 +11,19 @@ mcp = FastMCP("Personal Task Tools")
 
 BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR / "resource_data"
+RESOURCE_FILES = {
+    "transportation://list": "task_01.json",
+    "repair://options": "task_02.json",
+    "catering://options": "task_03.json",
+    "doctor://list": "task_04.json",
+    "troubleshoot://guide": "task_05_01.json",
+    "troubleshoot://repair": "task_05_02.json",
+    "household-bills://list": "task_06.json",
+    "workout-sessions://list": "task_07.json",
+    "expenses://list": "task_08.json",
+    "online-purchase://return_options": "task_09.json",
+    "pending-bills://list": "task_10.json",
+}
 
 # -------------------------
 # T1: Travel Arrangement
@@ -23,6 +36,27 @@ def load_json_file(file_path: Path):
 
 def json_resource(payload) -> str:
     return json.dumps(payload)
+
+
+@mcp.tool()
+def read_benchmark_resource(uri: str) -> list | dict:
+    """
+    Read one benchmark resource by URI.
+
+    This mirrors the MCP resources for clients that expose MCP tools but not
+    MCP resource reads in their agent loop.
+
+    Args:
+        uri (str): Resource URI such as transportation://list.
+
+    Returns:
+        list | dict: JSON payload for the requested benchmark resource.
+    """
+    filename = RESOURCE_FILES.get(uri)
+    if filename is None:
+        raise ValueError(f"Unknown benchmark resource URI: {uri}")
+    return load_json_file(DATA_DIR / filename)
+
 
 @mcp.resource("transportation://list")
 def get_ride_options() -> str:

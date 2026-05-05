@@ -1,0 +1,9 @@
+{
+  "name": "pta-openclaw-baseline",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Project-local OpenClaw baseline runner for the PTA benchmark.",
+  "devDependencies": {
+    "openclaw": "latest"
+  }
+}

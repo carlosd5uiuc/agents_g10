@@ -9,3 +9,6 @@ outputs/*
 *.pyo
 *.pyd
 .DS_Store
+baselines/openclaw/node_modules/
+baselines/openclaw/state/
+baselines/openclaw/npm-debug.log*

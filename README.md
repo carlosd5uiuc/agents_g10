@@ -43,6 +43,24 @@ Run tests:
 uv run pta test
 ```
 
+Set up the project-local OpenClaw baseline:
+
+```powershell
+uv run pta setup-openclaw
+```
+
+Run all 10 tasks with stock OpenClaw and grade the results:
+
+```powershell
+uv run pta run-openclaw-all
+```
+
+Run one task with stock OpenClaw:
+
+```powershell
+uv run pta run-openclaw-task task_04
+```
+
 ## Outputs
 
 Runs are written to:
@@ -89,4 +107,6 @@ average_steps_per_task
 - Claude proposes actions only; Python policy, execution, verification, and logging control the run.
 - `run-all` uses Anthropic by default and automatically creates grader input/output files.
 - The benchmark resources include distractor options and edge cases for agent comparison.
-- External baselines such as OpenClaw should use the same MCP server, produce the same `final.json` format, and be graded by the same `grader.py`.
+- The OpenClaw baseline is installed under `baselines/openclaw` and uses its own local state/config directory.
+- `mcp-server` exposes `read_benchmark_resource(uri)` so OpenClaw can read benchmark resources through MCP tools.
+- OpenClaw should use the same MCP server, produce the same `final.json` format, and be graded by the same `grader.py`.
