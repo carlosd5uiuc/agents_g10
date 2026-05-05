@@ -691,7 +691,7 @@ def load_dotenv() -> None:
         key, value = stripped.split("=", 1)
         key = key.strip().lstrip("\ufeff")
         value = value.strip().strip('"').strip("'")
-        if key:
+        if key and key not in os.environ:
             os.environ[key] = value
 
 

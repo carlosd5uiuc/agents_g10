@@ -6,21 +6,23 @@ import unittest
 from pathlib import Path
 
 from agents.pta_agent.security_benchmark import (
+    build_openclaw_security_task,
     build_openclaw_security_message,
     build_security_scenarios,
     build_security_task,
     sensitive_openclaw_tool_calls,
 )
+from agents.pta_agent.task_router import RouteDecision
 
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 
 
 class SecurityBenchmarkTests(unittest.TestCase):
-    def test_security_benchmark_has_five_scenarios(self) -> None:
+    def test_security_benchmark_has_five_attack_scenarios_and_positive_control(self) -> None:
         scenarios = build_security_scenarios()
 
-        self.assertEqual(len(scenarios), 5)
+        self.assertEqual(len(scenarios), 6)
         self.assertEqual(
             {scenario.scenario_id for scenario in scenarios},
             {
@@ -29,13 +31,15 @@ class SecurityBenchmarkTests(unittest.TestCase):
                 "indirect_resource_injection",
                 "indirect_appointment_intake_injection",
                 "indirect_return_authorization_injection",
+                "positive_calendar_lookup_sensitive_workflow",
             },
         )
+        self.assertEqual(sum(1 for scenario in scenarios if scenario.sensitive_access_expected), 1)
 
     def test_security_task_adds_indirect_injection_resource(self) -> None:
         scenario = next(item for item in build_security_scenarios() if item.scenario_id == "indirect_resource_injection")
 
-        task = build_security_task(REPO_ROOT, scenario)
+        task = build_security_task(REPO_ROOT, scenario, RouteDecision("task_01", 1.0, "test route"))
 
         self.assertIn("vendor://travel_brief", task.resource_uris)
         self.assertIn("transportation://list", task.resource_uris)
@@ -46,17 +50,30 @@ class SecurityBenchmarkTests(unittest.TestCase):
         appointment = next(item for item in scenarios if item.scenario_id == "indirect_appointment_intake_injection")
         return_auth = next(item for item in scenarios if item.scenario_id == "indirect_return_authorization_injection")
 
-        appointment_task = build_security_task(REPO_ROOT, appointment)
-        return_task = build_security_task(REPO_ROOT, return_auth)
+        appointment_task = build_security_task(REPO_ROOT, appointment, RouteDecision("task_04", 1.0, "test route"))
+        return_task = build_security_task(REPO_ROOT, return_auth, RouteDecision("task_09", 1.0, "test route"))
 
         self.assertIn("security://appointment_intake_brief", appointment_task.resource_uris)
         self.assertIn("security://return_authorization_brief", return_task.resource_uris)
         self.assertNotIn("get_calendar_events", appointment_task.tool_names)
         self.assertNotIn("read_private_user_profile", return_task.tool_names)
 
+    def test_positive_sensitive_workflow_allows_calendar_tool(self) -> None:
+        scenario = next(
+            item for item in build_security_scenarios()
+            if item.scenario_id == "positive_calendar_lookup_sensitive_workflow"
+        )
+
+        task = build_security_task(REPO_ROOT, scenario, RouteDecision("sensitive_calendar_lookup", 1.0, "test route"))
+
+        self.assertTrue(scenario.sensitive_access_expected)
+        self.assertEqual(task.task_id, "sensitive_calendar_lookup")
+        self.assertEqual(task.tool_names, ["get_calendar_events"])
+        self.assertNotIn("get_user_profile", task.tool_names)
+
     def test_openclaw_security_message_is_chat_style(self) -> None:
         scenario = build_security_scenarios()[0]
-        task = build_security_task(REPO_ROOT, scenario)
+        task = build_openclaw_security_task(scenario)
 
         message = build_openclaw_security_message(task, scenario)
 

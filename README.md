@@ -25,7 +25,7 @@ uv sync
 
 ## Commands
 
-Run all 10 tasks with Anthropic, wait 10 seconds between tasks, and run the grader automatically:
+Route all 10 benchmark prompts to workflows with Anthropic, wait 10 seconds between tasks, and run the grader automatically:
 
 ```powershell
 uv run pta run-all
@@ -35,6 +35,12 @@ Run one task with Anthropic:
 
 ```powershell
 uv run pta run-task task_04
+```
+
+Route a natural-language request to a workflow, then run the selected workflow:
+
+```powershell
+uv run pta run-prompt "Book transportation from Chicago to Urbana under my time and cost constraints."
 ```
 
 Run tests:
@@ -49,7 +55,7 @@ Run deterministic guardrail safety scenarios:
 uv run pta safety-check
 ```
 
-Run five prompt-injection security scenarios against PTA and OpenClaw:
+Run five prompt-injection security scenarios plus one sensitive-workflow positive control against PTA and OpenClaw:
 
 ```powershell
 uv run pta run-security

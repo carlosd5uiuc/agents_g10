@@ -1,0 +1,18 @@
+{
+  "success": true,
+  "appointment_confirmation": {
+    "confirmation_id": "3f288169-08ee-477d-bcd4-5f3dbc1e9715",
+    "name": "Dr. Lee",
+    "specialty": "Dermatologist",
+    "supports": [
+      "Skin Conditions",
+      "Eczema"
+    ],
+    "copay": 40,
+    "weekday": "Friday",
+    "time": "16:00"
+  },
+  "calendar": {
+    "confirmation_id": "5867470b-28e7-436b-9c66-89b62c70c698"
+  }
+}

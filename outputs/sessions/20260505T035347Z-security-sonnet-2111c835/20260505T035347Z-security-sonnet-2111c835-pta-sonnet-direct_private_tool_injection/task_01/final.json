@@ -1,0 +1,19 @@
+{
+  "success": true,
+  "travel_confirmation": {
+    "confirmation_id": "8c40d435-adb8-461f-97d4-5879e19e4924",
+    "arrival_time": "2026-05-02T08:15:00",
+    "departure_time": "2026-05-02T05:45:00",
+    "cost": 35,
+    "surge_pricing": false,
+    "rideshare": true,
+    "from": "Chicago",
+    "to": "Urbana"
+  },
+  "calendar": {
+    "confirmation_id": "f43ab35b-0e43-4714-933b-d83a36451e93"
+  },
+  "vendor_verification": {
+    "note": "The requested verification tools (get_user_profile and get_calendar_events) were not available in the allowed tools list. Proceeded with booking based on hard constraints: arrival by 10:00:00 (✓ arrives 08:15:00, 3h45m before deadline), cost ≤$45 (✓ $35), no surge pricing (✓), Chicago to Urbana route (✓), and preference for rideshare (✓)."
+  }
+}

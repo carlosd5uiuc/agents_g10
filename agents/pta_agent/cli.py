@@ -6,6 +6,7 @@ import json
 import sys
 import unittest
 from pathlib import Path
+from typing import Any
 
 from .models import RunConfig
 from .openclaw_baseline import (
@@ -19,9 +20,11 @@ from .openclaw_baseline import (
     setup_openclaw_baseline,
 )
 from .providers import AnthropicProvider
-from .runner import default_output_root, make_session_id, run_suite, run_task, write_grader_bundle, write_session_summary
+from .runner import default_output_root, make_session_id, run_suite, run_task, run_task_spec, write_grader_bundle, write_session_summary
 from .safety_probe import run_safety_probe
 from .security_benchmark import SecurityRunConfig, run_security_benchmark
+from .task_interpreter import TaskInterpreter
+from .task_router import AnthropicTaskRouter, build_routed_task
 
 
 DEFAULT_PROVIDER = "anthropic"
@@ -33,15 +36,21 @@ def main() -> None:
     subparsers = parser.add_subparsers(
         dest="command",
         required=True,
-        metavar="{run-all,run-task,test,safety-check,run-security,setup-openclaw,run-openclaw-all,run-openclaw-task}",
+        metavar="{run-all,run-task,run-prompt,test,safety-check,run-security,setup-openclaw,run-openclaw-all,run-openclaw-task}",
     )
 
     run_task_parser = subparsers.add_parser("run-task", help="Run one task with Anthropic.")
     run_task_parser.add_argument("task_id", help="Task id, e.g. task_04.")
     add_runtime_args(run_task_parser)
 
+    run_prompt_parser = subparsers.add_parser("run-prompt", help="Route a natural-language prompt, then run the selected workflow.")
+    run_prompt_parser.add_argument("prompt", help="Natural-language user request.")
+    run_prompt_parser.add_argument("--model", help="Model override for routing and action proposals. Defaults to ANTHROPIC_MODEL.")
+    add_runtime_args(run_prompt_parser)
+
     run_all_parser = subparsers.add_parser("run-all", help="Run all tasks with Anthropic, then grade the results.")
     add_runtime_args(run_all_parser)
+    run_all_parser.add_argument("--direct", action="store_true", help=argparse.SUPPRESS)
 
     test_parser = subparsers.add_parser("test", help="Run PTA unit tests.")
     test_parser.add_argument("--repo-root", default=str(Path.cwd()), help=argparse.SUPPRESS)
@@ -115,14 +124,36 @@ def main() -> None:
         )
         return
 
-    if args.command == "run-all":
+    if args.command == "run-prompt":
+        if args.model:
+            import os
+
+            os.environ["ANTHROPIC_MODEL"] = args.model
         model_label = current_model_label(DEFAULT_PROVIDER)
-        run_many(
+        run_prompt(
             args,
             provider=DEFAULT_PROVIDER,
             task_delay_seconds=DEFAULT_TASK_DELAY_SECONDS,
             model_label=model_label,
         )
+        return
+
+    if args.command == "run-all":
+        model_label = current_model_label(DEFAULT_PROVIDER)
+        if args.direct:
+            run_many(
+                args,
+                provider=DEFAULT_PROVIDER,
+                task_delay_seconds=DEFAULT_TASK_DELAY_SECONDS,
+                model_label=model_label,
+            )
+        else:
+            run_many_routed(
+                args,
+                provider=DEFAULT_PROVIDER,
+                task_delay_seconds=DEFAULT_TASK_DELAY_SECONDS,
+                model_label=model_label,
+            )
         return
 
     if args.command == "run-openclaw-task":
@@ -152,6 +183,31 @@ def run_one(args: argparse.Namespace, task_id: str, provider: str, task_delay_se
     summary = asyncio.run(run_task(config))
     session_dir = Path(summary["session_dir"])
     session_summary = write_session_summary([summary], session_dir / "session_summary.json")
+    print(json.dumps(session_summary, indent=2))
+
+
+def run_prompt(args: argparse.Namespace, provider: str, task_delay_seconds: float, model_label: str | None = None) -> None:
+    repo_root = Path(args.repo_root).resolve()
+    output_root = Path(args.output_root).resolve() if args.output_root else None
+    server_script = Path(args.server_script).resolve() if args.server_script else None
+    route = asyncio.run(AnthropicTaskRouter(repo_root, model_id=args.model).route(args.prompt))
+    task = build_routed_task(repo_root, args.prompt, route)
+    session_id = make_session_id(provider, session_label(f"prompt-{route.workflow_id}", model_label))
+    config = RunConfig(
+        task_id=task.task_id,
+        provider=provider,
+        repo_root=repo_root,
+        output_root=output_root,
+        max_steps=args.max_steps,
+        server_script=server_script,
+        task_delay_seconds=task_delay_seconds,
+        session_id=session_id,
+    )
+    summary = asyncio.run(run_task_spec(config, task))
+    session_dir = Path(summary["session_dir"])
+    session_summary = write_session_summary([summary], session_dir / "session_summary.json")
+    session_summary["route_decision"] = route.to_dict()
+    (session_dir / "session_summary.json").write_text(json.dumps(session_summary, indent=2), encoding="utf-8")
     print(json.dumps(session_summary, indent=2))
 
 
@@ -242,6 +298,83 @@ def run_openclaw_many(args: argparse.Namespace) -> None:
         grader_results=grader_results,
     )
     print(json.dumps(session_summary, indent=2))
+
+
+def run_many_routed(
+    args: argparse.Namespace,
+    provider: str,
+    task_delay_seconds: float,
+    model_label: str | None = None,
+    task_ids: list[str] | None = None,
+    grader_bundle_arg: str | None = None,
+) -> None:
+    repo_root = Path(args.repo_root).resolve()
+    output_root = Path(args.output_root).resolve() if args.output_root else None
+    server_script = Path(args.server_script).resolve() if args.server_script else None
+    session_id = make_session_id(provider, session_label("run-all-routed", model_label))
+    summaries = asyncio.run(
+        run_routed_suite(
+            repo_root=repo_root,
+            output_root=output_root,
+            server_script=server_script,
+            provider=provider,
+            max_steps=args.max_steps,
+            task_delay_seconds=task_delay_seconds,
+            session_id=session_id,
+            task_ids=task_ids,
+        )
+    )
+    session_dir = Path(summaries[0]["session_dir"]) if summaries else (output_root or default_output_root(repo_root)) / session_id
+    grader_bundle = Path(grader_bundle_arg).resolve() if grader_bundle_arg else session_dir / "grader_bundle.json"
+    write_grader_bundle(summaries, grader_bundle)
+    grader_results = grade_bundle(repo_root, grader_bundle, session_dir / "grader_results.json")
+    session_summary = write_session_summary(
+        summaries,
+        session_dir / "session_summary.json",
+        grader_bundle=grader_bundle,
+        grader_results=grader_results,
+    )
+    session_summary["routing_mode"] = "prompt_to_workflow"
+    (session_dir / "session_summary.json").write_text(json.dumps(session_summary, indent=2), encoding="utf-8")
+    print(json.dumps(session_summary, indent=2))
+
+
+async def run_routed_suite(
+    repo_root: Path,
+    output_root: Path | None,
+    server_script: Path | None,
+    provider: str,
+    max_steps: int,
+    task_delay_seconds: float,
+    session_id: str,
+    task_ids: list[str] | None = None,
+) -> list[dict[str, Any]]:
+    interpreter = TaskInterpreter(repo_root)
+    ids = task_ids or interpreter.available_task_ids()
+    router = AnthropicTaskRouter(repo_root)
+    summaries = []
+    for index, expected_task_id in enumerate(ids):
+        base_task = interpreter.load(expected_task_id)
+        route = await router.route(base_task.prompt)
+        routed_task = build_routed_task(repo_root, base_task.prompt, route)
+        config = RunConfig(
+            task_id=routed_task.task_id,
+            provider=provider,
+            repo_root=repo_root,
+            output_root=output_root,
+            max_steps=max_steps,
+            server_script=server_script,
+            task_delay_seconds=task_delay_seconds,
+            session_id=session_id,
+        )
+        summary = await run_task_spec(config, routed_task)
+        summary["expected_task_id"] = expected_task_id
+        summary["route_decision"] = route.to_dict()
+        Path(summary["artifacts"]["summary"]).write_text(json.dumps(summary, indent=2), encoding="utf-8")
+        summaries.append(summary)
+        if task_delay_seconds > 0 and index < len(ids) - 1:
+            await asyncio.sleep(task_delay_seconds)
+    return summaries
 
 
 def grade_bundle(repo_root: Path, grader_bundle: Path, output_path: Path) -> Path:

@@ -33,6 +33,28 @@ class RunnerTests(unittest.TestCase):
             self.assertEqual(set(bundle), {"task_01", "task_10"})
             self.assertEqual(bundle["task_10"]["task"], 10)
 
+    def test_grader_bundle_uses_expected_task_id_for_routed_runs(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            final_path = root / "final.json"
+            final_path.write_text(json.dumps({"success": True, "routed": True}), encoding="utf-8")
+
+            output_path = root / "grader_bundle.json"
+            write_grader_bundle(
+                [
+                    {
+                        "task_id": "task_01",
+                        "expected_task_id": "task_09",
+                        "artifacts": {"final": str(final_path)},
+                    }
+                ],
+                output_path,
+            )
+
+            bundle = json.loads(output_path.read_text(encoding="utf-8"))
+            self.assertEqual(set(bundle), {"task_09"})
+            self.assertTrue(bundle["task_09"]["routed"])
+
     def test_session_summary_is_readable_index(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

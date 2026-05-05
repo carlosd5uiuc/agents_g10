@@ -194,7 +194,7 @@ async def run_suite(config: RunConfig, task_ids: list[str] | None = None) -> lis
 def write_grader_bundle(summaries: list[dict[str, Any]], output_path: Path) -> None:
     bundle: dict[str, Any] = {}
     for summary in summaries:
-        task_id = summary["task_id"]
+        task_id = summary.get("expected_task_id") or summary["task_id"]
         with Path(summary["artifacts"]["final"]).open("r", encoding="utf-8") as handle:
             bundle[task_id] = json.load(handle)
     output_path.parent.mkdir(parents=True, exist_ok=True)
