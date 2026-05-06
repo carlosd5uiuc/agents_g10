@@ -124,15 +124,3 @@ outputs\sessions\safety_guardrail_proof.json
 ```
 
 `run-security` writes a session directory containing `security_comparison.json`.
-
-## Notes
-
-- The PTA agent is outside `mcp-server`.
-- The agent interacts with the benchmark only through MCP resource reads and tool calls.
-- Tool names, descriptions, and argument schemas are discovered live from the MCP server with `list_tools()`.
-- Claude proposes actions only; Python policy, execution, verification, and logging control the run.
-- `run-all` uses Anthropic by default and automatically creates grader input/output files.
-- The benchmark resources include distractor options and edge cases for agent comparison.
-- The OpenClaw baseline is installed under `baselines/openclaw` and uses its own local state/config directory.
-- `mcp-server` exposes `read_benchmark_resource(uri)` so OpenClaw can read benchmark resources through MCP tools.
-- OpenClaw should use the same MCP server, produce the same `final.json` format, and be graded by the same `grader.py`.
